@@ -168,7 +168,7 @@
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>ZipCode:</td>
-                                                        <td width="20%"><input class="text"  type="text" name="zip" value="00000"/></td>
+                                                        <td width="20%"><input class="text"  type="text" name="zip" /></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>

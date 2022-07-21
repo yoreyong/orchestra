@@ -84,8 +84,8 @@
                                                             <td>${m.address}</td>
                                                             <td><img src="${m.pic}" class="cover"/></td>
                                                             <td>
-                                                                <a href="musician.let?type=modifypre&SSN=${m.SSN}">Modify</a>&nbsp;&nbsp;
-                                                            	<a href="musician.let?type=remove&SSN=${m.SSN}">Delete</a>
+                                                                <a onclick="return confirm('Are you sure?');" href="musician.let?type=modifypre&SSN=${m.SSN}">Modify</a>&nbsp;&nbsp;
+                                                            	<a onclick="return confirm('Are you sure?');" href="musician.let?type=remove&SSN=${m.SSN}">Delete</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

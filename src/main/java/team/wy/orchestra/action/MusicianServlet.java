@@ -110,7 +110,7 @@ public class MusicianServlet extends HttpServlet {
      * @param out
      */
     private void query(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
-        int pageSize = 5;
+        int pageSize = 8;
         int pageCount = musicianBiz.getMusicianPageCount(pageSize);
         int pageIndex = Integer.parseInt(req.getParameter("pageIndex"));
         if(pageIndex < 1) {
@@ -129,12 +129,18 @@ public class MusicianServlet extends HttpServlet {
     }
 
     /**
-     *
      * @param req
      * @param resp
      * @param out
      */
     private void remove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+        String SSN = req.getParameter("SSN");
+        int count = musicianBiz.remove(SSN);
+        if(count > 0) {
+            out.println("<script>alert('Success to remove musician!');location.href='musician.let?type=query&pageIndex=1'</script>");
+        } else {
+            out.println("<script>alert('Failed to remove musician!');location.href='musician.let?type=query&pageIndex=1'</script>");
+        }
     }
 
     /**
