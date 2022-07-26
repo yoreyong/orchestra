@@ -40,7 +40,7 @@ public class MusicalWorkDaoTest {
     @Test
     public void modify() {
         try {
-            int count = musicalWorkDao.modify(49, "Damascus-XXX", "Freddi Seer", null, null);
+            int count = musicalWorkDao.modify(30, "Damascus-XXX", "Freddi Seer", "classical", null);
             System.out.println(count);
         } catch (SQLException e) {
             e.printStackTrace();

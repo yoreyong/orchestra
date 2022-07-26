@@ -40,9 +40,8 @@ public class MusicianServlet extends HttpServlet {
      * /musician.let?remove&id=xx 删除
      * /musician.let?type=query&pageIndex = 1 :分页查询（request:转发）
      * /musician.let?type=details&id=xx 展示书籍详细信息
-     * @param req
-     * @param resp
-     * @throws ServletException
+     * @param req -
+     * @param resp -
      * @throws IOException
      */
     @Override
@@ -92,11 +91,7 @@ public class MusicianServlet extends HttpServlet {
         }
     }
 
-    /**
-     * @param req
-     * @param resp
-     * @param out
-     */
+
     private void details(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         String SSN = req.getParameter("SSN");
         Musician musician = musicianBiz.getMusicianBySSN(SSN);
@@ -104,11 +99,7 @@ public class MusicianServlet extends HttpServlet {
         req.getRequestDispatcher("musician_details.jsp").forward(req, resp);
     }
 
-    /**
-     * @param req
-     * @param resp
-     * @param out
-     */
+
     private void query(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         int pageSize = 8;
         int pageCount = musicianBiz.getMusicianPageCount(pageSize);
@@ -128,27 +119,23 @@ public class MusicianServlet extends HttpServlet {
         req.getRequestDispatcher("musician_list.jsp?pageIndex=" + pageIndex).forward(req, resp);
     }
 
-    /**
-     * @param req
-     * @param resp
-     * @param out
-     */
+
     private void remove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
         String SSN = req.getParameter("SSN");
-        int count = musicianBiz.remove(SSN);
-        if(count > 0) {
-            out.println("<script>alert('Success to remove musician!');location.href='musician.let?type=query&pageIndex=1'</script>");
-        } else {
-            out.println("<script>alert('Failed to remove musician!');location.href='musician.let?type=query&pageIndex=1'</script>");
+        try {
+            int count = musicianBiz.remove(SSN);
+            if(count > 0) {
+                out.println("<script>alert('Success to remove musician!');location.href='musician.let?type=query&pageIndex=1'</script>");
+            } else {
+                out.println("<script>alert('Failed to remove musician!');location.href='musician.let?type=query&pageIndex=1'</script>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("<script>alert('" + e.getMessage() + "');location.href='musician.let?type=query&pageIndex=1'</script>");
         }
     }
 
-    /**
-     *
-     * @param req
-     * @param resp
-     * @param out
-     */
+
     private void modify(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws Exception {
         // int pageIndex = 0;
 
@@ -228,12 +215,7 @@ public class MusicianServlet extends HttpServlet {
         }
     }
 
-    /**
-     *
-     * @param req
-     * @param resp
-     * @param out
-     */
+
     private void modifypre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         String SSN = req.getParameter("SSN");
         Musician musician = musicianBiz.getMusicianBySSN(SSN);
@@ -243,12 +225,7 @@ public class MusicianServlet extends HttpServlet {
         req.getRequestDispatcher("musician_modify.jsp").forward(req, resp);
     }
 
-    /**
-     *
-     * @param req
-     * @param resp
-     * @param out
-     */
+
     private void add(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws Exception {
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(1024 * 9);
