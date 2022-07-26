@@ -57,7 +57,7 @@ public class MusicianDao {
     public int add(String SSN, long accountId, String fname, String lname, String gender, String phoneNum,
                    String state, String city, String address,  String zip, String pic) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "insert into musician(SSN, accountId, fname, lname, gender, phoneNum, state, city, address, zip, pic) " +
+        String sql = "insert into musician(SSN, accountId, fname, lname, gender, phoneNum, `state`, city, address, zip, pic) " +
                 "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int count = runner.update(conn, sql, SSN, accountId, fname, lname, gender, phoneNum, state, city, address, zip, pic);
         conn.close();
@@ -86,7 +86,7 @@ public class MusicianDao {
                       String state, String city, String address,  String zip, String pic) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "update musician set accountId=?, fname=?, lname=?, gender=?, phoneNum=?, " +
-                "state=?, city=?, address=?,  zip=?, pic=? where SSN=?";
+                "`state`=?, city=?, address=?,  zip=?, pic=? where SSN=?";
         int count = runner.update(conn, sql, accountId, fname, lname, gender, phoneNum, state, city, address, zip, pic, SSN);
         conn.close();
         return count;

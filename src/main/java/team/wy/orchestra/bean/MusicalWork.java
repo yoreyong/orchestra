@@ -12,6 +12,7 @@ public class MusicalWork implements Serializable {
     private long id;
     private String name;
     private String author;
+    private String type;
     private String desc;
 
     @Override
@@ -20,6 +21,7 @@ public class MusicalWork implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
+                ", type='" + type + '\'' +
                 ", desc='" + desc + '\'' +
                 '}';
     }
@@ -46,6 +48,14 @@ public class MusicalWork implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDesc() {
