@@ -98,8 +98,8 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./musicalwork_add.jsp" target="main">Add a new type</a></li>
-                            <li><a href="./musicalwork.let?type=query&pageIndex=1" target="main">Type Details</a></li>
+                            <li><a href="./musicalworktype_add.jsp" target="main">Add a new type</a></li>
+                            <li><a href="./musicalworktype_list.jsp" target="main">Type Details</a></li>
                         </ul>
                     </div>
 

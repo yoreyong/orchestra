@@ -12,8 +12,10 @@ public class MusicalWork implements Serializable {
     private long id;
     private String name;
     private String author;
-    private String type;
+    private long typeId;
     private String desc;
+
+    private MusicalWorkType type;
 
     @Override
     public String toString() {
@@ -21,8 +23,9 @@ public class MusicalWork implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
-                ", type='" + type + '\'' +
+                ", typeId=" + typeId +
                 ", desc='" + desc + '\'' +
+                ", type=" + type +
                 '}';
     }
 
@@ -50,12 +53,12 @@ public class MusicalWork implements Serializable {
         this.author = author;
     }
 
-    public String getType() {
-        return type;
+    public long getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(long typeId) {
+        this.typeId = typeId;
     }
 
     public String getDesc() {
@@ -64,5 +67,13 @@ public class MusicalWork implements Serializable {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public MusicalWorkType getType() {
+        return type;
+    }
+
+    public void setType(MusicalWorkType type) {
+        this.type = type;
     }
 }
