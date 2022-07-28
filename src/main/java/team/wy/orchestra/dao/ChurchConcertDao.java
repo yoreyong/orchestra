@@ -21,15 +21,6 @@ public class ChurchConcertDao {
 
     QueryRunner runner = new QueryRunner();
 
-
-    /**
-     *
-     * @param id
-     * @param conId
-     * @param churchName
-     * @return
-     * @throws SQLException
-     */
     public int add(long conId, String churchName) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into churchconcert(id, conId, churchName) values(null, ?, ?)";
@@ -38,12 +29,6 @@ public class ChurchConcertDao {
         return count;
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
     public int remove(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from churchconcert where id = ?";
@@ -52,61 +37,56 @@ public class ChurchConcertDao {
         return count;
     }
 
-    /**
-     *
-     * @param id
-     * @param conId
-     * @param churchName
-     * @return count
-     * @throws SQLException
-     */
     public int modify(long id, long conId, String churchName) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "update churchconcert set conId = ?, churchName = ? where id=?";
-        int count = runner.update(conn, sql, id, conId, churchName);
+        int count = runner.update(conn, sql, conId, churchName, id);
         conn.close();
         return count;
     }
 
+    public List<ChurchConcert> getAll() throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from churchconcert";
+        List<ChurchConcert> churchConcerts = runner.query(conn, sql,
+                new BeanListHandler<ChurchConcert>(ChurchConcert.class));
+        conn.close();
+        return churchConcerts;
+    }
 
-    /**
-     * 根据ID获取Church concert信息
-     * @param id -
-     * @return Church concert class
-     * @throws SQLException
-     */
-    public ChurchConcert getChurchConcertById(int id) throws SQLException {
+    public ChurchConcert getById(int id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from churchconcert where id = ?";
-        ChurchConcert churchConcert = runner.query(conn, sql, new BeanHandler<>(ChurchConcert.class), id);
+        ChurchConcert churchConcert = runner.query(conn, sql,
+                new BeanHandler<ChurchConcert>(ChurchConcert.class), id);
         conn.close();
         return churchConcert;
     }
 
-    /**
-     * 获取全部Church concert信息
-     * @return - list of church concerts
-     * @throws SQLException
-     */
-    public List<ChurchConcert> getAllChurchConcert() throws SQLException {
+    public List<ChurchConcert> getByPage(int pageIndex, int pageSize) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select * from churchconcert";
-        List<ChurchConcert> churchConcerts = runner.query(conn, sql, new BeanListHandler<>(ChurchConcert.class));
+        String sql = "select * from churchconcert limit ?, ?";
+        int offset = (pageIndex - 1) * pageSize;
+        List<ChurchConcert> churchConcerts = runner.query(conn, sql,
+                new BeanListHandler<ChurchConcert>(ChurchConcert.class), offset, pageSize);
         conn.close();
         return churchConcerts;
     }
 
-    /**
-     * 通过church Name来获取church concert信息，注意：可能会返回多个信息，因此使用List
-     * @param churchName
-     * @return
-     * @throws SQLException
-     */
-    public List<ChurchConcert> getAllChurchConcertByChurchName(String churchName) throws SQLException {
+    public List<ChurchConcert> getByChurchName(String churchName) throws SQLException {
         Connection conn  = DBHelper.getConnection();
         String sql = "select * from churchconcert where churchName = ?";
-        List<ChurchConcert> churchConcerts = runner.query(conn, sql, new BeanListHandler<ChurchConcert>(ChurchConcert.class), churchName);
+        List<ChurchConcert> churchConcerts = runner.query(conn, sql,
+                new BeanListHandler<ChurchConcert>(ChurchConcert.class), churchName);
         conn.close();
         return churchConcerts;
+    }
+
+    public int getCount() throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select count(id) from churchconcert";
+        Number data = runner.query(conn, sql, new ScalarHandler<>());
+        conn.close();
+        return data.intValue();
     }
 }

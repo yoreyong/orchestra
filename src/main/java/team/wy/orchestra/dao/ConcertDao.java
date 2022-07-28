@@ -7,7 +7,6 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.util.DBHelper;
 
-import java.awt.print.Book;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Date;
@@ -16,7 +15,7 @@ import java.util.List;
 
 /**
  * @className: ConcertDao
- * @description: TODO 类描述
+ * @description:
  * @author: YORE
  * @date: 2022/7/18
  **/
@@ -62,7 +61,7 @@ public class ConcertDao {
         return concerts;
     }
 
-    public Concert getConcertById(int id) throws SQLException {
+    public Concert getById(int id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert where id = ?";
         Concert concert = runner.query(conn, sql, new BeanHandler<Concert>(Concert.class), id);
@@ -86,7 +85,7 @@ public class ConcertDao {
         return concerts;
     }
 
-    public List<Concert> getConcertsByTypeId(long typeId) throws SQLException {
+    public List<Concert> getByTypeId(long typeId) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert where typeId=?";
         List<Concert> concerts = runner.query(conn, sql, new BeanListHandler<Concert>(Concert.class), typeId);

@@ -3,7 +3,6 @@ package team.wy.orchestra.biz;
 import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.dao.ConcertDao;
 
-import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -68,11 +67,11 @@ public class ConcertBiz {
         return concerts;
     }
 
-    public Concert getConcertById(int id) {
+    public Concert getById(int id) {
         // ConcertTypeDao
         Concert concert = null;
         try {
-            concert = concertDao.getConcertById(id);
+            concert = concertDao.getById(id);
             long typeId = concert.getTypeId();
             // concert.setConcertType(ConcertTypeDao.getById(typeId));
         } catch (SQLException e) {
@@ -113,7 +112,7 @@ public class ConcertBiz {
         // ConcertTypeDao
         List<Concert> concerts = null;
         try {
-            concerts = concertDao.getConcertsByTypeId(typeId);
+            concerts = concertDao.getByTypeId(typeId);
             // TODO - 需要等concert type相关函数完成后方可使用
             // for(Concert concert : concerts) {
             //     long typeId = concert.getTypeId();

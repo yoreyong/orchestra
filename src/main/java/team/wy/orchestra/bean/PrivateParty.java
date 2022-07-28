@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @className: PrivateParty
- * @description: TODO 类描述
+ * @description:
  * @author: YORE
  * @date: 2022/7/25
  **/
