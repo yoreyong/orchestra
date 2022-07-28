@@ -67,7 +67,7 @@ public class ConcertBiz {
         return concerts;
     }
 
-    public Concert getById(int id) {
+    public Concert getById(long id) {
         // ConcertTypeDao
         Concert concert = null;
         try {

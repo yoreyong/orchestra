@@ -66,7 +66,7 @@ public class ConcertDaoTest {
     public void getConcertByIdTest() {
         concertDao = new ConcertDao();
         try {
-            Concert concert = concertDao.getConcertById(1);
+            Concert concert = concertDao.getById(1);
             System.out.println(concert);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +99,7 @@ public class ConcertDaoTest {
     @Test
     public void getConcertsByTypeIdTest() {
         try {
-            List<Concert> concerts = concertDao.getConcertsByTypeId(1);
+            List<Concert> concerts = concertDao.getByTypeId(1);
             System.out.println(concerts.size());
             for(Concert concert :  concerts) {
                 System.out.println(concert);

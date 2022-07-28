@@ -34,7 +34,7 @@ public class ConcertTypeBiz {
         // 如果有子项，不能执行删除操作
         ConcertDao concertDao = new ConcertDao();
         try {
-            List<Concert> concerts = concertDao.getConcertsByTypeId(id);
+            List<Concert> concerts = concertDao.getByTypeId(id);
             if(concerts.size() > 0) {
                 // 不能删除
                 throw new Exception("Foreign key exists. Failed to delete!");

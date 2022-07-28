@@ -61,7 +61,7 @@ public class ConcertDao {
         return concerts;
     }
 
-    public Concert getById(int id) throws SQLException {
+    public Concert getById(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert where id = ?";
         Concert concert = runner.query(conn, sql, new BeanHandler<Concert>(Concert.class), id);

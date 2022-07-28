@@ -1,5 +1,6 @@
 package team.wy.orchestra.biz;
 
+import team.wy.orchestra.bean.ChurchConcert;
 import team.wy.orchestra.bean.PrivateParty;
 import team.wy.orchestra.dao.PrivatePartyDao;
 
@@ -8,13 +9,14 @@ import java.util.List;
 
 /**
  * @className: PrivatePartyBiz
- * @description: TODO 类描述
+ * @description:
  * @author: YORE
  * @date: 2022/7/28
  **/
 public class PrivatePartyBiz {
 
     PrivatePartyDao privatePartyDao = new PrivatePartyDao();
+    ConcertBiz concertBiz = new ConcertBiz();
 
     public int add (long condId, String theme) {
         int count = 0;
@@ -47,16 +49,58 @@ public class PrivatePartyBiz {
     }
 
     public List<PrivateParty> getByPage(int pageIndex, int pageSize) {
+        List<PrivateParty> privateParties = null;
 
+        try {
+            privateParties = privatePartyDao.getByPage(pageIndex, pageSize);
+            for(PrivateParty privateParty : privateParties) {
+                long conId = privateParty.getConId();
+                privateParty.setConcert(concertBiz.getById(conId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return privateParties;
     }
 
+    public int getPageCount(int pageSize) {
+        int pageCount = 0;
+        try {
+            int rowCount = privatePartyDao.getCount();
+            pageCount = (rowCount - 1) / pageSize + 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pageCount;
+    }
 
-    public int getPageCount(int pageSize)
+    public PrivateParty getById(int id) {
+        PrivateParty privateParty = null;
 
-    public PrivateParty getById(int id)
+        try {
+            privateParty = privatePartyDao.getById(id);
+            long conId = privateParty.getConId();
+            privateParty.setConcert(concertBiz.getById(conId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return privateParty;
+    }
 
+    public List<PrivateParty> getByTheme(String theme) {
+        List<PrivateParty> privateParties = null;
+        ConcertBiz concertBiz = new ConcertBiz();
 
-    public List<PrivateParty> getByTheme(String theme)
-
+        try {
+            privateParties = privatePartyDao.getByTheme(theme);
+            for(PrivateParty privateParty : privateParties) {
+                long conId = privateParty.getConId();
+                privateParty.setConcert(concertBiz.getById(conId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return privateParties;
+    }
 
 }
