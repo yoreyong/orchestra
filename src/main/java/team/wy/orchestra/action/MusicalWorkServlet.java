@@ -1,15 +1,15 @@
 package team.wy.orchestra.action;
 
 import team.wy.orchestra.bean.MusicalWork;
-import team.wy.orchestra.bean.Musician;
+import team.wy.orchestra.bean.MusicalWorkType;
 import team.wy.orchestra.biz.MusicalWorkBiz;
+import team.wy.orchestra.biz.MusicalWorkTypeBiz;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.print.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -24,6 +24,7 @@ import java.util.List;
 public class MusicalWorkServlet extends HttpServlet {
 
     MusicalWorkBiz musicalWorkBiz = new MusicalWorkBiz();
+    MusicalWorkTypeBiz musicalWorkTypeBiz = new MusicalWorkTypeBiz();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -71,6 +72,7 @@ public class MusicalWorkServlet extends HttpServlet {
         }
     }
 
+
     private void musicalWorkDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         long musicalWorkId = Long.parseLong(req.getParameter("id"));
         MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(musicalWorkId);
@@ -79,6 +81,14 @@ public class MusicalWorkServlet extends HttpServlet {
     }
 
 
+    /**
+     *
+     * @param req
+     * @param resp
+     * @param out
+     * @throws ServletException
+     * @throws IOException
+     */
     private void musicalWorkQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         // 获取信息(页数，页码，，信息)
         int pageSize = 10;
@@ -117,10 +127,10 @@ public class MusicalWorkServlet extends HttpServlet {
         long id = Long.parseLong(req.getParameter("id"));
         String name = req.getParameter("name");
         String author = req.getParameter("author");
-        String type = req.getParameter("Concerttype");
+        long typeId = Long.parseLong(req.getParameter("typeId"));
         String desc = req.getParameter("desc");
         try {
-            int count = musicalWorkBiz.modify(id, name, author, type, desc);
+            int count = musicalWorkBiz.modify(id, name, author, desc, typeId);
             if(count > 0) {
                 out.println("<script>alert('Success to modify musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
             }
@@ -137,6 +147,7 @@ public class MusicalWorkServlet extends HttpServlet {
     private void musicalWorkModifyPre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         long musicalWorkId = Long.parseLong(req.getParameter("id"));
         MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(musicalWorkId);
+        List<MusicalWorkType> musicalWorkTypes = musicalWorkTypeBiz.getAllTypes();
         req.setAttribute("musicalWork", musicalWork);
         req.getRequestDispatcher("musicalwork_modify.jsp").forward(req, resp);
     }
@@ -144,10 +155,10 @@ public class MusicalWorkServlet extends HttpServlet {
     private void musicalWorkAdd(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
         String name = req.getParameter("name");
         String author = req.getParameter("author");
-        String type = req.getParameter("Concerttype");
+        long typeId = Long.parseLong(req.getParameter("typeId"));
         String desc = req.getParameter("desc");
         try {
-            int count = musicalWorkBiz.add(name, author, type, desc);
+            int count = musicalWorkBiz.add(name, author, desc, typeId);
             if(count > 0) {
                 out.println("<script>alert('Success to add musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
             }

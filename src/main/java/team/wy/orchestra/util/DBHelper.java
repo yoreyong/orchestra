@@ -1,7 +1,6 @@
 package team.wy.orchestra.util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -116,15 +115,6 @@ public class DBHelper {
         conn.rollback();
         tl.remove();
         conn.close();
-    }
-
-    @Test
-    public void getConnectTest() {
-        try {
-            Connection connection = DBHelper.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 }

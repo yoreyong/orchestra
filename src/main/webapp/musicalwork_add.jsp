@@ -115,7 +115,7 @@
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>Type：</td>
-                                                        <td width="20%"><input class="text" type="text" name="Concerttype"/></td>
+                                                        <td width="20%"><input class="text" type="text" name="typeId"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>

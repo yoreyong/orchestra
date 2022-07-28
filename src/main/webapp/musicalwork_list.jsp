@@ -69,7 +69,7 @@
                                                             <td><a href="musicalwork.let?type=details&id=${m.id}">${m.id}</a></td>
                                                             <td>${m.name}</td>
                                                             <td>${m.author}</td>
-                                                            <td>${m.type}</td>
+                                                            <td>${m.type.name}</td>
                                                             <td>
                                                                 <a onclick="return confirm('Are you sure?');" href="musicalwork.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
                                                             	<a onclick="return confirm('Are you sure?');" href="musicalwork.let?type=remove&id=${m.id}">Delete</a>

@@ -71,21 +71,31 @@ public class MusicalWorkTypeServlet extends HttpServlet {
      * @param out
      * @param application
      */
-    private void remove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) {
-        long id = Long.parseLong(req.getParameter("id"));
-        try {
-            int count = musicalWorkTypeBiz.remove(id);
-            if(count > 0) {
-                List<MusicalWorkType> types = musicalWorkTypeBiz.getAllTypes();
-                application.setAttribute("types", types);
-                out.println("<script>alert('Success to remove musical work type!');location.href='musicalworktype_list.jsp';</script>");
-            } else {
-                out.println("<script>alert('Failed to remove musical work type!');location.href='musicalworktype_list.jsp';</script>");
-            }
-        } catch (Exception e) {
-            // e.printStackTrace();
-            out.println("<script>alert('"+e.getMessage()+"');location.href='musicalworktype_list.jsp';</script>");
+    private void add(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) {
+        String typeName = req.getParameter("typeName");
+        long parentId = Long.parseLong(req.getParameter("parentType"));
+        int count = musicalWorkTypeBiz.add(typeName, parentId);
+
+        if(count > 0) {
+            List<MusicalWorkType> types = musicalWorkTypeBiz.getAllTypes();
+            application.setAttribute("types", types);
+            out.println("<script>alert('Success to add musical work type!');location.href='musicalworktype_list.jsp';</script>");
+        } else {
+            out.println("<script>alert('Failed to add musical work type!');location.href='musicalworktype_add.jsp';</script>");
         }
+    }
+
+    /**
+     * @param req
+     * @param resp
+     * @param out
+     * @param application
+     */
+    private void modifyPre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) throws ServletException, IOException {
+        long id = Long.parseLong(req.getParameter("id"));
+        MusicalWorkType type = musicalWorkTypeBiz.getTypeById(id);
+        req.setAttribute("type", type);
+        req.getRequestDispatcher("musicalworktype_modify.jsp").forward(req, resp);
     }
 
     /**
@@ -110,36 +120,26 @@ public class MusicalWorkTypeServlet extends HttpServlet {
     }
 
     /**
-     * @param req
-     * @param resp
-     * @param out
-     * @param application
-     */
-    private void modifyPre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) throws ServletException, IOException {
-        long id = Long.parseLong(req.getParameter("id"));
-        MusicalWorkType type = musicalWorkTypeBiz.getTypeById(id);
-        req.setAttribute("type", type);
-        req.getRequestDispatcher("musicalworktype_modify.jsp").forward(req, resp);
-    }
-
-    /**
      *
      * @param req
      * @param resp
      * @param out
      * @param application
      */
-    private void add(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) {
-        String typeName = req.getParameter("typeName");
-        long parentId = Long.parseLong(req.getParameter("parentType"));
-        int count = musicalWorkTypeBiz.add(typeName, parentId);
-
-        if(count > 0) {
-            List<MusicalWorkType> types = musicalWorkTypeBiz.getAllTypes();
-            application.setAttribute("types", types);
-            out.println("<script>alert('Success to add musical work type!');location.href='musicalworktype_list.jsp';</script>");
-        } else {
-            out.println("<script>alert('Failed to add musical work type!');location.href='musicalworktype_add.jsp';</script>");
+    private void remove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) {
+        long id = Long.parseLong(req.getParameter("id"));
+        try {
+            int count = musicalWorkTypeBiz.remove(id);
+            if(count > 0) {
+                List<MusicalWorkType> types = musicalWorkTypeBiz.getAllTypes();
+                application.setAttribute("types", types);
+                out.println("<script>alert('Success to remove musical work type!');location.href='musicalworktype_list.jsp';</script>");
+            } else {
+                out.println("<script>alert('Failed to remove musical work type!');location.href='musicalworktype_list.jsp';</script>");
+            }
+        } catch (Exception e) {
+            // e.printStackTrace();
+            out.println("<script>alert('"+e.getMessage()+"');location.href='musicalworktype_list.jsp';</script>");
         }
     }
 }

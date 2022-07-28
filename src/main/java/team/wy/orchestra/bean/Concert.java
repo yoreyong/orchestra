@@ -12,12 +12,17 @@ import java.sql.Time;
  **/
 public class Concert implements Serializable {
 
-    private int id;
+    private long id;
     private String concert_name;
     private String place;
     private java.sql.Date concert_date;
     private java.sql.Time start_time;
     private String description;
+    private long typeId;
+    private double price;
+
+    // Foreign Key
+    private ConcertType concertType;
 
     @Override
     public String toString() {
@@ -28,14 +33,17 @@ public class Concert implements Serializable {
                 ", concert_date=" + concert_date +
                 ", start_time=" + start_time +
                 ", description='" + description + '\'' +
+                ", typeId=" + typeId +
+                ", price=" + price +
+                ", concertType=" + concertType +
                 '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -77,5 +85,29 @@ public class Concert implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(long typeId) {
+        this.typeId = typeId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public ConcertType getConcertType() {
+        return concertType;
+    }
+
+    public void setConcertType(ConcertType concertType) {
+        this.concertType = concertType;
     }
 }

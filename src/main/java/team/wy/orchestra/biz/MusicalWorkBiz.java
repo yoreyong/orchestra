@@ -1,7 +1,9 @@
 package team.wy.orchestra.biz;
 
 import team.wy.orchestra.bean.MusicalWork;
+import team.wy.orchestra.bean.MusicalWorkType;
 import team.wy.orchestra.dao.MusicalWorkDao;
+import team.wy.orchestra.dao.MusicalWorkTypeDao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,10 +19,10 @@ public class MusicalWorkBiz {
 
     MusicalWorkDao musicalWorkDao = new MusicalWorkDao();
 
-    public int add(String name, String author, String type, String desc) {
+    public int add(String name, String author, String desc, long typeId) {
         int count = 0;
         try {
-            count = musicalWorkDao.add(name, author, type, desc);
+            count = musicalWorkDao.add(name, author, desc, typeId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,10 +40,10 @@ public class MusicalWorkBiz {
     }
 
 
-    public int modify(long id, String name, String author, String type, String desc) {
+    public int modify(long id, String name, String author, String desc, long typeId) {
         int count = 0;
         try {
-            count = musicalWorkDao.modify(id, name, author, type, desc);
+            count = musicalWorkDao.modify(id, name, author, desc, typeId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,9 +60,14 @@ public class MusicalWorkBiz {
     }
 
     public List<MusicalWork> getMusicalWorkByPage(int pageIndex, int pageSize) {
+        MusicalWorkTypeDao musicalWorkTypeDao = new MusicalWorkTypeDao();
         List<MusicalWork> musicalWorks = null;
         try {
             musicalWorks = musicalWorkDao.getMusicalWorkByPage(pageIndex, pageSize);
+            for(MusicalWork musicalWork : musicalWorks) {
+                MusicalWorkType type = musicalWorkTypeDao.getTypeById(musicalWork.getTypeId());
+                musicalWork.setType(type);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

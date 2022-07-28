@@ -42,12 +42,12 @@ public class DateHelper {
 
 
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         System.out.println(getImageName());
 
         java.sql.Date  date01 =  java.sql.Date.valueOf("2021-10-01");
         java.sql.Date  date02 = getNewDate(date01,31);
         System.out.println(date01+","+date02);
-    }
+    }*/
 
 }
