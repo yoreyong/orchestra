@@ -57,8 +57,8 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./musician_add.jsp" target="main">Add</a></li>
-                            <li><a href="./musician.let?type=query&pageIndex=1" target="main">Information</a></li>
+                            <li><a href="./concert_add.jsp" target="main">Add</a></li>
+                            <li><a href="./concert.let?type=query&pageIndex=1" target="main">Information</a></li>
                         </ul>
                     </div>
 

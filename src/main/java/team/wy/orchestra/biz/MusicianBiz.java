@@ -85,6 +85,8 @@ public class MusicianBiz {
     public int remove(String SSN) {
         int count = 0;
         try {
+            // TODO - 增加FK检测功能，若存在外键，则不能阐述
+            // 最好能返回页面提示 throw new exception
             count = musicianDao.remove(SSN);
         } catch (SQLException e) {
             e.printStackTrace();

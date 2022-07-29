@@ -1,7 +1,9 @@
 package team.wy.orchestra.biz;
 
 import team.wy.orchestra.bean.Concert;
+import team.wy.orchestra.bean.ConcertType;
 import team.wy.orchestra.dao.ConcertDao;
+import team.wy.orchestra.dao.ConcertTypeDao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 public class ConcertBiz {
 
     ConcertDao concertDao = new ConcertDao();
+    ConcertTypeBiz concertTypeBiz = new ConcertTypeBiz();
 
 
     public int add(String concertName, String place, String concertDate, String startTime,
@@ -33,6 +36,7 @@ public class ConcertBiz {
         try {
             count = concertDao.remove(id);
             // TODO - 此处后续需要增加对Foreign Key判断
+            // 返回页面提示
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,12 +59,11 @@ public class ConcertBiz {
         List<Concert> concerts = null;
         try {
             concerts = concertDao.getByPage(pageIndex, pageSize);
-            // TODO - 需要等concert type相关函数完成后方可使用
-            // for(Concert concert : concerts) {
-            //     long typeId = concert.getTypeId();
-            //     Type type = ConcertTypeDao.getById(typeId);
-            //     concert.setConcertType(type);
-            // }
+            for(Concert concert : concerts) {
+                long typeId = concert.getTypeId();
+                // ConcertType type = concertTypeBiz.getById(typeId);
+                concert.setConcertType(concertTypeBiz.getById(typeId));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,7 +76,7 @@ public class ConcertBiz {
         try {
             concert = concertDao.getById(id);
             long typeId = concert.getTypeId();
-            // concert.setConcertType(ConcertTypeDao.getById(typeId));
+            concert.setConcertType(concertTypeBiz.getById(typeId));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,29 +99,27 @@ public class ConcertBiz {
         List<Concert> concerts = null;
         try {
             concerts = concertDao.getByName(concertName);
-            // TODO - 需要等concert type相关函数完成后方可使用
-            // for(Concert concert : concerts) {
-            //     long typeId = concert.getTypeId();
-            //     Type type = ConcertTypeDao.getById(typeId);
-            //     concert.setConcertType(type);
-            // }
+            for(Concert concert : concerts) {
+                long typeId = concert.getTypeId();
+                // ConcertType type = concertTypeBiz.getById(typeId);
+                concert.setConcertType(concertTypeBiz.getById(typeId));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return concerts;
     }
 
-    public List<Concert> getConcertsByTypeId(long typeId) {
+    public List<Concert> getByTypeId(long typeId) {
         // ConcertTypeDao
         List<Concert> concerts = null;
         try {
             concerts = concertDao.getByTypeId(typeId);
-            // TODO - 需要等concert type相关函数完成后方可使用
-            // for(Concert concert : concerts) {
-            //     long typeId = concert.getTypeId();
-            //     Type type = ConcertTypeDao.getById(typeId);
-            //     concert.setConcertType(type);
-            // }
+            for(Concert concert : concerts) {
+                long concertTypeId = concert.getTypeId();
+                // ConcertType type = concertTypeBiz.getById(typeId);
+                concert.setConcertType(concertTypeBiz.getById(concertTypeId));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

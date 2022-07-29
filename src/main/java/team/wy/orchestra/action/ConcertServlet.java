@@ -1,5 +1,6 @@
 package team.wy.orchestra.action;
 
+import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.biz.ConcertBiz;
 import team.wy.orchestra.biz.ConcertTypeBiz;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * @className: ConcertServlet
@@ -88,11 +90,28 @@ public class ConcertServlet extends HttpServlet {
 
     }
 
-    private void concertQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+    private void concertQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+        int pageSize = 10;
+        int pageCount = concertBiz.getPageCount(pageSize);
+        int pageIndex = Integer.parseInt(req.getParameter("pageIndex"));
+        if(pageIndex < 1) {
+            pageIndex = 1;
+        }
+        if(pageIndex > pageCount) {
+            pageIndex = pageCount;
+        }
+        List<Concert> concerts = concertBiz.getByPage(pageIndex, pageSize);
+
+        req.setAttribute("pageCount", pageCount);
+        req.setAttribute("concerts", concerts);
+        req.getRequestDispatcher("concert_list.jsp?pageIndex=" + pageIndex).forward(req, resp);
 
     }
 
-    private void concertDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-
+    private void concertDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+        long concertId = Long.parseLong(req.getParameter("id"));
+        Concert concert = concertBiz.getById(concertId);
+        req.setAttribute("concert", concert);
+        req.getRequestDispatcher("concert_details.jsp").forward(req, resp);
     }
 }

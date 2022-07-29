@@ -57,7 +57,7 @@ public class ConcertTypeBizTest {
 
     @Test
     public void getByIdTest() {
-        ConcertType concertType = concertTypeBiz.geyById(1);
+        ConcertType concertType = concertTypeBiz.getById(1);
         System.out.println(concertType);
     }
 }

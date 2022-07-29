@@ -71,8 +71,8 @@
                                                             <td>${m.author}</td>
                                                             <td>${m.type.name}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Are you sure?');" href="musicalwork.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
-                                                            	<a onclick="return confirm('Are you sure?');" href="musicalwork.let?type=remove&id=${m.id}">Delete</a>
+                                                                <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
+                                                            	<a onclick="return confirm('Confirm deletion');" href="musicalwork.let?type=remove&id=${m.id}">Delete</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

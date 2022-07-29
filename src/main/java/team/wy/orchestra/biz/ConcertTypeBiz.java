@@ -66,7 +66,7 @@ public class ConcertTypeBiz {
         return types;
     }
 
-    public ConcertType geyById(long typeId) {
+    public ConcertType getById(long typeId) {
         ConcertType type = null;
         try {
             type = concertTypeDao.geyById(typeId);

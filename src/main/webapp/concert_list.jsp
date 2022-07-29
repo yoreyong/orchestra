@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>Information</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Concert</b> > <b>List</b></h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -59,20 +59,26 @@
                                                     <tr>
                                                         <th>Id</th>
                                                         <th>Name</th>
-                                                        <th>Author</th>
+                                                        <th>Place</th>
+                                                        <th>Date</th>
+                                                        <th>Time</th>
                                                         <th>Type</th>
-                                                        <th> </th>
+                                                        <th>Price</th>
+                                                        <th>Operation</th>
                                                     </tr>
 
-                                                    <c:forEach items="${musicalWorks}" var="m">
+                                                    <c:forEach items="${concerts}" var="c">
                                                         <tr align="center" class="d">
-                                                            <td><a href="musicalwork.let?type=details&id=${m.id}">${m.id}</a></td>
-                                                            <td>${m.name}</td>
-                                                            <td>${m.author}</td>
-                                                            <td>${m.type.name}</td>
+                                                            <td><a href="concert.let?type=details&id=${c.id}">${c.id}</a></td>
+                                                            <td>${c.concert_name}</td>
+                                                            <td>${c.place}</td>
+                                                            <td>${c.concert_date}</td>
+                                                            <td>${c.start_time}</td>
+                                                            <td>${c.concertType.name}</td>
+                                                            <td>${c.price}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Are you sure?');" href="musicalwork.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
-                                                            	<a onclick="return confirm('Are you sure?');" href="musicalwork.let?type=remove&id=${m.id}">Delete</a>
+                                                                <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
+                                                            	<a onclick="return confirm('Confirm deletion');" href="concert.let?type=remove&id=${m.id}">Delete</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -80,16 +86,16 @@
                                                    <tr><td colspan="12" align="center">
                                                     <div class="pager">
                                                         <ul class="clearfix">
-                                                            <li><a href="musicalwork.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
+                                                            <li><a href="concert.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
                                                             <c:forEach var="i" begin="1" end="${pageCount}" step="1">
                                                                 <c:if test="${i==param.pageIndex}">
-                                                                    <li class="current"><a href="musicalwork.let?type=query&pageIndex=${i}">${i}</a></li>
+                                                                    <li class="current"><a href="concert.let?type=query&pageIndex=${i}">${i}</a></li>
                                                                 </c:if>
                                                                 <c:if test="${i!=param.pageIndex}">
-                                                                    <li><a href="musicalwork.let?type=query&pageIndex=${i}">${i}</a></li>
+                                                                    <li><a href="concert.let?type=query&pageIndex=${i}">${i}</a></li>
                                                                 </c:if>
                                                             </c:forEach>
-                                                            <li><a href="musicalwork.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
+                                                            <li><a href="concert.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
                                                         </ul>
                                                     </div>
                                                    </td></tr>
