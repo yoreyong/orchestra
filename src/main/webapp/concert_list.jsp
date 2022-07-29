@@ -77,8 +77,8 @@
                                                             <td>${c.concertType.name}</td>
                                                             <td>${c.price}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
-                                                            	<a onclick="return confirm('Confirm deletion');" href="concert.let?type=remove&id=${m.id}">Delete</a>
+                                                                <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${c.id}">Modify</a>&nbsp;&nbsp;
+                                                            	<a onclick="return confirm('Confirm deletion');" href="concert.let?type=remove&id=${c.id}">Delete</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

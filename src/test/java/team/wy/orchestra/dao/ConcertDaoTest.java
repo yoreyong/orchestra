@@ -42,7 +42,7 @@ public class ConcertDaoTest {
     public void modifyTest() {
         try {
             int count = concertDao.modify(22, "Duobam", "6443 Weeping Birch", "2022-01-10",
-                    "06:05:00", "null", 1, 100.21);
+                    "06:15:00", "null", 1, 100.21);
             System.out.println(count);
         } catch (SQLException e) {
             e.printStackTrace();

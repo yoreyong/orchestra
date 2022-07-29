@@ -91,7 +91,7 @@ public class MusicalWorkServlet extends HttpServlet {
      */
     private void musicalWorkQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         // 获取信息(页数，页码，，信息)
-        int pageSize = 10;
+        int pageSize = 15;
         int pageCount = musicalWorkBiz.getPageCount(pageSize);
         int pageIndex = Integer.parseInt(req.getParameter("pageIndex"));
         if(pageIndex < 1) {

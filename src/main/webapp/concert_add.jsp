@@ -1,12 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>>
-<!DOCTYPE html >
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="keywords"  content = "Orchestra java jsp"/>
     <meta http-equiv="author" content="phenix"/>
     <link rel="stylesheet" type="text/css" href="./Style/skin.css" />
+    <script src="Js/jquery-3.3.1.min.js"></script>
+    <script language="JavaScript">
+        $(function(){
+            // 为每个radio绑定事件
+            $(":radio").each(function(index,element){
+                $(this).click(function(){
+                    console.log($(this).next().val())
+                });
+            });
+        });
+    </script>
+   
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -16,7 +28,6 @@
                     <img src="./Images/left_top_right.gif" width="17" height="29" />
                 </td>
                 <td valign="top" background="./Images/content_bg.gif">
-                    
                 </td>
                 <td width="16" valign="top" background="./Images/mail_right_bg.gif"><img src="./Images/nav_right_bg.gif" width="16" height="29" /></td>
             </tr>
@@ -34,7 +45,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"> Musicalwork Type > Modify type </h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;">Concert > Modify </h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -54,52 +65,85 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="musicalworktype.let?type=modify" method="post">
-                                                <table width="40%" class="cont">
+                                            <form action="concert.let?type=add" method="post">
+                                                <table width="100%" class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="25%">Id：</td>
-                                                        <td width="40%"><input type="text" id="typeId" class="text"  name="txtTypeId"  value="${type.id}" disabled />
-                                                            <input type="hidden"  class="text"  name="typeId"  value="${type.id}"  />
-                                                        </td>
-                                                        <td class="err">*Type already exist</td>
+                                                        <td width="10%">Name：</td>
+                                                        <td width="20%"><input class="text" style="width:100px;" type="text" name="name" required/></td>
+                                                        <td class="err">长度6~15个字符</td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="25%">Name：</td>
-                                                        <td width="40%"><input type="text" id="typeName" class="text"  name="typeName" value="${type.name}" /></td>
-                                                        <td class="err">*Type already exist</td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>父类型：</td>
-                                                        <td>
-                                                            <select id="parentType" name="parentType" >
-                                                                <c:if test="${type.parentId==0}">
-                                                                    <option value="0" selected>无</option>
-                                                                </c:if>
-                                                                <c:if test="${type.parentId!=0}">
-                                                                    <option value="0" selected>--- Select ---</option>
-                                                                    <c:forEach items="${types}" var="t">
-                                                                        <c:if test="${t.id==type.parentId}">
-                                                                            <option value="${t.id}" selected>${t.name}</option>
-                                                                        </c:if>
-                                                                        <c:if test="${t.id!=type.parentId}">
-                                                                            <option value="${t.id}">${t.name}</option>
-                                                                        </c:if>
 
-                                                                    </c:forEach>
+                                                    <tr>
+                                                        <td width="2%">&nbsp;</td>
+                                                        <td>Concert Type</td>
+                                                        <td>
+                                                            <c:forEach items="${concertTypes}" var="ct">
+                                                                <c:if test="${ct.id==1}">
+                                                                    <input  type="radio" name="concertType" value="${ct.id}" checked/> ${ct.name}&nbsp;&nbsp;
                                                                 </c:if>
-                                                            </select>
+                                                                <c:if test="${ct.id!=1}">
+                                                                    <input  type="radio" name="concertType" value="${ct.id}"/> ${ct.name}&nbsp;&nbsp;
+                                                                </c:if>
+                                                            </c:forEach>
                                                         </td>
                                                         <td></td>
-                                                        <td>&nbsp;</td>
+                                                        <td width="2%">&nbsp;</td>
                                                     </tr>
+
+                                                    <tr>
+                                                        <td width="5%">&nbsp;</td>
+                                                        <td>Place:</td>
+                                                        <td>
+                                                           <input class="text" style="width:200px;" type="text" name="place" value="${concert.place}" required />
+                                                        </td>
+                                                        <td></td>
+                                                        <td width="2%">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="2%">&nbsp;</td>
+                                                        <td>Date:</td>
+                                                        <td>
+                                                           <input class="text" style="width:100px;" type="text" name="date" value="${concert.concert_date}" required />
+                                                        </td>
+                                                        <td></td>
+                                                        <td width="2%">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="2%">&nbsp;</td>
+                                                        <td>Time:</td>
+                                                        <td>
+                                                            <input class="text" style="width:100px;" type="text" name="time" value="${concert.start_time}" required />
+                                                        </td>
+                                                        <td></td>
+                                                        <td width="2%">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="2%">&nbsp;</td>
+                                                        <td>Price:</td>
+                                                        <td>
+                                                            <input class="text" style="width:100px;" type="number" step="0.01" name="price" value="${concert.price}" required/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td width="2%">&nbsp;</td>
+                                                    </tr>
+
                                                     <tr>
                                                         <td>&nbsp;</td>
-                                                        <td colspan="3"><input class="btn" type="submit" value="Submit" /></td>
+                                                        <td>Description:</td>
+                                                        <td colspan="2"><textarea cols="150" rows="20" name="desc" value="${concert.description}"></textarea></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td></td>
+                                                        <td><input class="btn" type="submit" value="Submit" /></td>
+                                                        <td></td>
                                                         <td>&nbsp;</td>
                                                     </tr>
                                                 </table>

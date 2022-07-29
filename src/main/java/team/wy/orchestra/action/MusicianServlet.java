@@ -101,7 +101,7 @@ public class MusicianServlet extends HttpServlet {
 
 
     private void query(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
-        int pageSize = 8;
+        int pageSize = 10;
         int pageCount = musicianBiz.getMusicianPageCount(pageSize);
         int pageIndex = Integer.parseInt(req.getParameter("pageIndex"));
         if(pageIndex < 1) {
