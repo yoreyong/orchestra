@@ -85,7 +85,7 @@
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>Concert Type</td>
-                                                        <td>
+                                                        <td width="50%">
                                                             <c:forEach items="${concertTypes}" var="ct">
                                                                 <c:if test="${ct.id==concert.typeId}">
                                                                     <input  type="radio" name="concertType" value="${ct.id}" checked/> ${ct.name}

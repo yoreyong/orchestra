@@ -8,32 +8,17 @@
     <meta http-equiv="author" content="phenix"/>
     <link rel="stylesheet" type="text/css" href="./Style/skin.css" />
     <script src="Js/jquery-3.3.1.min.js"></script>
-    <script>
-       //图片预览
-       function getFullPath(obj){
-           if (obj){
-               //ie
-               if (window.navigator.userAgent.indexOf("MSIE") >= 1){
-                   obj.select();
-                   return document.selection.createRange().text;
-               }else if (window.navigator.userAgent.indexOf("Firefox") >= 1){
-                   //firefox　
-                   return window.URL.createObjectURL(obj.files.item(0));
-               }else if(navigator.userAgent.indexOf("Chrome")>0){
-                   //chrome
-                   return window.URL.createObjectURL(obj.files.item(0));
-               }
-               return obj.value;
-           }
-       }
-       $(function(){
-           $("#pic").change(function(){
-               var path = getFullPath($(this)[0]);
-               console.log(path);
-               $("#imgPic").prop("src",path);
-           });
-       });
+    <script language="JavaScript">
+        $(function(){
+            // 为每个radio绑定事件
+            $(":radio").each(function(index,element){
+                $(this).click(function(){
+                    console.log($(this).next().val())
+                });
+            });
+        });
     </script>
+
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -84,39 +69,36 @@
                                             <form action="musicalwork.let?type=add" method="post" >
                                                 <table width="100%"class="cont">
 
-                                                    <!-- SSN号码
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="2%">Id：</td>
-                                                        <td width="25%"><input class="text" style="width:50px;" type="text" name="id" /></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    -->
-
-                                                    <!-- 名 -->
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="2%">Name：</td>
-                                                        <td width="20%"><input class="text" type="text" name="name"/></td>
+                                                        <td width="10%">Name：</td>
+                                                        <td width="20%"><input class="text" style="width:150px;" type="text" name="name" required/></td>
                                                         
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 
-                                                    <!-- 姓 -->
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>Authro：</td>
+                                                        <td>Musical Work Type: </td>
+                                                        <td width="50%">
+                                                            <c:forEach items="${musicalWorkTypes}" var="ct">
+                                                                <c:if test="${ct.id==1}">
+                                                                    <input  type="radio" name="musicalWorkType" value="${ct.id}" checked/> ${ct.name}
+                                                                </c:if>
+                                                                <c:if test="${ct.id!=1}">
+                                                                    <input  type="radio" name="musicalWorkType" value="${ct.id}" /> ${ct.name}
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </td>
+                                                        <td></td>
+                                                        <td width="2%">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="2%">&nbsp;</td>
+                                                        <td>Author：</td>
                                                         <td width="20%"><input class="text" type="text" name="author"/></td>
                                                         
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-
-                                                    <!-- 性别 -->
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>Type：</td>
-                                                        <td width="20%"><input class="text" type="text" name="typeId"/></td>
-                                                        <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 

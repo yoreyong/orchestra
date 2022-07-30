@@ -45,7 +45,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;">Concert > Modify </h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;">Concert > Add </h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -78,10 +78,10 @@
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>Concert Type</td>
-                                                        <td>
+                                                        <td width="50%">
                                                             <c:forEach items="${concertTypes}" var="ct">
                                                                 <c:if test="${ct.id==1}">
-                                                                    <input  type="radio" name="concertType" value="${ct.id}" checked/> ${ct.name}&nbsp;&nbsp;
+                                                                    <input  type="radio" name="concertType" value="${ct.id}" checked /> ${ct.name}&nbsp;&nbsp;
                                                                 </c:if>
                                                                 <c:if test="${ct.id!=1}">
                                                                     <input  type="radio" name="concertType" value="${ct.id}"/> ${ct.name}&nbsp;&nbsp;

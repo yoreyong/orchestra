@@ -49,17 +49,20 @@ public class MusicalWorkServlet extends HttpServlet {
 
         String type = req.getParameter("type");
         switch(type) {
+            case "addpre":
+                musicalWorkAddPre(req, resp, out);
+                break;
             case "add":
                 musicalWorkAdd(req, resp, out);
+                break;
+            case "remove":
+                musicalWorkRemove(req, resp, out);
                 break;
             case "modifypre":
                 musicalWorkModifyPre(req, resp, out);
                 break;
             case "modify":
                 musicalWorkModify(req, resp, out);
-                break;
-            case "remove":
-                musicalWorkRemove(req, resp, out);
                 break;
             case "query":
                 musicalWorkQuery(req, resp, out);
@@ -72,23 +75,78 @@ public class MusicalWorkServlet extends HttpServlet {
         }
     }
 
+    private void musicalWorkAddPre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+        List<MusicalWorkType> musicalWorkTypes = musicalWorkTypeBiz.getAllTypes();
 
-    private void musicalWorkDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
-        long musicalWorkId = Long.parseLong(req.getParameter("id"));
-        MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(musicalWorkId);
-        req.setAttribute("musicalWork", musicalWork);
-        req.getRequestDispatcher("musicalwork_details.jsp").forward(req, resp);
+        req.setAttribute("musicalWorkTypes", musicalWorkTypes);
+        req.getRequestDispatcher("musicalwork_add.jsp").forward(req, resp);
     }
 
+    private void musicalWorkAdd(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+        String name = req.getParameter("name");
+        String author = req.getParameter("author");
+        long typeId = Long.parseLong(req.getParameter("musicalWorkType"));
+        String desc = req.getParameter("desc");
+        try {
+            int count = musicalWorkBiz.add(name, author, desc, typeId);
+            if(count > 0) {
+                out.println("<script>alert('Success to add musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+            }
+            else {
+                out.println("<script>alert('Failed to add musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("<script>alert('" + e.getMessage() + "');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+        }
+    }
 
-    /**
-     *
-     * @param req
-     * @param resp
-     * @param out
-     * @throws ServletException
-     * @throws IOException
-     */
+    private void musicalWorkRemove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+        long musicalWorkId = Long.parseLong(req.getParameter("id"));
+        try {
+            int count = musicalWorkBiz.remove(musicalWorkId);
+            if(count > 0) {
+                out.println("<script>alert('Success to remove musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+            } else {
+                out.println("<script>alert('Failed to remove musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("<script>alert('" + e.getMessage() + "');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+        }
+    }
+
+    private void musicalWorkModifyPre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+        long musicalWorkId = Long.parseLong(req.getParameter("id"));
+        MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(musicalWorkId);
+        List<MusicalWorkType> musicalWorkTypes = musicalWorkTypeBiz.getAllTypes();
+
+        req.setAttribute("musicalWork", musicalWork);
+        req.setAttribute("musicalWorkTypes", musicalWorkTypes);
+        req.getRequestDispatcher("musicalwork_modify.jsp").forward(req, resp);
+    }
+
+    private void musicalWorkModify(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+        long id = Long.parseLong(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String author = req.getParameter("author");
+        long typeId = Long.parseLong(req.getParameter("musicalWorkType"));
+        String desc = req.getParameter("desc");
+
+        try {
+            int count = musicalWorkBiz.modify(id, name, author, desc, typeId);
+            if(count > 0) {
+                out.println("<script>alert('Success to modify musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+            }
+            else {
+                out.println("<script>alert('Failed to modify musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("<script>alert('" + e.getMessage() + "');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
+        }
+    }
+
     private void musicalWorkQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         // 获取信息(页数，页码，，信息)
         int pageSize = 15;
@@ -107,67 +165,11 @@ public class MusicalWorkServlet extends HttpServlet {
         req.getRequestDispatcher("musicalwork_list.jsp?pageIndex=" + pageIndex).forward(req, resp);
     }
 
-    private void musicalWorkRemove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-        long musicalWorkId = Long.parseLong(req.getParameter("id"));
-        try {
-            int count = musicalWorkBiz.remove(musicalWorkId);
-            if(count > 0) {
-                out.println("<script>alert('Success to remove musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-            } else {
-                out.println("<script>alert('Failed to remove musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            out.println("<script>alert('" + e.getMessage() + "');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-        }
-    }
-
-
-    private void musicalWorkModify(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-        long id = Long.parseLong(req.getParameter("id"));
-        String name = req.getParameter("name");
-        String author = req.getParameter("author");
-        long typeId = Long.parseLong(req.getParameter("typeId"));
-        String desc = req.getParameter("desc");
-        try {
-            int count = musicalWorkBiz.modify(id, name, author, desc, typeId);
-            if(count > 0) {
-                out.println("<script>alert('Success to modify musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-            }
-            else {
-                out.println("<script>alert('Failed to modify musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            out.println("<script>alert('" + e.getMessage() + "');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-        }
-    }
-
-
-    private void musicalWorkModifyPre(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+    private void musicalWorkDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
         long musicalWorkId = Long.parseLong(req.getParameter("id"));
         MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(musicalWorkId);
-        List<MusicalWorkType> musicalWorkTypes = musicalWorkTypeBiz.getAllTypes();
         req.setAttribute("musicalWork", musicalWork);
-        req.getRequestDispatcher("musicalwork_modify.jsp").forward(req, resp);
+        req.getRequestDispatcher("musicalwork_details.jsp").forward(req, resp);
     }
 
-    private void musicalWorkAdd(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-        String name = req.getParameter("name");
-        String author = req.getParameter("author");
-        long typeId = Long.parseLong(req.getParameter("typeId"));
-        String desc = req.getParameter("desc");
-        try {
-            int count = musicalWorkBiz.add(name, author, desc, typeId);
-            if(count > 0) {
-                out.println("<script>alert('Success to add musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-            }
-            else {
-                out.println("<script>alert('Failed to add musical work!');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            out.println("<script>alert('" + e.getMessage() + "');location.href='musicalwork.let?type=query&pageIndex=1'</script>");
-        }
-    }
 }

@@ -8,6 +8,16 @@
     <meta http-equiv="author" content="phenix"/>
     <link rel="stylesheet" type="text/css" href="./Style/skin.css" />
     <script src="Js/jquery-3.3.1.min.js"></script>
+    <script language="JavaScript">
+        $(function(){
+            // 为每个radio绑定事件
+            $(":radio").each(function(index,element){
+                $(this).click(function(){
+                    console.log($(this).next().val())
+                });
+            });
+        });
+    </script>
 
 </head>
     <body>
@@ -75,15 +85,25 @@
 
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>Author：</td>
-                                                        <td width="20%"><input class="text" type="text" name="author" value="${musicalWork.author}" /></td>
+                                                        <td>Musical Work Type</td>
+                                                        <td width="50%">
+                                                            <c:forEach items="${musicalWorkTypes}" var="ct">
+                                                                <c:if test="${ct.id==musicalWork.typeId}">
+                                                                    <input  type="radio" name="musicalWorkType" value="${ct.id}" checked/> ${ct.name}
+                                                                </c:if>
+                                                                <c:if test="${ct.id!= musicalWork.typeId}">
+                                                                    <input  type="radio" name="musicalWorkType" value="${ct.id}" /> ${ct.name}
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </td>
+                                                        <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>Type：</td>
-                                                        <td width="20%"><input class="text" type="text" name="typeId" value="${musicalWork.type}" /></td>
+                                                        <td>Author：</td>
+                                                        <td width="20%"><input class="text" type="text" name="author" value="${musicalWork.author}" /></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 

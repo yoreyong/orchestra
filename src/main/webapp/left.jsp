@@ -48,6 +48,7 @@
                         </ul>
                     </div>
 
+                    <!-- Concert -->
                     <h1 class="type"><a href="javascript:void(0)">Concert</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -61,6 +62,7 @@
                         </ul>
                     </div>
 
+                    <!-- Musician -->
                     <h1 class="type"><a href="javascript:void(0)">Musician</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -74,6 +76,7 @@
                         </ul>
                     </div>
 
+                    <!-- Musical work -->
                     <h1 class="type"><a href="javascript:void(0)">Musical Work</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -82,7 +85,7 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./musicalwork_add.jsp" target="main">Add</a></li>
+                            <li><a href="./musicalwork.let?type=addpre" target="main">Add</a></li>
                             <li><a href="./musicalwork.let?type=query&pageIndex=1" target="main">Information</a></li>
                         </ul>
                     </div>
@@ -114,7 +117,7 @@
                         </ul>
                     </div>
 
-                    <!-- *********** -->
+                    <!-- Settings -->
                     <h1 class="type"><a href="javascript:void(0)">Settings</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">

@@ -58,7 +58,7 @@ public class MusicalWorkDao implements Serializable {
      */
     public int modify(long id, String name, String author, String desc, long typeId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "update musicalwork set `name` = ?, author = ?, `desc` = ? typeId = ? where id=?";
+        String sql = "update musicalwork set `name` = ?, author = ?, `desc` = ?, typeId = ? where id=?";
         int count = runner.update(conn, sql, name, author, desc, typeId, id);
         conn.close();
         return count;

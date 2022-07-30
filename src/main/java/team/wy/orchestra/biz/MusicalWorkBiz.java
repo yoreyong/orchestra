@@ -18,6 +18,7 @@ import java.util.List;
 public class MusicalWorkBiz {
 
     MusicalWorkDao musicalWorkDao = new MusicalWorkDao();
+    MusicalWorkTypeDao musicalWorkTypeDao = new MusicalWorkTypeDao();
 
     public int add(String name, String author, String desc, long typeId) {
         int count = 0;
@@ -51,16 +52,17 @@ public class MusicalWorkBiz {
     }
 
     public MusicalWork getMusicalWorkById(long id) {
+        MusicalWork musicalWork = null;
         try {
-            return musicalWorkDao.getMusicalWorkById(id);
+            musicalWork = musicalWorkDao.getMusicalWorkById(id);
+            MusicalWorkType musicalWorkType = musicalWorkTypeDao.getTypeById(musicalWork.getTypeId());
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        return musicalWork;
     }
 
     public List<MusicalWork> getMusicalWorkByPage(int pageIndex, int pageSize) {
-        MusicalWorkTypeDao musicalWorkTypeDao = new MusicalWorkTypeDao();
         List<MusicalWork> musicalWorks = null;
         try {
             musicalWorks = musicalWorkDao.getMusicalWorkByPage(pageIndex, pageSize);
@@ -88,6 +90,10 @@ public class MusicalWorkBiz {
         List<MusicalWork> musicalWorks = null;
         try {
             musicalWorks = musicalWorkDao.getMusicalWorkByName(name);
+            for(MusicalWork musicalWork : musicalWorks) {
+                MusicalWorkType type = musicalWorkTypeDao.getTypeById(musicalWork.getTypeId());
+                musicalWork.setType(type);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -98,6 +104,10 @@ public class MusicalWorkBiz {
         List<MusicalWork> musicalWorks = null;
         try {
             musicalWorks = musicalWorkDao.getMusicalWorkByAuthor(author);
+            for(MusicalWork musicalWork : musicalWorks) {
+                MusicalWorkType type = musicalWorkTypeDao.getTypeById(musicalWork.getTypeId());
+                musicalWork.setType(type);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
