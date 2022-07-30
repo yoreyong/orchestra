@@ -21,4 +21,4 @@ Log:
     - 删除outdoor party的type
     - 要求：同步更新SQL文件，DB中的table
 2. 增加ajaxj jar包，使用JSON发送数据
-3. test 
+3. test 2
