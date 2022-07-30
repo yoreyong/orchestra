@@ -1,5 +1,6 @@
 package team.wy.orchestra.action;
 
+import com.alibaba.fastjson.JSON;
 import team.wy.orchestra.bean.MusicalWork;
 import team.wy.orchestra.bean.MusicalWorkType;
 import team.wy.orchestra.biz.MusicalWorkBiz;
@@ -70,8 +71,21 @@ public class MusicalWorkServlet extends HttpServlet {
             case "details":
                 musicalWorkDetails(req, resp, out);
                 break;
+            case "doajax":
+                doAjax(req, resp, out);
+                break;
             default:
                 resp.sendError(404);
+        }
+    }
+
+    private void doAjax(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+        String musicalWorkName = req.getParameter("musicalWorkName");
+        List<MusicalWork> musicalWorks = musicalWorkBiz.getMusicalWorkByName(musicalWorkName);
+        if (musicalWorks == null) {
+            out.println("{}");
+        } else {
+            out.println(JSON.toJSONString(musicalWorks));
         }
     }
 

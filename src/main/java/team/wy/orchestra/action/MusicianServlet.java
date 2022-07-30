@@ -4,7 +4,9 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import team.wy.orchestra.bean.MusicalWork;
 import team.wy.orchestra.bean.Musician;
+import team.wy.orchestra.biz.MusicalWorkBiz;
 import team.wy.orchestra.biz.MusicianBiz;
 import team.wy.orchestra.util.DateHelper;
 
@@ -86,10 +88,18 @@ public class MusicianServlet extends HttpServlet {
             case "details":
                 details(req, resp, out);
                 break;
+            // case "doajax":
+            //     doAjax(req, resp, out);
+            //     break;
             default:
                 resp.sendError(404);
         }
     }
+
+    // private void doAjax(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+    //     String musicalWorkName = req.getParameter("musicalWorkName");
+    //     List<MusicalWork> musicalWorks = mus
+    // }
 
 
     private void details(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
