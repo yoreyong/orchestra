@@ -76,6 +76,13 @@
 
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
+                                                        <td>Type：</td>
+                                                        <td width="20%"><input class="text" type="text" name="gender" value="${musicalWork.type.name}" disabled="disabled"/></td>
+                                                        <td width="2%">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="2%">&nbsp;</td>
                                                         <td width="15%">Name：</td>
                                                         <td width="20%"><input class="text" type="text" name="name" value="${musicalWork.name}" disabled="disabled"/></td>
                                                         <td width="2%">&nbsp;</td>
@@ -85,13 +92,6 @@
                                                         <td width="2%">&nbsp;</td>
                                                         <td>Author：</td>
                                                         <td width="20%"><input class="text" type="text" name="author" value="${musicalWork.author}" disabled="disabled"/></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>Type：</td>
-                                                        <td width="20%"><input class="text" type="text" name="gender" value="${musicalWork.type}" disabled="disabled"/></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 

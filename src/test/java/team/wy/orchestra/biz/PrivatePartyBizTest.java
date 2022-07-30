@@ -58,12 +58,4 @@ public class PrivatePartyBizTest {
         System.out.println(privateParty);
     }
 
-    @Test
-    public void getByChurchNameTest() {
-        List<PrivateParty> privateParties = privatePartyBiz.getByTheme("B-day");
-        System.out.println(privateParties.size());
-        for(PrivateParty privateParty : privateParties) {
-            System.out.println(privateParty);
-        }
-    }
 }

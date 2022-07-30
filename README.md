@@ -12,3 +12,11 @@ DB PROJECT
 Jar包：
 - C3P0
 
+
+Log:
+2022/7/30
+1. Concert修改，删除子table中的attribute
+    - 删除private party的theme
+    - 删除church concert的church name
+    - 删除outdoor party的type
+    - 要求：同步更新SQL文件，DB中的table

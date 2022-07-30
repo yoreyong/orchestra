@@ -73,15 +73,6 @@ public class OutdoorPartyDao {
         return outdoorParties;
     }
 
-    public List<OutdoorParty> getByType(String type) throws SQLException {
-        Connection conn  = DBHelper.getConnection();
-        String sql = "select * from outdoorParty where type = ?";
-        List<OutdoorParty> outdoorParties = runner.query(conn, sql,
-                new BeanListHandler<OutdoorParty>(OutdoorParty.class), type);
-        conn.close();
-        return outdoorParties;
-    }
-
     public int getCount() throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from outdoorParty";

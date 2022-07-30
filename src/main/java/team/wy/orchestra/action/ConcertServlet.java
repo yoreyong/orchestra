@@ -5,6 +5,7 @@ import team.wy.orchestra.bean.ConcertType;
 import team.wy.orchestra.biz.ConcertBiz;
 import team.wy.orchestra.biz.ConcertTypeBiz;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -119,7 +120,7 @@ public class ConcertServlet extends HttpServlet {
                 req.getRequestDispatcher("concert_list.jsp?pageIndex=" + pageIndex).forward(req, resp);
                 break;
             case "details":
-
+                concertDetails(req, resp, out);
                 break;
             default:
                 resp.sendError(404);
@@ -127,10 +128,10 @@ public class ConcertServlet extends HttpServlet {
     }
 
 
-    // private void concertDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out, ServletContext application) throws ServletException, IOException {
-    //     long concertId = Long.parseLong(req.getParameter("id"));
-    //     Concert concert = concertBiz.getById(concertId);
-    //     req.setAttribute("concert", concert);
-    //     req.getRequestDispatcher("concert_details.jsp").forward(req, resp);
-    // }
+    private void concertDetails(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+        long concertId = Long.parseLong(req.getParameter("id"));
+        Concert concert = concertBiz.getById(concertId);
+        req.setAttribute("concert", concert);
+        req.getRequestDispatcher("concert_details.jsp").forward(req, resp);
+    }
 }

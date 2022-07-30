@@ -84,23 +84,22 @@ DROP TABLE IF EXISTS `privateParty`;
 CREATE TABLE `privateParty` (
     `id`    INT     NOT NULL    AUTO_INCREMENT ,
     `conId` INT     NOT NULL ,
-    `theme` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ,
     CONSTRAINT privateParty_PK PRIMARY KEY (`id`) ,
     CONSTRAINT privateParty_FK  FOREIGN KEY (`conId`) REFERENCES `concert`(`id`)
                             ON DELETE CASCADE   ON UPDATE CASCADE
 );
 DESCRIBE `privateParty`;
 
-insert into privateParty (id, conId, theme) values (1, 9, 'B-day');
-insert into privateParty (id, conId, theme) values (2, 19, 'Wedding');
-insert into privateParty (id, conId, theme) values (3, 11, 'Drama|Romance');
-insert into privateParty (id, conId, theme) values (4, 14, 'Adventure');
-insert into privateParty (id, conId, theme) values (5, 15, 'babyshower');
-insert into privateParty (id, conId, theme) values (6, 5, 'cacualGathering');
-insert into privateParty (id, conId, theme) values (7, 14, 'HappyHour');
-insert into privateParty (id, conId, theme) values (8, 3, 'Romance');
-insert into privateParty (id, conId, theme) values (9, 2, 'SummerBreeze');
-insert into privateParty (id, conId, theme) values (10, 8, 'Holiday');
+insert into privateParty (id, conId) values (1, 9);
+insert into privateParty (id, conId) values (2, 19);
+insert into privateParty (id, conId) values (3, 11);
+insert into privateParty (id, conId) values (4, 14);
+insert into privateParty (id, conId) values (5, 15);
+insert into privateParty (id, conId) values (6, 5);
+insert into privateParty (id, conId) values (7, 14);
+insert into privateParty (id, conId) values (8, 3);
+insert into privateParty (id, conId) values (9, 2);
+insert into privateParty (id, conId) values (10, 8);
 
 
 -- -----------------------------------
@@ -110,24 +109,22 @@ DROP TABLE IF EXISTS `churchConcert`;
 CREATE TABLE `churchConcert` (
     `id`    INT     NOT NULL    AUTO_INCREMENT ,
     `conId` INT     NOT NULL ,
-    `churchName`    VARCHAR(15)    CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ,
     CONSTRAINT churchConcert_PK PRIMARY KEY (`id`) ,
     CONSTRAINT churchConcert_FK  FOREIGN KEY (`conId`) REFERENCES `concert`(`id`)
                              ON DELETE CASCADE  ON UPDATE CASCADE
 );
 DESCRIBE `churchConcert`;
 
-insert into churchConcert (id, conId, churchName) values (1, 18, 'HolyTri');
-insert into churchConcert (id, conId, churchName) values (2, 11, 'All Saints');
-insert into churchConcert (id, conId, churchName) values (3, 13, 'St Lawrence');
-insert into churchConcert (id, conId, churchName) values (4, 16, 'St Mark');
-insert into churchConcert (id, conId, churchName) values (5, 4, 'First Baptist');
-insert into churchConcert (id, conId, churchName) values (6, 17, 'Fellowship');
-insert into churchConcert (id, conId, churchName) values (7, 11, 'Holly Church');
-insert into churchConcert (id, conId, churchName) values (8, 20, 'Cathedral');
-insert into churchConcert (id, conId, churchName) values (9, 1, 'NorthChurch');
-insert into churchConcert (id, conId, churchName) values (10, 16, 'ChristianChurch');
-
+insert into churchConcert (id, conId) values (1, 18);
+insert into churchConcert (id, conId) values (2, 11);
+insert into churchConcert (id, conId) values (3, 13);
+insert into churchConcert (id, conId) values (4, 16);
+insert into churchConcert (id, conId) values (5, 4);
+insert into churchConcert (id, conId) values (6, 17);
+insert into churchConcert (id, conId) values (7, 11);
+insert into churchConcert (id, conId) values (8, 20);
+insert into churchConcert (id, conId) values (9, 1);
+insert into churchConcert (id, conId) values (10, 16);
 
 -- -----------------------------------
 -- Table structure for outdoor party
@@ -136,20 +133,45 @@ DROP TABLE IF EXISTS `outdoorParty`;
 CREATE TABLE `outdoorParty` (
     `id`    INT     NOT NULL    AUTO_INCREMENT ,
     `conId` INT     NOT NULL ,
-    `type`  VARCHAR(15)    CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ,
     CONSTRAINT outdoorParty_PK PRIMARY KEY (`id`) ,
     CONSTRAINT outdoorParty_FK  FOREIGN KEY (`conId`) REFERENCES `concert`(`id`)
                             ON DELETE CASCADE   ON UPDATE CASCADE
 );
 DESCRIBE `outdoorParty`;
 
-insert into outdoorParty (id, conId, type) values (1, 16, 'Teal');
-insert into outdoorParty (id, conId, type) values (2, 16, 'Blue');
-insert into outdoorParty (id, conId, type) values (3, 6, 'Mauv');
-insert into outdoorParty (id, conId, type) values (4, 7, 'Green');
-insert into outdoorParty (id, conId, type) values (5, 2, 'Pink');
-insert into outdoorParty (id, conId, type) values (6, 1, 'Maroon');
-insert into outdoorParty (id, conId, type) values (7, 18, 'Goldenrod');
-insert into outdoorParty (id, conId, type) values (8, 9, 'Turquoise');
-insert into outdoorParty (id, conId, type) values (9, 5, 'Crimson');
-insert into outdoorParty (id, conId, type) values (10, 16, 'Mauv');
+insert into outdoorParty (id, conId) values (1, 16);
+insert into outdoorParty (id, conId) values (2, 16);
+insert into outdoorParty (id, conId) values (3, 6);
+insert into outdoorParty (id, conId) values (4, 7);
+insert into outdoorParty (id, conId) values (5, 2);
+insert into outdoorParty (id, conId) values (6, 1);
+insert into outdoorParty (id, conId) values (7, 18);
+insert into outdoorParty (id, conId) values (8, 9);
+insert into outdoorParty (id, conId) values (9, 5);
+insert into outdoorParty (id, conId) values (10, 16);
+
+
+-- -----------------------------------
+-- Relationship table
+-- Table structure for repertoire
+-- -----------------------------------
+DROP TABLE IF EXISTS `repertoire`;
+CREATE TABLE `repertoire` (
+    `id`                INT     NOT NULL    AUTO_INCREMENT ,
+    `concertId`         INT     NOT NULL ,
+    `musicalWorkId`     INT     NOT NULL ,
+    CONSTRAINT repertoire_PK PRIMARY KEY (`id`) ,
+);
+
+DESCRIBE `repertoire`;
+
+insert into repertoire (concertId, musicalWorkId) values (2, 1);
+insert into repertoire (concertId, musicalWorkId) values (1, 5);
+insert into repertoire (concertId, musicalWorkId) values (1, 7);
+insert into repertoire (concertId, musicalWorkId) values (3, 11);
+insert into repertoire (concertId, musicalWorkId) values (2, 11);
+insert into repertoire (concertId, musicalWorkId) values (2, 5);
+insert into repertoire (concertId, musicalWorkId) values (3, 5);
+insert into repertoire (concertId, musicalWorkId) values (1, 5);
+insert into repertoire (concertId, musicalWorkId) values (3, 6);
+insert into repertoire (concertId, musicalWorkId) values (2, 2);

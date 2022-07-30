@@ -97,21 +97,4 @@ public class ChurchConcertBiz {
         return churchConcert;
     }
 
-
-    public List<ChurchConcert> getByChurchName(String churchName) {
-        List<ChurchConcert> churchConcerts = null;
-
-        try {
-            churchConcerts = churchConcertDao.getByChurchName(churchName);
-            for(ChurchConcert churchConcert : churchConcerts) {
-                long conId = churchConcert.getConId();
-                churchConcert.setConcert(concertBiz.getById(conId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return churchConcerts;
-    }
-
 }

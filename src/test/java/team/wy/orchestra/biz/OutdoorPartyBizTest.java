@@ -58,12 +58,4 @@ public class OutdoorPartyBizTest {
         System.out.println(outdoorParty);
     }
 
-    @Test
-    public void getByChurchNameTest() {
-        List<OutdoorParty> outdoorParties = outdoorPartyBiz.getByType("Blue");
-        System.out.println(outdoorParties.size());
-        for(OutdoorParty outdoorParty : outdoorParties) {
-            System.out.println(outdoorParty);
-        }
-    }
 }

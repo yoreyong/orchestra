@@ -1,7 +1,6 @@
 package team.wy.orchestra.biz;
 
 import team.wy.orchestra.bean.Concert;
-import team.wy.orchestra.bean.ConcertType;
 import team.wy.orchestra.dao.ConcertDao;
 import team.wy.orchestra.dao.ConcertTypeDao;
 

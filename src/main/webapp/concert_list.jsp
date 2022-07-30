@@ -47,6 +47,36 @@
                                 </table>
                             </td>
                         </tr>
+
+                        <!-- Concert Type 根据concert子类型进行查询复选框 -->
+                        <tr>
+                            <td width="2%">&nbsp;</td>
+                            <td width="96%">
+                                <fieldset>
+                                    <legend>Query Concert</legend>
+                                    <table width="100%" border="1" class="cont"  >
+                                        <tr>
+                                            <td colspan="8">
+                                                Concert type:&nbsp;&nbsp;
+
+
+
+
+                                                <input class="text" type="text" id="bookContent" name="bookContent" placeholder="输入条形码/书名"/>
+                                                <input type="button" id="btnQueryConcert" value="Confirm" style="width: 80px;"/>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+                                </fieldset>
+                            </td>
+
+                        </tr>
+
+
+
+
                         <!-- 产品列表开始 -->
                         <tr>
                             <td width="2%">&nbsp;</td>
@@ -77,8 +107,8 @@
                                                             <td>${c.concertType.name}</td>
                                                             <td>${c.price}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${c.id}">Modify</a>&nbsp;&nbsp;
-                                                            	<a onclick="return confirm('Confirm deletion');" href="concert.let?type=remove&id=${c.id}">Delete</a>
+                                                                <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${c.id}"><u>Modify</u></a>&nbsp;&nbsp;
+                                                                <a onclick="return confirm('Confirm deletion');" href="concert.let?type=remove&id=${c.id}"><u>Delete</u></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

@@ -12,7 +12,6 @@ public class ChurchConcert implements Serializable {
 
     private long id;
     private long conId;
-    private String churchName;
 
     // Foreign Key
     private Concert concert;
@@ -22,7 +21,6 @@ public class ChurchConcert implements Serializable {
         return "ChurchConcert{" +
                 "id=" + id +
                 ", conId=" + conId +
-                ", churchName='" + churchName + '\'' +
                 ", concert=" + concert +
                 '}';
     }
@@ -41,14 +39,6 @@ public class ChurchConcert implements Serializable {
 
     public void setConId(long conId) {
         this.conId = conId;
-    }
-
-    public String getChurchName() {
-        return churchName;
-    }
-
-    public void setChurchName(String churchName) {
-        this.churchName = churchName;
     }
 
     public Concert getConcert() {

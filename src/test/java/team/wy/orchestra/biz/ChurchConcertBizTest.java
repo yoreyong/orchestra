@@ -57,12 +57,4 @@ public class ChurchConcertBizTest {
         System.out.println(churchConcert);
     }
 
-    @Test
-    public void getByChurchNameTest() {
-        List<ChurchConcert> churchConcerts = churchConcertBiz.getByChurchName("Holly Church");
-        System.out.println(churchConcerts.size());
-        for(ChurchConcert churchConcert : churchConcerts) {
-            System.out.println(churchConcert);
-        }
-    }
 }

@@ -85,19 +85,4 @@ public class OutdoorPartyBiz {
         return outdoorParty;
     }
 
-
-    public List<OutdoorParty> getByType(String type) {
-        List<OutdoorParty> outdoorParties = null;
-        try {
-            outdoorParties = outdoorPartyDao.getByType(type);
-            for(OutdoorParty outdoorParty : outdoorParties) {
-                long conId = outdoorParty.getConId();
-                outdoorParty.setConcert(concertBiz.getById(conId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return outdoorParties;
-    }
-
 }

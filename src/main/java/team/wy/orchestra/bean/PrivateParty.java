@@ -12,7 +12,6 @@ public class PrivateParty implements Serializable {
 
     private long id;
     private long conId;
-    private String theme;
 
     // Foreign Key
     private Concert concert;
@@ -22,7 +21,6 @@ public class PrivateParty implements Serializable {
         return "PrivateParty{" +
                 "id=" + id +
                 ", conId=" + conId +
-                ", theme='" + theme + '\'' +
                 ", concert=" + concert +
                 '}';
     }
@@ -41,14 +39,6 @@ public class PrivateParty implements Serializable {
 
     public void setConId(long conId) {
         this.conId = conId;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
     }
 
     public Concert getConcert() {

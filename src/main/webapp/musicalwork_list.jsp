@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>Information</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>List</b></h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -61,7 +61,7 @@
                                                         <th>Name</th>
                                                         <th>Author</th>
                                                         <th>Type</th>
-                                                        <th> </th>
+                                                        <th>Operation</th>
                                                     </tr>
 
                                                     <c:forEach items="${musicalWorks}" var="m">
@@ -71,8 +71,8 @@
                                                             <td>${m.author}</td>
                                                             <td>${m.type.name}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}">Modify</a>&nbsp;&nbsp;
-                                                            	<a onclick="return confirm('Confirm deletion');" href="musicalwork.let?type=remove&id=${m.id}">Delete</a>
+                                                                <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}"><u>Modify</u></a>&nbsp;&nbsp;
+                                                                <a onclick="return confirm('Confirm deletion');" href="musicalwork.let?type=remove&id=${m.id}"><u>Delete</u></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

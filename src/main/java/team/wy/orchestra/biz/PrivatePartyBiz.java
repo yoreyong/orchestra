@@ -87,20 +87,4 @@ public class PrivatePartyBiz {
         return privateParty;
     }
 
-    public List<PrivateParty> getByTheme(String theme) {
-        List<PrivateParty> privateParties = null;
-        ConcertBiz concertBiz = new ConcertBiz();
-
-        try {
-            privateParties = privatePartyDao.getByTheme(theme);
-            for(PrivateParty privateParty : privateParties) {
-                long conId = privateParty.getConId();
-                privateParty.setConcert(concertBiz.getById(conId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return privateParties;
-    }
-
 }

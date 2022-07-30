@@ -71,15 +71,6 @@ public class PrivatePartyDao {
         return privateParties;
     }
 
-    public List<PrivateParty> getByTheme(String theme) throws SQLException {
-        Connection conn = DBHelper.getConnection();
-        String sql = "select * from privateParty where theme=?";
-        List<PrivateParty> privateParties = runner.query(conn, sql,
-                new BeanListHandler<PrivateParty>(PrivateParty.class), theme);
-        conn.close();
-        return privateParties;
-    }
-
     public int getCount() throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from privateParty";

@@ -73,15 +73,6 @@ public class ChurchConcertDao {
         return churchConcerts;
     }
 
-    public List<ChurchConcert> getByChurchName(String churchName) throws SQLException {
-        Connection conn  = DBHelper.getConnection();
-        String sql = "select * from churchconcert where churchName = ?";
-        List<ChurchConcert> churchConcerts = runner.query(conn, sql,
-                new BeanListHandler<ChurchConcert>(ChurchConcert.class), churchName);
-        conn.close();
-        return churchConcerts;
-    }
-
     public int getCount() throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from churchconcert";

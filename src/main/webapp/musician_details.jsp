@@ -82,7 +82,7 @@
 
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="15%">First name：</td>
+                                                        <td>First name：</td>
                                                         <td width="25%"><input class="text" type="text" name="fname" value="${musician.fname}" disabled="disabled"/></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>

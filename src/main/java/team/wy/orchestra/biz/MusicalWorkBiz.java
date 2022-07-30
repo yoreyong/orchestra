@@ -56,6 +56,7 @@ public class MusicalWorkBiz {
         try {
             musicalWork = musicalWorkDao.getMusicalWorkById(id);
             MusicalWorkType musicalWorkType = musicalWorkTypeDao.getTypeById(musicalWork.getTypeId());
+            musicalWork.setType(musicalWorkType);
         } catch (SQLException e) {
             e.printStackTrace();
         }

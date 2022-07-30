@@ -12,8 +12,6 @@ public class OutdoorParty implements Serializable {
 
     private long id;
     private long conId;
-    private String type;
-
     // Foreign Key
     private Concert concert;
 
@@ -22,11 +20,9 @@ public class OutdoorParty implements Serializable {
         return "OutdoorParty{" +
                 "id=" + id +
                 ", conId=" + conId +
-                ", type='" + type + '\'' +
                 ", concert=" + concert +
                 '}';
     }
-
 
     public long getId() {
         return id;
@@ -42,14 +38,6 @@ public class OutdoorParty implements Serializable {
 
     public void setConId(long conId) {
         this.conId = conId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Concert getConcert() {

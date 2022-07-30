@@ -58,7 +58,7 @@
                         </table>
                         <ul class="RM">
                             <li><a href="./concert.let?type=addpre" target="main">Add</a></li>
-                            <li><a href="./concert.let?type=query&pageIndex=1" target="main">Information</a></li>
+                            <li><a href="./concert.let?type=query&pageIndex=1" target="main">List</a></li>
                         </ul>
                     </div>
 
@@ -72,7 +72,7 @@
                         </table>
                         <ul class="RM">
                             <li><a href="./musician_add.jsp" target="main">Add</a></li>
-                            <li><a href="./musician.let?type=query&pageIndex=1" target="main">Information</a></li>
+                            <li><a href="./musician.let?type=query&pageIndex=1" target="main">List</a></li>
                         </ul>
                     </div>
 
@@ -86,24 +86,11 @@
                         </table>
                         <ul class="RM">
                             <li><a href="./musicalwork.let?type=addpre" target="main">Add</a></li>
-                            <li><a href="./musicalwork.let?type=query&pageIndex=1" target="main">Information</a></li>
+                            <li><a href="./musicalwork.let?type=query&pageIndex=1" target="main">List</a></li>
                         </ul>
                     </div>
 
-                    <h1 class="type"><a href="javascript:void(0)">图书类型管理</a></h1>
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="./Images/menu_top_line.gif" width="182" height="5" /></td>
-                            </tr>
-                        </table>
-                        <ul class="RM">
-                            <li><a href="./type_add.jsp" target="main">添加类型</a></li>
-                            <li><a href="./type_list.jsp" target="main">类型列表</a></li>
-                        </ul>
-                    </div>
-
-                    <h1 class="type"><a href="javascript:void(0)">常用操作</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">General Management</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
