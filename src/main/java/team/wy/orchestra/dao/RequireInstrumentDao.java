@@ -54,7 +54,7 @@ public class RequireInstrumentDao {
         return requires;
     }
 
-    public RequireInstrument getById(int id) throws SQLException {
+    public RequireInstrument getById(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from `require` where id = ?";
         RequireInstrument require = runner.query(conn, sql, new BeanHandler<RequireInstrument>(RequireInstrument.class), id);
@@ -62,12 +62,12 @@ public class RequireInstrumentDao {
         return require;
     }
 
-    public int getCount() throws SQLException {
+    public long getCount() throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from `require`";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
         conn.close();
-        return data.intValue();
+        return data.longValue();
     }
 
     public List<RequireInstrument> getByInstrument(long settingNum) throws SQLException {
@@ -78,12 +78,12 @@ public class RequireInstrumentDao {
         return requires;
     }
 
-    public int getCountBySSN(long settingNum) throws SQLException {
+    public long getCountByInstrument(long settingNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from `require` where settingNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), settingNum);
         conn.close();
-        return data.intValue();
+        return data.longValue();
     }
 
     public  List<RequireInstrument> getByMusicalWork(long MWorkNum) throws SQLException {
@@ -94,12 +94,12 @@ public class RequireInstrumentDao {
         return requires;
     }
 
-    public int getCountByConId(long MWorkNum) throws SQLException {
+    public long getCountByMusicalWork(long MWorkNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from `require` where MWorkNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), MWorkNum);
         conn.close();
-        return data.intValue();
+        return data.longValue();
     }
 
 }
