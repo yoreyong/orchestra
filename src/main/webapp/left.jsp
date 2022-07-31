@@ -98,7 +98,9 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./book_rent.jsp" target="main">图书借阅</a></li>
+                            <!-- 编制曲目 -->
+                            <li><a href="./repertoire_edit.jsp" target="main">Repertoire</a></li>
+                            <!-- 配置musician -->
                             <li><a href="./return_list.jsp" target="main">图书归还</a></li>
                             <li><a href="./rent_list.jsp" target="main">查看借阅历史信息</a></li>
                         </ul>

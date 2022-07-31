@@ -90,7 +90,7 @@
                         </ul>
                     </div>
 
-                    <h1 class="type"><a href="javascript:void(0)">图书类型管理</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">General Management</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
@@ -98,20 +98,9 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./type_add.jsp" target="main">添加类型</a></li>
-                            <li><a href="./type_list.jsp" target="main">类型列表</a></li>
-                        </ul>
-                    </div>
-
-                    <h1 class="type"><a href="javascript:void(0)">常用操作</a></h1>
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="./Images/menu_top_line.gif" width="182" height="5" /></td>
-                            </tr>
-                        </table>
-                        <ul class="RM">
-                            <li><a href="./book_rent.jsp" target="main">图书借阅</a></li>
+                            <!-- 编制曲目 -->
+                            <li><a href="./repertoire_edit.jsp" target="main">Repertoire</a></li>
+                            <!-- 配置musician -->
                             <li><a href="./return_list.jsp" target="main">图书归还</a></li>
                             <li><a href="./rent_list.jsp" target="main">查看借阅历史信息</a></li>
                         </ul>

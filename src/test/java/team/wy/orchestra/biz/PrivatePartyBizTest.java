@@ -17,7 +17,7 @@ public class PrivatePartyBizTest {
 
     @Test
     public void addTest() {
-        int count = privatePartyBiz.add(18,"B-day");
+        int count = privatePartyBiz.add(18);
         System.out.println(count);
     }
 
@@ -30,7 +30,7 @@ public class PrivatePartyBizTest {
 
     @Test
     public void modifyTest() {
-        int count = privatePartyBiz.modify(10, 18, "Cathedral 2nd");
+        int count = privatePartyBiz.modify(10, 18);
         System.out.println(count);
     }
 

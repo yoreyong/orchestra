@@ -17,7 +17,7 @@ public class ChurchConcertBizTest {
 
     @Test
     public void addTest() {
-        int count = churchConcertBiz.add(18,"Cathedral");
+        int count = churchConcertBiz.add(18);
         System.out.println(count);
     }
 
@@ -29,7 +29,7 @@ public class ChurchConcertBizTest {
 
     @Test
     public void modifyTest() {
-        int count = churchConcertBiz.modify(10, 18, "Cathedral 2nd");
+        int count = churchConcertBiz.modify(10, 18);
         System.out.println(count);
     }
 

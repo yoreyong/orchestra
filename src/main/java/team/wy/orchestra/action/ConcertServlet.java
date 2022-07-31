@@ -1,5 +1,6 @@
 package team.wy.orchestra.action;
 
+import com.alibaba.fastjson.JSON;
 import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.bean.ConcertType;
 import team.wy.orchestra.biz.ConcertBiz;
@@ -120,6 +121,12 @@ public class ConcertServlet extends HttpServlet {
                 break;
             case "details":
                 concertDetails(req, resp, out);
+                break;
+            case "doajax":
+                long idNum = Long.parseLong(req.getParameter("id"));
+                Concert concert1 = concertBiz.getById(idNum);
+                String concertJson = JSON.toJSONString(concert1);
+                out.print(concertJson);
                 break;
             default:
                 resp.sendError(404);

@@ -21,10 +21,10 @@ public class ChurchConcertDao {
 
     QueryRunner runner = new QueryRunner();
 
-    public int add(long conId, String churchName) throws SQLException {
+    public int add(long conId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "insert into churchconcert(id, conId, churchName) values(null, ?, ?)";
-        int count = runner.update(conn, sql, conId, churchName);
+        String sql = "insert into churchconcert(id, conId) values(null, ?)";
+        int count = runner.update(conn, sql, conId);
         conn.close();
         return count;
     }
@@ -37,10 +37,10 @@ public class ChurchConcertDao {
         return count;
     }
 
-    public int modify(long id, long conId, String churchName) throws SQLException {
+    public int modify(long id, long conId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "update churchconcert set conId = ?, churchName = ? where id=?";
-        int count = runner.update(conn, sql, conId, churchName, id);
+        String sql = "update churchconcert set conId = ? where id=?";
+        int count = runner.update(conn, sql, conId, id);
         conn.close();
         return count;
     }
