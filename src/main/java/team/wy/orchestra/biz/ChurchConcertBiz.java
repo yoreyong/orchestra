@@ -18,11 +18,11 @@ public class ChurchConcertBiz {
     ChurchConcertDao churchConcertDao = new ChurchConcertDao();
     ConcertBiz concertBiz = new ConcertBiz();
 
-    public int add (long condId, String churchName) {
+    public int add (long condId) {
         int count = 0;
 
         try {
-            count = churchConcertDao.add(condId, churchName);
+            count = churchConcertDao.add(condId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,11 +42,11 @@ public class ChurchConcertBiz {
         return count;
     }
 
-    public int modify(long id, long conId, String churchName) {
+    public int modify(long id, long conId) {
         int count = 0;
 
         try {
-            count = churchConcertDao.modify(id, conId, churchName);
+            count = churchConcertDao.modify(id, conId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -18,7 +18,7 @@ public class OutdoorPartyBizTest {
 
     @Test
     public void addTest() {
-        int count = outdoorPartyBiz.add(18,"Blue");
+        int count = outdoorPartyBiz.add(18);
         System.out.println(count);
     }
 
@@ -30,7 +30,7 @@ public class OutdoorPartyBizTest {
 
     @Test
     public void modifyTest() {
-        int count = outdoorPartyBiz.modify(10, 18, "Cathedral 2nd");
+        int count = outdoorPartyBiz.modify(10, 18);
         System.out.println(count);
     }
 

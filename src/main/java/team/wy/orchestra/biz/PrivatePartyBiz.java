@@ -18,10 +18,10 @@ public class PrivatePartyBiz {
     PrivatePartyDao privatePartyDao = new PrivatePartyDao();
     ConcertBiz concertBiz = new ConcertBiz();
 
-    public int add (long condId, String theme) {
+    public int add (long condId) {
         int count = 0;
         try {
-            count = privatePartyDao.add(condId, theme);
+            count = privatePartyDao.add(condId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,10 +38,10 @@ public class PrivatePartyBiz {
         return count;
     }
 
-    public int modify(long id, long conId, String theme) {
+    public int modify(long id, long conId) {
         int count = 0;
         try {
-            count = privatePartyDao.modify(id, conId, theme);
+            count = privatePartyDao.modify(id, conId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -21,10 +21,10 @@ public class OutdoorPartyDao {
 
     QueryRunner runner = new QueryRunner();
 
-    public int add(long conId, String type) throws SQLException {
+    public int add(long conId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "insert into outdoorParty(id, conId, type) values(null, ?, ?)";
-        int count = runner.update(conn, sql, conId, type);
+        String sql = "insert into outdoorParty(id, conId) values(null, ?)";
+        int count = runner.update(conn, sql, conId);
         conn.close();
         return count;
     }
@@ -37,10 +37,10 @@ public class OutdoorPartyDao {
         return count;
     }
 
-    public int modify(long id, long conId, String type) throws SQLException {
+    public int modify(long id, long conId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "update outdoorParty set conId = ?, type = ? where id=?";
-        int count = runner.update(conn, sql, conId, type, id);
+        String sql = "update outdoorParty set conId = ? where id=?";
+        int count = runner.update(conn, sql, conId, id);
         conn.close();
         return count;
     }

@@ -80,7 +80,7 @@ public class MusicalWorkServlet extends HttpServlet {
     }
 
     private void doAjax(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-        String musicalWorkName = req.getParameter("musicalWorkName");
+        String musicalWorkName = req.getParameter("name");
         List<MusicalWork> musicalWorks = musicalWorkBiz.getMusicalWorkByName(musicalWorkName);
         if (musicalWorks == null) {
             out.println("{}");

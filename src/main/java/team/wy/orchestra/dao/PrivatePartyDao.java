@@ -21,10 +21,10 @@ public class PrivatePartyDao {
 
     QueryRunner runner = new QueryRunner();
 
-    public int add (long condId, String theme) throws SQLException {
+    public int add (long condId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "insert into privateParty(conId, theme) values(?, ?)";
-        int count = runner.update(conn, sql, condId, theme);
+        String sql = "insert into privateParty(conId) values(?)";
+        int count = runner.update(conn, sql, condId);
         conn.close();
         return count;
     }
@@ -37,10 +37,10 @@ public class PrivatePartyDao {
         return count;
     }
 
-    public int modify(long id, long conId, String theme) throws SQLException {
+    public int modify(long id, long conId) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "update privateParty set conId=?, theme=? where id=?";
-        int count = runner.update(conn, sql, conId, theme, id);
+        String sql = "update privateParty set conId=? where id=?";
+        int count = runner.update(conn, sql, conId, id);
         conn.close();
         return count;
     }

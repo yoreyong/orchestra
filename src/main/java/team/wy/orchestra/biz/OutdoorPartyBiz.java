@@ -1,6 +1,5 @@
 package team.wy.orchestra.biz;
 
-import team.wy.orchestra.bean.ChurchConcert;
 import team.wy.orchestra.bean.OutdoorParty;
 import team.wy.orchestra.dao.OutdoorPartyDao;
 
@@ -18,10 +17,10 @@ public class OutdoorPartyBiz {
     OutdoorPartyDao outdoorPartyDao = new OutdoorPartyDao();
     ConcertBiz concertBiz = new ConcertBiz();
 
-    public int add (long condId, String type) {
+    public int add (long condId) {
         int count = 0;
         try {
-            count = outdoorPartyDao.add(condId, type);
+            count = outdoorPartyDao.add(condId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,10 +37,10 @@ public class OutdoorPartyBiz {
         return count;
     }
 
-    public int modify(long id, long conId, String type) {
+    public int modify(long id, long conId) {
         int count = 0;
         try {
-            count = outdoorPartyDao.modify(id, conId, type);
+            count = outdoorPartyDao.modify(id, conId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
