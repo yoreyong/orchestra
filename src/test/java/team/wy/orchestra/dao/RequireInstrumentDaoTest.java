@@ -24,4 +24,13 @@ public class RequireInstrumentDaoTest {
         }
     }
 
+    @Test
+    public void removeTest() {
+        try {
+            int count = require.remove(8);
+            System.out.println(count);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

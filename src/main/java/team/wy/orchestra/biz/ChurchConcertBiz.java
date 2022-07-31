@@ -83,7 +83,7 @@ public class ChurchConcertBiz {
         return pageCount;
     }
 
-    public ChurchConcert getById(int id) {
+    public ChurchConcert getById(long id) {
         ChurchConcert churchConcert = null;
 
         try {

@@ -32,7 +32,7 @@ public class RequireInstrumentDao {
 
     public int remove(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "delete from require where id=?";
+        String sql = "delete from `require` where id=?";
         int count = runner.update(conn, sql, id);
         conn.close();
         return count;
@@ -40,7 +40,7 @@ public class RequireInstrumentDao {
 
     public int modify(long id, long settingNum, long MWorkNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "update require set settingNum=?, MWorkNum=? where id=?";
+        String sql = "update `require` set settingNum=?, MWorkNum=? where id=?";
         int count = runner.update(conn, sql, settingNum, MWorkNum, id);
         conn.close();
         return count;
@@ -48,7 +48,7 @@ public class RequireInstrumentDao {
 
     public List<RequireInstrument> getAll() throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select * from require";
+        String sql = "select * from `require`";
         List<RequireInstrument> requires = runner.query(conn, sql, new BeanListHandler<RequireInstrument>(RequireInstrument.class));
         conn.close();
         return requires;
@@ -56,7 +56,7 @@ public class RequireInstrumentDao {
 
     public RequireInstrument getById(int id) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select * from require where id = ?";
+        String sql = "select * from `require` where id = ?";
         RequireInstrument require = runner.query(conn, sql, new BeanHandler<RequireInstrument>(RequireInstrument.class), id);
         conn.close();
         return require;
@@ -64,7 +64,7 @@ public class RequireInstrumentDao {
 
     public int getCount() throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select count(id) from require";
+        String sql = "select count(id) from `require`";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
         conn.close();
         return data.intValue();
@@ -72,7 +72,7 @@ public class RequireInstrumentDao {
 
     public List<RequireInstrument> getByInstrument(long settingNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select * from require where settingNum=?";
+        String sql = "select * from `require` where settingNum=?";
         List<RequireInstrument> requires = runner.query(conn, sql, new BeanListHandler<RequireInstrument>(RequireInstrument.class), settingNum);
         conn.close();
         return requires;
@@ -80,7 +80,7 @@ public class RequireInstrumentDao {
 
     public int getCountBySSN(long settingNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select count(*) from require where settingNum=?";
+        String sql = "select count(*) from `require` where settingNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), settingNum);
         conn.close();
         return data.intValue();
@@ -88,7 +88,7 @@ public class RequireInstrumentDao {
 
     public  List<RequireInstrument> getByMusicalWork(long MWorkNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select * from require where MWorkNum=?";
+        String sql = "select * from `require` where MWorkNum=?";
         List<RequireInstrument> requires = runner.query(conn, sql, new BeanListHandler<RequireInstrument>(RequireInstrument.class), MWorkNum);
         conn.close();
         return requires;
@@ -96,7 +96,7 @@ public class RequireInstrumentDao {
 
     public int getCountByConId(long MWorkNum) throws SQLException {
         Connection conn = DBHelper.getConnection();
-        String sql = "select count(*) from require where MWorkNum=?";
+        String sql = "select count(*) from `require` where MWorkNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), MWorkNum);
         conn.close();
         return data.intValue();

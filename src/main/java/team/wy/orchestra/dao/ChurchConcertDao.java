@@ -54,7 +54,7 @@ public class ChurchConcertDao {
         return churchConcerts;
     }
 
-    public ChurchConcert getById(int id) throws SQLException {
+    public ChurchConcert getById(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from churchconcert where id = ?";
         ChurchConcert churchConcert = runner.query(conn, sql,
