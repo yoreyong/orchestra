@@ -80,8 +80,8 @@ public class ParticipateBiz {
         return participate;
     }
 
-    public int getCount() {
-        int rowCount = 0;
+    public long getCount() {
+        long rowCount = 0;
         try {
             rowCount = participateDao.getCount();
         } catch (SQLException e) {
@@ -90,8 +90,8 @@ public class ParticipateBiz {
         return rowCount;
     }
 
-    public int getCountBySSN(String SSN) {
-        int rowCount = 0;
+    public long getCountBySSN(String SSN) {
+        long rowCount = 0;
         try {
             rowCount = participateDao.getCountBySSN(SSN);
         } catch (SQLException e) {
@@ -115,8 +115,8 @@ public class ParticipateBiz {
         return participates;
     }
 
-    public int getCountByconId(long conId) {
-        int rowCount = 0;
+    public long getCountByconId(long conId) {
+        long rowCount = 0;
         try {
             rowCount = participateDao.getCountByConId(conId);
         } catch (SQLException e) {

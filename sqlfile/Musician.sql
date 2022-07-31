@@ -32,3 +32,24 @@ insert into musician (SSN, fname, address, phoneNum, zip, state, lname, gender, 
     values ('265-60-9328', 'Janna', '63 Oakridge Drive', '512-994-1638', 78710, 'Texas', 'Cordaroy', 'F', 'Austin', 0, null);
 insert into musician (SSN, fname, address, phoneNum, zip, state, lname, gender, city, accountId, pic)
     values ('122-39-7652', 'Patten', '31842 Westridge Center', '281-984-2427', 77346, 'Texas', 'Dayley', 'M', 'Humble', 0, null);
+
+
+-- ----------------------------
+-- Relationship table
+-- Table structure for musician plays instruments
+-- ----------------------------
+DROP TABLE IF EXISTS `plays`;
+CREATE TABLE `plays`
+(
+    `id`       INT                               NOT NULL AUTO_INCREMENT,
+    `SSN`      VARCHAR(20) CHARACTER SET utf8mb4 NOT NULL,
+    `instrNum` INT,
+    CONSTRAINT `plays+PK` PRIMARY KEY (`id`)
+);
+
+insert into plays (SSN, instrNum) values ('122-39-7652', 1);
+insert into plays (SSN, instrNum) values ('122-39-7652', 2);
+insert into plays (SSN, instrNum) values ('122-39-7652', 3);
+insert into plays (SSN, instrNum) values ('166-70-7528', 4);
+insert into plays (SSN, instrNum) values ('166-70-7528', 1);
+insert into plays (SSN, instrNum) values ('166-70-75288', 2);

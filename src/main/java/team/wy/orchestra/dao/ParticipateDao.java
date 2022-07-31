@@ -61,12 +61,12 @@ public class ParticipateDao {
         return participate;
     }
 
-    public int getCount() throws SQLException {
+    public long getCount() throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from participate";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
         conn.close();
-        return data.intValue();
+        return data.longValue();
     }
 
     public List<Participate> getBySSN(String SSN) throws SQLException {
@@ -77,12 +77,12 @@ public class ParticipateDao {
         return participates;
     }
 
-    public int getCountBySSN(String SSN) throws SQLException {
+    public long getCountBySSN(String SSN) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from participate where SSN=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), SSN);
         conn.close();
-        return data.intValue();
+        return data.longValue();
     }
 
     public  List<Participate> getByConId(long conId) throws SQLException {
@@ -93,12 +93,12 @@ public class ParticipateDao {
         return participates;
     }
 
-    public int getCountByConId(long conId) throws SQLException {
+    public long getCountByConId(long conId) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from participate where conId=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), conId);
         conn.close();
-        return data.intValue();
+        return data.longValue();
     }
 
 }
