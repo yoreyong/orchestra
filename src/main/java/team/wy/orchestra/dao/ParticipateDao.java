@@ -5,10 +5,8 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import team.wy.orchestra.bean.Participate;
-import team.wy.orchestra.bean.PrivateParty;
 import team.wy.orchestra.util.DBHelper;
 
-import java.nio.channels.Pipe;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
