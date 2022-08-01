@@ -62,7 +62,14 @@ public class RepertoireDao {
         return repertoires;
     }
 
-
+    public List<Repertoire> getByPageAndConId(int pageIndex, int pageSize, long conId) throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from repertoire where concertId=? limit ?, ?";
+        int offset = (pageIndex - 1) * pageSize;
+        List<Repertoire> repertoires = runner.query(conn, sql, new BeanListHandler<Repertoire>(Repertoire.class), conId, offset, pageSize);
+        DBHelper.close(conn);
+        return repertoires;
+    }
 
     public Repertoire getById(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
@@ -86,6 +93,22 @@ public class RepertoireDao {
         Number data = runner.query(conn, sql, new ScalarHandler<>());
         DBHelper.close(conn);
         return data.intValue();
+    }
+
+    public  List<Repertoire> getByConId(long conId) throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from repertoire where concertId=?";
+        List<Repertoire> repertoires = runner.query(conn, sql, new BeanListHandler<Repertoire>(Repertoire.class), conId);
+        DBHelper.close(conn);
+        return repertoires;
+    }
+
+    public long getCountByConId(long conId) throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select count(*) from repertoire where concertId=?";
+        Number data = runner.query(conn, sql, new ScalarHandler<>(), conId);
+        DBHelper.close(conn);
+        return data.longValue();
     }
 
 }

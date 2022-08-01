@@ -171,7 +171,7 @@
                     alert("Please select a musical work!");
                     return;
                 }
-                location.href="repetoire.let?type=add&cid="+concert.id+"&ids="+ids.join("_");
+                location.href="repertoire.let?type=add&cid="+concert.id+"&ids="+ids.join("_");
                 console.log(ids.join("_"));
                 console.log(concert.id);
             });
@@ -223,26 +223,71 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Find a Concert</legend>
+                                    <legend>Concert Details</legend>
                                     <table width="100%" border="0" class="cont"  >
+
                                         <tr>
                                             <td width="10%" class="run-right"> Concert ID</td>
                                             <td colspan="7"><input class="text" type="text" id="concertId" name="concertId" placeholder="Input a concert ID"/>
                                                  <input type="button" id="btnQuery" value="Search" style="width: 80px;"/></td>
-                           
+
                                             </td>
-                                         
+
                                         </tr>
+
                                         <tr>
-                                            <!-- Concert Name-->
                                             <td width="10%" class="run-right">Name</td>
                                             <td width="17%"><input class="text" type="text" id="concert_name" disabled/></td>
-                                            <!-- Concert Type-->
+
                                             <td width="10%" class="run-right">Type:</td>
                                             <td width="17%"><input class="text" type="text" id="concert_type" disabled/></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
+
+                                        <!--
+                                        <tr>
+                                            <td width="2%">&nbsp;</td>
+                                            <td width="5%">Id：</td>
+                                            <td width="20%"><input class="text" style="width:100px;" type="text" name="id" value="${concert.id}" disabled="disabled"/></td>
+
+                                            <td width="2%">&nbsp;</td>
+
+                                            <td width="5%">Type：</td>
+                                            <td width="20%"><input class="text" style="width:100px;" type="text" name="type" value="${concert.concertType.name}" disabled="disabled"/></td>
+                                            <td width="2%">&nbsp;</td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="2%">&nbsp;</td>
+                                            <td width="5%">Name：</td>
+                                            <td width="20%"><input class="text" style="width:100px;" type="text" name="name" value="${concert.concert_name}" disabled="disabled"/></td>
+
+                                            <td width="2%">&nbsp;</td>
+
+                                            <td width="5%">Place：</td>
+                                            <td width="20%"><input class="text" style="width:100px;" type="text" name="name" value="${concert.place}" disabled="disabled"/></td>
+                                            <td width="2%">&nbsp;</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="2%">&nbsp;</td>
+                                            <td>Date:</td>
+                                            <td>
+                                                <input class="text" style="width:100px;" type="text" name="date" value="${concert.concert_date}" disabled="disabled" />
+                                            </td>
+
+                                            <td width="2%">&nbsp;</td>
+
+                                            <td>Time:</td>
+                                            <td>
+                                                <input class="text" style="width:100px;" type="text" name="time" value="${concert.start_time}" disabled="disabled" />
+                                            </td>
+                                            <td></td>
+                                            <td width="2%">&nbsp;</td>
+                                        </tr>
+                                        <-->
 
                                     </table>
                                 </fieldset>

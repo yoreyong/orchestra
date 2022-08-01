@@ -109,12 +109,10 @@
                                                             <td>${c.concertType.name}</td>
                                                             <td>${c.price}</td>
                                                             <td>
-                                                                <a onclick="" href="repertoire.let?type=query&pageIndex=1&id==${c.id}"><u>View</u></a>&nbsp;&nbsp;
-                                                                <a onclick="return confirm('Confirm edit');" href="repertoire.let?type=add&cid=${c.id}"><u>Edit</u></a>
+                                                                <a onclick="" href="repertoire.let?type=query&id=${c.id}"><u>View</u></a>&nbsp;&nbsp;
                                                             </td>
                                                             <td>
-                                                                <a onclick="" href="participate.let?type=query&pageIndex=1&id==${c.id}"><u>View</u></a>&nbsp;&nbsp;
-                                                                <a onclick="return confirm('Confirm edit');" href="repertoire.let?type=query&pageIndex=1&id==${c.id}"><u>Edit</u></a>
+                                                                <a onclick="" href="participate.let?type=query&pageIndex=1&id=${c.id}"><u>View</u></a>&nbsp;&nbsp;
                                                             </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${c.id}"><u>Modify</u></a>&nbsp;&nbsp;

@@ -63,6 +63,7 @@
                                                 <th>Type</th>
                                                 <th>Author</th>
                                                 <th>Description</th>
+                                                <th>Delete</th>
                                             </tr>
 
                                             <c:forEach items="${repertoires}" var="m">
@@ -72,9 +73,13 @@
                                                     <td>${m.musicalWork.type.name}</td>
                                                     <td>${m.musicalWork.author}</td>
                                                     <td>${m.musicalWork.desc}</td>
+                                                    <td>
+                                                        <a onclick="return confirm('Confirm deletion');" href="repertoire.let?type=remove&mid=${m.id}"><u>Delete</u></a>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
 
+                                            <!--
                                            <tr><td colspan="12" align="center">
                                             <div class="pager">
                                                 <ul class="clearfix">
@@ -91,6 +96,7 @@
                                                 </ul>
                                             </div>
                                            </td></tr>
+                                           -->
 
                                             <tr>
                                                 <td></td>

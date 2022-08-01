@@ -4,7 +4,6 @@ import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.bean.MusicalWork;
 import team.wy.orchestra.bean.Repertoire;
 import team.wy.orchestra.dao.ConcertDao;
-import team.wy.orchestra.dao.MusicalWorkDao;
 import team.wy.orchestra.dao.RepertoireDao;
 import team.wy.orchestra.util.DBHelper;
 
@@ -108,6 +107,23 @@ public class RepertoireBiz {
         return repertoires;
     }
 
+    public List<Repertoire> getByPageAndConId(int pageIndex, int pageSize, long conId) {
+        // ConcertTypeDao
+        List<Repertoire> repertoires = null;
+        try {
+            repertoires = repertoireDao.getByPageAndConId(pageIndex, pageSize, conId);
+            for(Repertoire repertoire : repertoires) {
+                Concert concert = concertDao.getById(repertoire.getConcertId());
+                repertoire.setConcert(concert);
+                MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(repertoire.getMusicalWorkId());
+                repertoire.setMusicalWork(musicalWork);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return repertoires;
+    }
+
     public Repertoire getById(long id) {
         Repertoire repertoire = null;
         try {
@@ -149,6 +165,27 @@ public class RepertoireBiz {
         return repertoires;
     }
 
+    public long getCountByconId(long conId) {
+        long rowCount = 0;
+        try {
+            rowCount = repertoireDao.getCountByConId(conId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowCount;
+    }
+
+    public int getPageCountByConId(int pageSize, long conId) {
+        int pageCount = 0;
+        try {
+            long rowCount = repertoireDao.getCountByConId(conId);
+            pageCount = (int) ((rowCount - 1) / pageSize + 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pageCount;
+    }
+
     public int getCount() {
         int rowCount = 0;
         try {
@@ -158,4 +195,6 @@ public class RepertoireBiz {
         }
         return rowCount;
     }
+
+
 }
