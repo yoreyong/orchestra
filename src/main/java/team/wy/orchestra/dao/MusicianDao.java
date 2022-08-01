@@ -31,7 +31,7 @@ public class MusicianDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from musician where SSN=?";
         Musician musician = runner.query(conn, sql, new BeanHandler<Musician>(Musician.class), SSN);
-        conn.close();
+        DBHelper.close(conn);
         return musician;
     }
 
@@ -45,7 +45,7 @@ public class MusicianDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from musician where gender=?";
         List<Musician> musicians = runner.query(conn, sql, new BeanListHandler<Musician>(Musician.class), gender);
-        conn.close();
+        DBHelper.close(conn);
         return musicians;
     }
 
@@ -60,7 +60,7 @@ public class MusicianDao {
         String sql = "insert into musician(SSN, accountId, fname, lname, gender, phoneNum, `state`, city, address, zip, pic) " +
                 "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int count = runner.update(conn, sql, SSN, accountId, fname, lname, gender, phoneNum, state, city, address, zip, pic);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -73,7 +73,7 @@ public class MusicianDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from musician where SSN=?";
         int count = runner.update(conn, sql, SSN);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -88,7 +88,7 @@ public class MusicianDao {
         String sql = "update musician set accountId=?, fname=?, lname=?, gender=?, phoneNum=?, " +
                 "`state`=?, city=?, address=?,  zip=?, pic=? where SSN=?";
         int count = runner.update(conn, sql, accountId, fname, lname, gender, phoneNum, state, city, address, zip, pic, SSN);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -104,7 +104,7 @@ public class MusicianDao {
         String sql = "select * from musician limit ?, ?";
         int offset = (pageIndex - 1) * pageSize;
         List<Musician> musicians = runner.query(conn, sql, new BeanListHandler<Musician>(Musician.class), offset, pageSize);
-        conn.close();
+        DBHelper.close(conn);
         return musicians;
     }
 
@@ -117,7 +117,7 @@ public class MusicianDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from musician";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 

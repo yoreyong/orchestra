@@ -25,7 +25,7 @@ public class OutdoorPartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into outdoorParty(id, conId) values(null, ?)";
         int count = runner.update(conn, sql, conId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class OutdoorPartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from outdoorParty where id = ?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class OutdoorPartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update outdoorParty set conId = ? where id=?";
         int count = runner.update(conn, sql, conId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -50,7 +50,7 @@ public class OutdoorPartyDao {
         String sql = "select * from outdoorParty";
         List<OutdoorParty> outdoorParties = runner.query(conn, sql,
                 new BeanListHandler<OutdoorParty>(OutdoorParty.class));
-        conn.close();
+        DBHelper.close(conn);
         return outdoorParties;
     }
 
@@ -59,7 +59,7 @@ public class OutdoorPartyDao {
         String sql = "select * from outdoorParty where id = ?";
         OutdoorParty outdoorParty = runner.query(conn, sql,
                 new BeanHandler<OutdoorParty>(OutdoorParty.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return outdoorParty;
     }
 
@@ -69,7 +69,7 @@ public class OutdoorPartyDao {
         int offset = (pageIndex - 1) * pageSize;
         List<OutdoorParty> outdoorParties = runner.query(conn, sql,
                 new BeanListHandler<OutdoorParty>(OutdoorParty.class), offset, pageSize);
-        conn.close();
+        DBHelper.close(conn);
         return outdoorParties;
     }
 
@@ -77,7 +77,7 @@ public class OutdoorPartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from outdoorParty";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 

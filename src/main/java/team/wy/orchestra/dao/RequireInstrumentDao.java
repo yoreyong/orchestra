@@ -26,7 +26,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into `require` (settingNum, MWorkNum) values (?, ?);";
         int count = runner.update(conn, sql, settingNum, MWorkNum);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -34,7 +34,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from `require` where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -42,7 +42,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update `require` set settingNum=?, MWorkNum=? where id=?";
         int count = runner.update(conn, sql, settingNum, MWorkNum, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -50,7 +50,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from `require`";
         List<RequireInstrument> requires = runner.query(conn, sql, new BeanListHandler<RequireInstrument>(RequireInstrument.class));
-        conn.close();
+        DBHelper.close(conn);
         return requires;
     }
 
@@ -58,7 +58,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from `require` where id = ?";
         RequireInstrument require = runner.query(conn, sql, new BeanHandler<RequireInstrument>(RequireInstrument.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return require;
     }
 
@@ -66,7 +66,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from `require`";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -74,7 +74,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from `require` where settingNum=?";
         List<RequireInstrument> requires = runner.query(conn, sql, new BeanListHandler<RequireInstrument>(RequireInstrument.class), settingNum);
-        conn.close();
+        DBHelper.close(conn);
         return requires;
     }
 
@@ -82,7 +82,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from `require` where settingNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), settingNum);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -90,7 +90,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from `require` where MWorkNum=?";
         List<RequireInstrument> requires = runner.query(conn, sql, new BeanListHandler<RequireInstrument>(RequireInstrument.class), MWorkNum);
-        conn.close();
+        DBHelper.close(conn);
         return requires;
     }
 
@@ -98,7 +98,7 @@ public class RequireInstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from `require` where MWorkNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), MWorkNum);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 

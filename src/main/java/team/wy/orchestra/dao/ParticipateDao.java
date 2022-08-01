@@ -25,7 +25,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into participate(SSN, conId) values(?, ?)";
         int count = runner.update(conn, sql, SSN, conId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from participate where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update participate set SSN=?, conId=? where id=?";
         int count = runner.update(conn, sql, SSN, conId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -49,7 +49,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from participate";
         List<Participate> participates = runner.query(conn, sql, new BeanListHandler<Participate>(Participate.class));
-        conn.close();
+        DBHelper.close(conn);
         return participates;
     }
 
@@ -57,7 +57,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from participate where id = ?";
         Participate participate = runner.query(conn, sql, new BeanHandler<Participate>(Participate.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return participate;
     }
 
@@ -65,7 +65,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from participate";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -73,7 +73,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from participate where SSN=?";
         List<Participate> participates = runner.query(conn, sql, new BeanListHandler<Participate>(Participate.class), SSN);
-        conn.close();
+        DBHelper.close(conn);
         return participates;
     }
 
@@ -81,7 +81,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from participate where SSN=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), SSN);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -89,7 +89,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from participate where conId=?";
         List<Participate> participates = runner.query(conn, sql, new BeanListHandler<Participate>(Participate.class), conId);
-        conn.close();
+        DBHelper.close(conn);
         return participates;
     }
 
@@ -97,7 +97,7 @@ public class ParticipateDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from participate where conId=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), conId);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 

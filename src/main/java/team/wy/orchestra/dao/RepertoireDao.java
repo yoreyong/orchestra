@@ -25,7 +25,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into repertoire(id, concertId, musicalWorkId) values(null, ?, ?)";
         int count = runner.update(conn, sql, concertId, musicalWorkId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from repertoire where id = ?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update repertoire set concertId = ?, musicalWorkId = ? where id=?";
         int count = runner.update(conn, sql, concertId, musicalWorkId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -49,7 +49,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from repertoire";
         List<Repertoire> repertoires = runner.query(conn, sql, new BeanListHandler<Repertoire>(Repertoire.class));
-        conn.close();
+        DBHelper.close(conn);
         return repertoires;
     }
 
@@ -57,7 +57,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from repertoire where id = ?";
         Repertoire repertoire = runner.query(conn, sql, new BeanHandler<Repertoire>(Repertoire.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return repertoire;
     }
 
@@ -65,7 +65,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from repertoire where concertId = ?";
         List<Repertoire> repertoires = runner.query(conn, sql, new BeanListHandler<Repertoire>(Repertoire.class), concertId);
-        conn.close();
+        DBHelper.close(conn);
         return repertoires;
     }
 
@@ -73,7 +73,7 @@ public class RepertoireDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from repertoire";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 

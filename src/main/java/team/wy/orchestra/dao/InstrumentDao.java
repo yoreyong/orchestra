@@ -25,7 +25,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into instrument(name, type, status) values(?, ?, ?)";
         int count = runner.update(conn, sql, name, type, status);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from instrument where id = ?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update instrument set name=?, type=?, status=? where id=?";
         int count = runner.update(conn, sql, name, type, status, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -50,7 +50,7 @@ public class InstrumentDao {
         String sql = "select * from instrument";
         List<Instrument> instruments = runner.query(conn, sql,
                 new BeanListHandler<Instrument>(Instrument.class));
-        conn.close();
+        DBHelper.close(conn);
         return instruments;
     }
 
@@ -58,7 +58,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from instrument";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -67,7 +67,7 @@ public class InstrumentDao {
         String sql = "select * from instrument where id = ?";
         Instrument instrument = runner.query(conn, sql,
                 new BeanHandler<Instrument>(Instrument.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return instrument;
     }
 
@@ -76,7 +76,7 @@ public class InstrumentDao {
         String sql = "select * from instrument where name=?";
         List<Instrument> instruments = runner.query(conn, sql,
                 new BeanListHandler<Instrument>(Instrument.class), name);
-        conn.close();
+        DBHelper.close(conn);
         return instruments;
     }
 
@@ -84,7 +84,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from instrument where name=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), name);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -93,7 +93,7 @@ public class InstrumentDao {
         String sql = "select * from instrument where type=?";
         List<Instrument> instruments = runner.query(conn, sql,
                 new BeanListHandler<Instrument>(Instrument.class), type);
-        conn.close();
+        DBHelper.close(conn);
         return instruments;
     }
 
@@ -101,7 +101,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from instrument where type=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), type);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -110,7 +110,7 @@ public class InstrumentDao {
         String sql = "select * from instrument where status=?";
         List<Instrument> instruments = runner.query(conn, sql,
                 new BeanListHandler<Instrument>(Instrument.class), status);
-        conn.close();
+        DBHelper.close(conn);
         return instruments;
     }
 
@@ -118,7 +118,7 @@ public class InstrumentDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from instrument where status=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), status);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 

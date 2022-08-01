@@ -24,7 +24,7 @@ public class MusicalWorkTypeDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert musicalworktype values (null, ?, ?)";
         int count = runner.update(conn, sql, name, parentId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -32,7 +32,7 @@ public class MusicalWorkTypeDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from musicalworktype where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -40,7 +40,7 @@ public class MusicalWorkTypeDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update musicalworktype set name=?, parentId=? where id=?";
         int count = runner.update(conn, sql, name, parentId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -48,7 +48,7 @@ public class MusicalWorkTypeDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select id,`name`,parentId from musicalworktype";
         List<MusicalWorkType> musicalWorkTypes = runner.query(conn, sql, new BeanListHandler<MusicalWorkType>(MusicalWorkType.class));
-        conn.close();
+        DBHelper.close(conn);
         return musicalWorkTypes;
     }
 
@@ -56,7 +56,7 @@ public class MusicalWorkTypeDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select id,`name`,parentId from musicalworktype where id=?";
         MusicalWorkType musicalWorkType = runner.query(conn, sql, new BeanHandler<MusicalWorkType>(MusicalWorkType.class), typeId);
-        conn.close();
+        DBHelper.close(conn);
         return musicalWorkType;
     }
 

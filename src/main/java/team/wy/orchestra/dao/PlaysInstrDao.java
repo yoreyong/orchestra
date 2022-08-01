@@ -25,7 +25,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into plays(SSN, instrNum) values(?, ?)";
         int count = runner.update(conn, sql, SSN, instrNum);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from plays where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update plays set SSN=?, instrNum=? where id=?";
         int count = runner.update(conn, sql, SSN, instrNum, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -49,7 +49,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from plays";
         List<PlaysInstr> playsInstrs = runner.query(conn, sql, new BeanListHandler<PlaysInstr>(PlaysInstr.class));
-        conn.close();
+        DBHelper.close(conn);
         return playsInstrs;
     }
 
@@ -57,7 +57,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from plays where id = ?";
         PlaysInstr playsInstr = runner.query(conn, sql, new BeanHandler<PlaysInstr>(PlaysInstr.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return playsInstr;
     }
 
@@ -65,7 +65,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from plays";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 
@@ -73,7 +73,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from plays where SSN=?";
         List<PlaysInstr> playsInstrs = runner.query(conn, sql, new BeanListHandler<PlaysInstr>(PlaysInstr.class), SSN);
-        conn.close();
+        DBHelper.close(conn);
         return playsInstrs;
     }
 
@@ -81,7 +81,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from plays where SSN=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), SSN);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 
@@ -89,7 +89,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from plays where instrNum=?";
         List<PlaysInstr> playsInstrs = runner.query(conn, sql, new BeanListHandler<PlaysInstr>(PlaysInstr.class), instrNum);
-        conn.close();
+        DBHelper.close(conn);
         return playsInstrs;
     }
 
@@ -97,7 +97,7 @@ public class PlaysInstrDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from plays where instrNum=?";
         Number data = runner.query(conn, sql, new ScalarHandler<>(), instrNum);
-        conn.close();
+        DBHelper.close(conn);
         return data.longValue();
     }
 

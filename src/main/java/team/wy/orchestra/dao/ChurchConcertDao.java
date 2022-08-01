@@ -25,7 +25,7 @@ public class ChurchConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into churchconcert(id, conId) values(null, ?)";
         int count = runner.update(conn, sql, conId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class ChurchConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from churchconcert where id = ?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class ChurchConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update churchconcert set conId = ? where id=?";
         int count = runner.update(conn, sql, conId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -50,7 +50,7 @@ public class ChurchConcertDao {
         String sql = "select * from churchconcert";
         List<ChurchConcert> churchConcerts = runner.query(conn, sql,
                 new BeanListHandler<ChurchConcert>(ChurchConcert.class));
-        conn.close();
+        DBHelper.close(conn);
         return churchConcerts;
     }
 
@@ -59,7 +59,7 @@ public class ChurchConcertDao {
         String sql = "select * from churchconcert where id = ?";
         ChurchConcert churchConcert = runner.query(conn, sql,
                 new BeanHandler<ChurchConcert>(ChurchConcert.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return churchConcert;
     }
 
@@ -69,7 +69,7 @@ public class ChurchConcertDao {
         int offset = (pageIndex - 1) * pageSize;
         List<ChurchConcert> churchConcerts = runner.query(conn, sql,
                 new BeanListHandler<ChurchConcert>(ChurchConcert.class), offset, pageSize);
-        conn.close();
+        DBHelper.close(conn);
         return churchConcerts;
     }
 
@@ -77,7 +77,7 @@ public class ChurchConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from churchconcert";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 }

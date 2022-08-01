@@ -29,7 +29,7 @@ public class ConcertDao {
                 "values(?, ?, ?, ?, ?, ?, ?)";
         int count = runner.update(conn, sql, concertName, place, Date.valueOf(concertDate),
                 Time.valueOf(startTime), desc, typeId, price);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -37,7 +37,7 @@ public class ConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from concert where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -48,7 +48,7 @@ public class ConcertDao {
                 "typeId=?, price=? where id=?";
         int count = runner.update(conn, sql, concertName, place, Date.valueOf(concertDate),
                 Time.valueOf(startTime), desc, typeId, price, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -57,7 +57,7 @@ public class ConcertDao {
         String sql = "select * from concert limit ?, ?";
         int offset = (pageIndex - 1) * pageSize;
         List<Concert> concerts = runner.query(conn, sql, new BeanListHandler<Concert>(Concert.class), offset, pageSize);
-        conn.close();
+        DBHelper.close(conn);
         return concerts;
     }
 
@@ -65,7 +65,7 @@ public class ConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert where id = ?";
         Concert concert = runner.query(conn, sql, new BeanHandler<Concert>(Concert.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return concert;
     }
 
@@ -73,7 +73,7 @@ public class ConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from concert";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 
@@ -81,7 +81,7 @@ public class ConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert where concert_name=?";
         List<Concert> concerts = runner.query(conn, sql, new BeanListHandler<Concert>(Concert.class), concertName);
-        conn.close();
+        DBHelper.close(conn);
         return concerts;
     }
 
@@ -89,7 +89,7 @@ public class ConcertDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert where typeId=?";
         List<Concert> concerts = runner.query(conn, sql, new BeanListHandler<Concert>(Concert.class), typeId);
-        conn.close();
+        DBHelper.close(conn);
         return concerts;
     }
 

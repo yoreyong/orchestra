@@ -25,7 +25,7 @@ public class ConcertTypeDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "insert concerttype values (null, ?, ?)";
         int count = runner.update(conn, sql, name, parentId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class ConcertTypeDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from concerttype where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class ConcertTypeDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "update concerttype set name=?, parentId=? where id=?";
         int count = runner.update(conn, sql, name, parentId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -49,7 +49,7 @@ public class ConcertTypeDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "select id,name,parentId from concerttype";
         List<ConcertType> types = runner.query(conn, sql, new BeanListHandler<ConcertType>(ConcertType.class));
-        conn.close();
+        DBHelper.close(conn);
         return types;
     }
 
@@ -57,7 +57,7 @@ public class ConcertTypeDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "select id,name,parentId from concerttype where id=?";
         ConcertType type = runner.query(conn, sql, new BeanHandler<ConcertType>(ConcertType.class), typeId);
-        conn.close();
+        DBHelper.close(conn);
         return type;
     }
 }

@@ -32,7 +32,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into musicalwork(id, `name`, author, `desc`, typeId) values(null, ?, ?, ?, ?)";
         int count = runner.update(conn, sql, name, author, desc, typeId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -46,7 +46,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from musicalwork where id = ?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -60,7 +60,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "update musicalwork set `name` = ?, author = ?, `desc` = ?, typeId = ? where id=?";
         int count = runner.update(conn, sql, name, author, desc, typeId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -74,7 +74,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from musicalwork where id = ?";
         MusicalWork musicalWork = runner.query(conn, sql, new BeanHandler<MusicalWork>(MusicalWork.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return musicalWork;
     }
 
@@ -90,7 +90,7 @@ public class MusicalWorkDao implements Serializable {
         String sql = "select * from musicalwork limit ?, ?";
         int offset = (pageIndex - 1) * pageSize;
         List<MusicalWork> musicalWorks = runner.query(conn, sql, new BeanListHandler<MusicalWork>(MusicalWork.class), offset, pageSize);
-        conn.close();
+        DBHelper.close(conn);
         return musicalWorks;
     }
 
@@ -103,7 +103,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(*) from musicalwork";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 
@@ -119,7 +119,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from musicalwork where name = ?";
         List<MusicalWork> musicalWorks = runner.query(conn, sql, new BeanListHandler<MusicalWork>(MusicalWork.class), name);
-        conn.close();
+        DBHelper.close(conn);
         return musicalWorks;
     }
 
@@ -128,7 +128,7 @@ public class MusicalWorkDao implements Serializable {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from musicalwork where author = ?";
         List<MusicalWork> musicalWorks = runner.query(conn, sql, new BeanListHandler<MusicalWork>(MusicalWork.class), author);
-        conn.close();
+        DBHelper.close(conn);
         return musicalWorks;
     }
 

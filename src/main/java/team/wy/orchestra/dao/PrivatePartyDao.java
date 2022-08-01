@@ -25,7 +25,7 @@ public class PrivatePartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "insert into privateParty(conId) values(?)";
         int count = runner.update(conn, sql, condId);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -33,7 +33,7 @@ public class PrivatePartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "delete from privateParty where id=?";
         int count = runner.update(conn, sql, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -41,7 +41,7 @@ public class PrivatePartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "update privateParty set conId=? where id=?";
         int count = runner.update(conn, sql, conId, id);
-        conn.close();
+        DBHelper.close(conn);
         return count;
     }
 
@@ -49,7 +49,7 @@ public class PrivatePartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from privateParty";
         List<PrivateParty> privateParties = runner.query(conn, sql, new BeanListHandler<PrivateParty>(PrivateParty.class));
-        conn.close();
+        DBHelper.close(conn);
         return privateParties;
     }
 
@@ -57,7 +57,7 @@ public class PrivatePartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from privateParty where id = ?";
         PrivateParty privateParty = runner.query(conn, sql, new BeanHandler<PrivateParty>(PrivateParty.class), id);
-        conn.close();
+        DBHelper.close(conn);
         return privateParty;
     }
 
@@ -67,7 +67,7 @@ public class PrivatePartyDao {
         int offset = (pageIndex - 1) * pageSize;
         List<PrivateParty> privateParties = runner.query(conn, sql,
                 new BeanListHandler<PrivateParty>(PrivateParty.class), offset, pageSize);
-        conn.close();
+        DBHelper.close(conn);
         return privateParties;
     }
 
@@ -75,7 +75,7 @@ public class PrivatePartyDao {
         Connection conn = DBHelper.getConnection();
         String sql = "select count(id) from privateParty";
         Number data = runner.query(conn, sql, new ScalarHandler<>());
-        conn.close();
+        DBHelper.close(conn);
         return data.intValue();
     }
 }

@@ -60,7 +60,7 @@ public class DBHelper {
             st.close();
         }
         if(conn != null) {
-            conn.close();
+            DBHelper.close(conn);
         }
     }
 
@@ -76,7 +76,7 @@ public class DBHelper {
         }
 
         if(conn != null) {
-            conn.close();
+            DBHelper.close(conn);
         }
     }
 
@@ -103,7 +103,7 @@ public class DBHelper {
         }
         conn.commit();
         tl.remove();
-        conn.close();
+        DBHelper.close(conn);
     }
 
 
@@ -114,7 +114,7 @@ public class DBHelper {
         }
         conn.rollback();
         tl.remove();
-        conn.close();
+        DBHelper.close(conn);
     }
 
 }
