@@ -160,7 +160,7 @@ CREATE TABLE `repertoire` (
     `id`                INT     NOT NULL    AUTO_INCREMENT ,
     `concertId`         INT     NOT NULL ,
     `musicalWorkId`     INT     NOT NULL ,
-    CONSTRAINT repertoire_PK PRIMARY KEY (`id`) ,
+    CONSTRAINT repertoire_PK PRIMARY KEY (`id`)
 );
 
 DESCRIBE `repertoire`;

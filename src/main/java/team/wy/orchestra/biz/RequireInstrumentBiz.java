@@ -4,6 +4,7 @@ import team.wy.orchestra.bean.RequireInstrument;
 import team.wy.orchestra.dao.InstrumentDao;
 import team.wy.orchestra.dao.MusicalWorkDao;
 import team.wy.orchestra.dao.RequireInstrumentDao;
+import team.wy.orchestra.util.DBHelper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -27,6 +28,33 @@ public class RequireInstrumentBiz {
             e.printStackTrace();
         }
         return count;
+    }
+
+    /**
+     * 向Require table中连续添加多个tuples， 使用transaction确保操作atomic
+     * @param settingNums
+     * @param MWorkNum
+     * @return
+     */
+    public int add(List<Long> settingNums, long MWorkNum) {
+        try {
+            DBHelper.beginTransaction();
+
+            for(Long settingNum : settingNums) {
+                requireInstrumentDao.add(settingNum, MWorkNum);
+            }
+
+            DBHelper.commitTransaction(); // 事务提交：成功
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                DBHelper.rollbackTransaction(); // 事务回滚：有异常
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        }
+        return 1;
     }
 
     public int remove(long id) {

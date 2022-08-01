@@ -90,7 +90,21 @@
                         </ul>
                     </div>
 
-                    <h1 class="type"><a href="javascript:void(0)">General</a></h1>
+                    <!-- Instrument -->
+                    <h1 class="type"><a href="javascript:void(0)">Instrument</a></h1>
+                    <div class="content">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><img src="./Images/menu_top_line.gif" width="182" height="5" /></td>
+                            </tr>
+                        </table>
+                        <ul class="RM">
+                            <li><a href="./instrument.let?type=addpre" target="main">Add</a></li>
+                            <li><a href="./instrument.let?type=query&pageIndex=1" target="main">List</a></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="type"><a href="javascript:void(0)">General Edit</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
@@ -101,8 +115,8 @@
                             <!-- 编制曲目 -->
                             <li><a href="./repertoire_edit.jsp" target="main">Plan Repertoire</a></li>
                             <!-- 配置musician -->
-                            <li><a href="./return_list.jsp" target="main">图书归还</a></li>
-                            <li><a href="./rent_list.jsp" target="main">查看借阅历史信息</a></li>
+                            <li><a href="./play_edit.jsp" target="main">Assign Musicians2Concert</a></li>
+                            <li><a href="./require_edit.jsp" target="main">Edit Instruments2MusicalWork</a></li>
                         </ul>
                     </div>
 

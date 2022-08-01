@@ -72,8 +72,7 @@
                                                             <td>${m.author}</td>
                                                             <td>${m.type.name}</td>
                                                             <td>
-                                                                <a onclick="" href="instrument.let?type=query&pageIndex=1&id==${m.id}"><u>View</u></a>
-                                                                <a onclick="return confirm('Confirm edit');" href="instrument.let?type=query&pageIndex=1&id==${m.id}"><u>Edit</u></a>
+                                                                <a onclick="" href="require.let?type=query&id=${m.id}"><u>View</u></a>
                                                             </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}"><u>Modify</u></a>&nbsp;&nbsp;

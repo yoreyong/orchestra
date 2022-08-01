@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Concert</b> > <b>Repertoire</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>Instrument</b></h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -59,50 +59,29 @@
                                         <table width="100%"  class="cont tr_color">
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Musical Work Id</th>
+                                                <th>Instrument Id</th>
                                                 <th>Name</th>
                                                 <th>Type</th>
-                                                <th>Author</th>
-                                                <th>Description</th>
+                                                <th>Status</th>
                                                 <th>Delete</th>
                                             </tr>
 
-                                            <c:forEach items="${repertoires}" var="m">
+                                            <c:forEach items="${requires}" var="r">
                                                 <tr align="center" class="d">
-                                                    <td>${m.id}</td>
-                                                    <td><a href="musicalwork.let?type=details&id=${m.musicalWork.id}">${m.musicalWork.id}</a></td>
-                                                    <td>${m.musicalWork.name}</td>
-                                                    <td>${m.musicalWork.type.name}</td>
-                                                    <td>${m.musicalWork.author}</td>
-                                                    <td>${m.musicalWork.desc}</td>
+                                                    <td>${r.id}</td>
+                                                    <td><a href="instrument.let?type=details&id=${r.instrument.id}">${r.instrument.id}</a></td>
+                                                    <td>${r.instrument.name}</td>
+                                                    <td>${r.instrument.type}</td>
+                                                    <td>${r.instrument.status}</td>
                                                     <td>
-                                                        <a onclick="return confirm('Confirm deletion');" href="repertoire.let?type=remove&mid=${m.id}"><u>Delete</u></a>
+                                                        <a onclick="return confirm('Confirm deletion');" href="require.let?type=remove&rid=${r.id}"><u>Delete</u></a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
 
-                                            <!--
-                                           <tr><td colspan="12" align="center">
-                                            <div class="pager">
-                                                <ul class="clearfix">
-                                                    <li><a href="repertoire.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
-                                                    <c:forEach var="i" begin="1" end="${pageCount}" step="1">
-                                                        <c:if test="${i==param.pageIndex}">
-                                                            <li class="current"><a href="repertoire.let?type=query&pageIndex=${i}">${i}</a></li>
-                                                        </c:if>
-                                                        <c:if test="${i!=param.pageIndex}">
-                                                            <li><a href="repertoire.let?type=query&pageIndex=${i}">${i}</a></li>
-                                                        </c:if>
-                                                    </c:forEach>
-                                                    <li><a href="repertoire.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
-                                                </ul>
-                                            </div>
-                                           </td></tr>
-                                           -->
-
                                             <tr>
                                                 <td></td>
-                                                <td colspan="3"><input class="btn" type="button" value="Back" onclick="window.location='concert.let?type=query&pageIndex=1';"/></td>
+                                                <td colspan="3"><input class="btn" type="button" value="Back" onclick="window.location='musicalwork.let?type=query&pageIndex=1';"/></td>
                                             </tr>
 
                                         </table>

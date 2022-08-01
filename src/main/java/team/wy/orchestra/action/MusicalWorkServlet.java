@@ -83,9 +83,9 @@ public class MusicalWorkServlet extends HttpServlet {
         String musicalWorkName = req.getParameter("name");
         List<MusicalWork> musicalWorks = musicalWorkBiz.getMusicalWorkByName(musicalWorkName);
         if (musicalWorks == null) {
-            out.println("{}");
+            out.print("{}");
         } else {
-            out.println(JSON.toJSONString(musicalWorks));
+            out.print(JSON.toJSONString(musicalWorks));
         }
     }
 
