@@ -158,3 +158,16 @@ insert into swedishFolk (id, musicalID) values (13, 29);
 insert into swedishFolk (id, musicalID) values (14, 26);
 insert into swedishFolk (id, musicalID) values (15, 28);
 
+-- ----------------------------
+-- Relationship table
+-- Table structure for require
+-- ----------------------------
+DROP TABLE IF EXISTS `require`;
+CREATE TABLE `require` (
+    `id`            INT     NOT NULL    AUTO_INCREMENT ,
+    `settingNum`    INT     NOT NULL ,
+    `MWorkNum`      INT     NOT NULL ,
+    CONSTRAINT require_PK PRIMARY KEY (`id`)
+);
+
+

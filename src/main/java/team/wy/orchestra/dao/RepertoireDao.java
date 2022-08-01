@@ -53,6 +53,17 @@ public class RepertoireDao {
         return repertoires;
     }
 
+    public List<Repertoire> getByPage(int pageIndex, int pageSize) throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from repertoire limit ?, ?";
+        int offset = (pageIndex - 1) * pageSize;
+        List<Repertoire> repertoires = runner.query(conn, sql, new BeanListHandler<Repertoire>(Repertoire.class), offset, pageSize);
+        DBHelper.close(conn);
+        return repertoires;
+    }
+
+
+
     public Repertoire getById(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from repertoire where id = ?";

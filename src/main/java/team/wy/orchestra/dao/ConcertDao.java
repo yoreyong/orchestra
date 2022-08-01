@@ -52,6 +52,14 @@ public class ConcertDao {
         return count;
     }
 
+    public List<Concert> getAll() throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from concert";
+        List<Concert> concerts = runner.query(conn, sql, new BeanListHandler<Concert>(Concert.class));
+        DBHelper.close(conn);
+        return concerts;
+    }
+
     public List<Concert> getByPage(int pageIndex, int pageSize) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from concert limit ?, ?";

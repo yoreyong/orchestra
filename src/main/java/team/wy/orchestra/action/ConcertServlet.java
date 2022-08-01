@@ -68,6 +68,9 @@ public class ConcertServlet extends HttpServlet {
                 double price = Double.parseDouble(req.getParameter("price"));
 
                 int count = concertBiz.add(name, place, date, time, desc, typeId, price);
+                // List<Concert> concerts = concertBiz.getAll();
+                // Concert recentConcert = concerts.;
+
                 if (count > 0) {
                     out.println("<script>alert('Success to add a new concert!'); location.href='concert.let?type=query&pageIndex=1';</script>");
                 } else {
@@ -130,6 +133,7 @@ public class ConcertServlet extends HttpServlet {
                 break;
             default:
                 resp.sendError(404);
+
         }
     }
 

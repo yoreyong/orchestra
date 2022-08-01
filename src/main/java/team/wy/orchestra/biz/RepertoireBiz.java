@@ -6,6 +6,7 @@ import team.wy.orchestra.bean.Repertoire;
 import team.wy.orchestra.dao.ConcertDao;
 import team.wy.orchestra.dao.MusicalWorkDao;
 import team.wy.orchestra.dao.RepertoireDao;
+import team.wy.orchestra.util.DBHelper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 public class RepertoireBiz {
     RepertoireDao repertoireDao = new RepertoireDao();
     ConcertDao concertDao = new ConcertDao();
-    MusicalWorkDao musicalWorkDao = new MusicalWorkDao();
+    MusicalWorkBiz musicalWorkBiz = new MusicalWorkBiz();
 
     public int add(long concertId, long musicalWorkId) {
         int count = 0;
@@ -29,6 +30,28 @@ public class RepertoireBiz {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public int add(long concertId, List<Long> musicalWorkIds) {
+        //启动事务
+        try {
+            DBHelper.beginTransaction();
+
+            for(Long musicialWorkId : musicalWorkIds) {
+                repertoireDao.add(concertId, musicialWorkId);
+            }
+
+            DBHelper.commitTransaction(); // 事务提交：成功
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                DBHelper.rollbackTransaction(); // 事务回滚：有异常
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        }
+        return 1;
     }
 
     public int remove(long id) {
@@ -59,7 +82,24 @@ public class RepertoireBiz {
             for(Repertoire repertoire : repertoires) {
                 Concert concert = concertDao.getById(repertoire.getConcertId());
                 repertoire.setConcert(concert);
-                MusicalWork musicalWork = musicalWorkDao.getMusicalWorkById(repertoire.getMusicalWorkId());
+                MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(repertoire.getMusicalWorkId());
+                repertoire.setMusicalWork(musicalWork);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return repertoires;
+    }
+
+    public List<Repertoire> getByPage(int pageIndex, int pageSize) {
+        // ConcertTypeDao
+        List<Repertoire> repertoires = null;
+        try {
+            repertoires = repertoireDao.getByPage(pageIndex, pageSize);
+            for(Repertoire repertoire : repertoires) {
+                Concert concert = concertDao.getById(repertoire.getConcertId());
+                repertoire.setConcert(concert);
+                MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(repertoire.getMusicalWorkId());
                 repertoire.setMusicalWork(musicalWork);
             }
         } catch (SQLException e) {
@@ -74,12 +114,23 @@ public class RepertoireBiz {
             repertoire = repertoireDao.getById(id);
             Concert concert = concertDao.getById(repertoire.getConcertId());
             repertoire.setConcert(concert);
-            MusicalWork musicalWork = musicalWorkDao.getMusicalWorkById(repertoire.getMusicalWorkId());
+            MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(repertoire.getMusicalWorkId());
             repertoire.setMusicalWork(musicalWork);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return repertoire;
+    }
+
+    public int getPageCount(int pageSize) {
+        int pageCount = 0;
+        try {
+            int rowCount = repertoireDao.getCount();
+            pageCount = (rowCount - 1) / pageSize + 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pageCount;
     }
 
     public List<Repertoire> getByConcertId(long concertId) {
@@ -89,7 +140,7 @@ public class RepertoireBiz {
             for(Repertoire repertoire : repertoires) {
                 Concert concert = concertDao.getById(repertoire.getConcertId());
                 repertoire.setConcert(concert);
-                MusicalWork musicalWork = musicalWorkDao.getMusicalWorkById(repertoire.getMusicalWorkId());
+                MusicalWork musicalWork = musicalWorkBiz.getMusicalWorkById(repertoire.getMusicalWorkId());
                 repertoire.setMusicalWork(musicalWork);
             }
         } catch (SQLException e) {

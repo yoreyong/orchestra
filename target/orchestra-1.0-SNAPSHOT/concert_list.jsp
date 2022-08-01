@@ -94,6 +94,8 @@
                                                         <th>Time</th>
                                                         <th>Type</th>
                                                         <th>Price</th>
+                                                        <th>Repertoire</th>
+                                                        <th>Musicians</th>
                                                         <th>Operation</th>
                                                     </tr>
 
@@ -106,6 +108,14 @@
                                                             <td>${c.start_time}</td>
                                                             <td>${c.concertType.name}</td>
                                                             <td>${c.price}</td>
+                                                            <td>
+                                                                <a onclick="" href="repertoire.let?type=query&pageIndex=1&id==${c.id}"><u>View</u></a>&nbsp;&nbsp;
+                                                                <a onclick="return confirm('Confirm edit');" href="repertoire.let?type=add&cid=${c.id}"><u>Edit</u></a>
+                                                            </td>
+                                                            <td>
+                                                                <a onclick="" href="participate.let?type=query&pageIndex=1&id==${c.id}"><u>View</u></a>&nbsp;&nbsp;
+                                                                <a onclick="return confirm('Confirm edit');" href="repertoire.let?type=query&pageIndex=1&id==${c.id}"><u>Edit</u></a>
+                                                            </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="concert.let?type=modifypre&id=${c.id}"><u>Modify</u></a>&nbsp;&nbsp;
                                                                 <a onclick="return confirm('Confirm deletion');" href="concert.let?type=remove&id=${c.id}"><u>Delete</u></a>

@@ -90,7 +90,7 @@
                         </ul>
                     </div>
 
-                    <h1 class="type"><a href="javascript:void(0)">General Management</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">General</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
@@ -99,7 +99,7 @@
                         </table>
                         <ul class="RM">
                             <!-- 编制曲目 -->
-                            <li><a href="./repertoire_edit.jsp" target="main">Repertoire</a></li>
+                            <li><a href="./repertoire_edit.jsp" target="main">Plan Repertoire</a></li>
                             <!-- 配置musician -->
                             <li><a href="./return_list.jsp" target="main">图书归还</a></li>
                             <li><a href="./rent_list.jsp" target="main">查看借阅历史信息</a></li>

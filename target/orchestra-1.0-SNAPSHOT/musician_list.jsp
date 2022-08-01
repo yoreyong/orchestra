@@ -58,6 +58,7 @@
                                                 <table width="100%"  class="cont tr_color">
                                                     <tr>
                                                         <th>SSN</th>
+                                                        <th>Picture</th>
                                                         <th>First Name</th>
                                                         <th>Last Name</th>
                                                         <th>Gender</th>
@@ -66,14 +67,15 @@
                                                         <th>City</th>
                                                         <th>ZipCode</th>
                                                         <th>Address</th>
-                                                        <th>Picture</th>
-                                                        <th> </th>
+                                                        <th>Instrument</th>
+                                                        <th>Opreation</th>
                                                     </tr>
 
                                                     <c:forEach items="${musicians}" var="m">
                                                         <tr align="center" class="d">
                                                             <td><a href="musician.let?type=details&SSN=${m.SSN}">${m.SSN}</a></td>
 <%--                                                            <td>${m.SSN}</td>--%>
+                                                            <td><img src="${m.pic}" class="cover"/></td>
                                                             <td>${m.fname}</td>
                                                             <td>${m.lname}</td>
                                                             <td>${m.gender}</td>
@@ -82,7 +84,10 @@
                                                             <td>${m.city}</td>
                                                             <td>${m.zip}</td>
                                                             <td>${m.address}</td>
-                                                            <td><img src="${m.pic}" class="cover"/></td>
+                                                            <td>
+                                                                <a onclick="" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>View</u></a>&nbsp;&nbsp;
+                                                                <a onclick="return confirm('Confirm edit');" href="musician.let?type=remove&SSN=${m.SSN}"><u>Edit</u></a>
+                                                            </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>Modify</u></a>&nbsp;&nbsp;
                                                                 <a onclick="return confirm('Confirm deletion');" href="musician.let?type=remove&SSN=${m.SSN}"><u>Delete</u></a>

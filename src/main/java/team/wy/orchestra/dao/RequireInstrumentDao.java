@@ -4,7 +4,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-import org.junit.Test;
 import team.wy.orchestra.bean.RequireInstrument;
 import team.wy.orchestra.util.DBHelper;
 

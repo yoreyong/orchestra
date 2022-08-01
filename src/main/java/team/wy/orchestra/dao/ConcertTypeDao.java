@@ -53,7 +53,7 @@ public class ConcertTypeDao implements Serializable {
         return types;
     }
 
-    public ConcertType geyById(long typeId) throws SQLException {
+    public ConcertType getById(long typeId) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select id,name,parentId from concerttype where id=?";
         ConcertType type = runner.query(conn, sql, new BeanHandler<ConcertType>(ConcertType.class), typeId);

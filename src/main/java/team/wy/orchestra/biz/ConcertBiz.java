@@ -54,6 +54,21 @@ public class ConcertBiz {
         return count;
     }
 
+    public List<Concert> getAll() {
+        List<Concert> concerts = null;
+        try {
+            concerts = concertDao.getAll();
+            for(Concert concert : concerts) {
+                long typeId = concert.getTypeId();
+                // ConcertType type = concertTypeBiz.getById(typeId);
+                concert.setConcertType(concertTypeDao.getById(typeId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return concerts;
+    }
+
     public List<Concert> getByPage(int pageIndex, int pageSize) {
         // ConcertTypeDao
         List<Concert> concerts = null;
@@ -62,7 +77,7 @@ public class ConcertBiz {
             for(Concert concert : concerts) {
                 long typeId = concert.getTypeId();
                 // ConcertType type = concertTypeBiz.getById(typeId);
-                concert.setConcertType(concertTypeDao.geyById(typeId));
+                concert.setConcertType(concertTypeDao.getById(typeId));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,7 +91,7 @@ public class ConcertBiz {
         try {
             concert = concertDao.getById(id);
             long typeId = concert.getTypeId();
-            concert.setConcertType(concertTypeDao.geyById(typeId));
+            concert.setConcertType(concertTypeDao.getById(typeId));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,7 +117,7 @@ public class ConcertBiz {
             for(Concert concert : concerts) {
                 long typeId = concert.getTypeId();
                 // ConcertType type = concertTypeBiz.getById(typeId);
-                concert.setConcertType(concertTypeDao.geyById(typeId));
+                concert.setConcertType(concertTypeDao.getById(typeId));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -118,7 +133,7 @@ public class ConcertBiz {
             for(Concert concert : concerts) {
                 long concertTypeId = concert.getTypeId();
                 // ConcertType type = concertTypeBiz.getById(typeId);
-                concert.setConcertType(concertTypeDao.geyById(typeId));
+                concert.setConcertType(concertTypeDao.getById(typeId));
             }
         } catch (SQLException e) {
             e.printStackTrace();

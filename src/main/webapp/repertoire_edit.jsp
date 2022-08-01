@@ -171,8 +171,9 @@
                     alert("Please select a musical work!");
                     return;
                 }
-                location.href="repertoire.let?type=add&mid="+concert.id+"&ids="+ids.join("_");
+                location.href="repetoire.let?type=add&cid="+concert.id+"&ids="+ids.join("_");
                 console.log(ids.join("_"));
+                console.log(concert.id);
             });
         });
 
@@ -204,7 +205,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;">常用功能 > 图书借阅 </h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;">General > Plan Repertoire </h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -222,12 +223,12 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Query Concert</legend>
+                                    <legend>Find a Concert</legend>
                                     <table width="100%" border="0" class="cont"  >
                                         <tr>
                                             <td width="10%" class="run-right"> Concert ID</td>
-                                            <td colspan="7"><input class="text" type="text" id="concertId" name="concertId"/>
-                                                 <input type="button" id="btnQuery" value="Confirm" style="width: 80px;"/></td>
+                                            <td colspan="7"><input class="text" type="text" id="concertId" name="concertId" placeholder="Input a concert ID"/>
+                                                 <input type="button" id="btnQuery" value="Search" style="width: 80px;"/></td>
                            
                                             </td>
                                          
@@ -260,12 +261,12 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>查询图书</legend>
+                                    <legend>Find a musical work</legend>
                                     <table width="100%" border="1" class="cont"  >
                                         <tr>
                                             <td colspan="8">
                                                
-                                                Input Musical Work name:&nbsp;&nbsp;<input class="text" type="text" id="musicalWorkContent" name="musicalWorkContent" placeholder="Input musical work name"/>
+                                                Musical Work name:&nbsp;&nbsp;<input class="text" type="text" id="musicalWorkContent" name="musicalWorkContent" placeholder="Input musical work name"/>
                                                 <input type="button" id="btnQueryMusicalWork" value="Confirm" style="width: 80px;"/>
                                                 <input type="button" id="btnSubmit" value="Finish" style="width: 80px;"/>
                                             </td>

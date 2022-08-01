@@ -61,6 +61,7 @@
                                                         <th>Name</th>
                                                         <th>Author</th>
                                                         <th>Type</th>
+                                                        <th>Instrument</th>
                                                         <th>Operation</th>
                                                     </tr>
 
@@ -70,6 +71,10 @@
                                                             <td>${m.name}</td>
                                                             <td>${m.author}</td>
                                                             <td>${m.type.name}</td>
+                                                            <td>
+                                                                <a onclick="" href="instrument.let?type=query&pageIndex=1&id==${m.id}"><u>View</u></a>
+                                                                <a onclick="return confirm('Confirm edit');" href="instrument.let?type=query&pageIndex=1&id==${m.id}"><u>Edit</u></a>
+                                                            </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}"><u>Modify</u></a>&nbsp;&nbsp;
                                                                 <a onclick="return confirm('Confirm deletion');" href="musicalwork.let?type=remove&id=${m.id}"><u>Delete</u></a>

@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>List</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Concert</b> > <b>Repertoire</b></h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -47,6 +47,7 @@
                                 </table>
                             </td>
                         </tr>
+
                         <!-- 产品列表开始 -->
                         <tr>
                             <td width="2%">&nbsp;</td>
@@ -55,53 +56,52 @@
                                     <tr>
                                         <td colspan="2">
 
-                                                <table width="100%"  class="cont tr_color">
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Name</th>
-                                                        <th>Author</th>
-                                                        <th>Type</th>
-                                                        <th>Instrument</th>
-                                                        <th>Operation</th>
-                                                    </tr>
+                                        <table width="100%"  class="cont tr_color">
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Author</th>
+                                                <th>Description</th>
+                                            </tr>
 
-                                                    <c:forEach items="${musicalWorks}" var="m">
-                                                        <tr align="center" class="d">
-                                                            <td><a href="musicalwork.let?type=details&id=${m.id}">${m.id}</a></td>
-                                                            <td>${m.name}</td>
-                                                            <td>${m.author}</td>
-                                                            <td>${m.type.name}</td>
-                                                            <td>
-                                                                <a onclick="" href="instrument.let?type=query&pageIndex=1&id==${m.id}"><u>View</u></a>
-                                                                <a onclick="return confirm('Confirm edit');" href="instrument.let?type=query&pageIndex=1&id==${m.id}"><u>Edit</u></a>
-                                                            </td>
-                                                            <td>
-                                                                <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}"><u>Modify</u></a>&nbsp;&nbsp;
-                                                                <a onclick="return confirm('Confirm deletion');" href="musicalwork.let?type=remove&id=${m.id}"><u>Delete</u></a>
-                                                            </td>
-                                                        </tr>
+                                            <c:forEach items="${repertoires}" var="m">
+                                                <tr align="center" class="d">
+                                                    <td><a href="musicalwork.let?type=details&id=${m.id}">${m.id}</a></td>
+                                                    <td>${m.musicalWork.name}</td>
+                                                    <td>${m.musicalWork.type.name}</td>
+                                                    <td>${m.musicalWork.author}</td>
+                                                    <td>${m.musicalWork.desc}</td>
+                                                </tr>
+                                            </c:forEach>
+
+                                           <tr><td colspan="12" align="center">
+                                            <div class="pager">
+                                                <ul class="clearfix">
+                                                    <li><a href="repertoire.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
+                                                    <c:forEach var="i" begin="1" end="${pageCount}" step="1">
+                                                        <c:if test="${i==param.pageIndex}">
+                                                            <li class="current"><a href="repertoire.let?type=query&pageIndex=${i}">${i}</a></li>
+                                                        </c:if>
+                                                        <c:if test="${i!=param.pageIndex}">
+                                                            <li><a href="repertoire.let?type=query&pageIndex=${i}">${i}</a></li>
+                                                        </c:if>
                                                     </c:forEach>
+                                                    <li><a href="repertoire.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
+                                                </ul>
+                                            </div>
+                                           </td></tr>
 
-                                                   <tr><td colspan="12" align="center">
-                                                    <div class="pager">
-                                                        <ul class="clearfix">
-                                                            <li><a href="musicalwork.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
-                                                            <c:forEach var="i" begin="1" end="${pageCount}" step="1">
-                                                                <c:if test="${i==param.pageIndex}">
-                                                                    <li class="current"><a href="musicalwork.let?type=query&pageIndex=${i}">${i}</a></li>
-                                                                </c:if>
-                                                                <c:if test="${i!=param.pageIndex}">
-                                                                    <li><a href="musicalwork.let?type=query&pageIndex=${i}">${i}</a></li>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <li><a href="musicalwork.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
-                                                        </ul>
-                                                    </div>
-                                                   </td></tr>
-                                                </table>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="3"><input class="btn" type="button" value="Back" onclick="window.location='concert.let?type=query&pageIndex=1';"/></td>
+                                            </tr>
+
+                                        </table>
 
                                         </td>
                                     </tr>
+
                                 </table>
                             </td>
                             <td width="2%">&nbsp;</td>

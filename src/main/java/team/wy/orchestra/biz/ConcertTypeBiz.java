@@ -69,7 +69,7 @@ public class ConcertTypeBiz {
     public ConcertType getById(long typeId) {
         ConcertType type = null;
         try {
-            type = concertTypeDao.geyById(typeId);
+            type = concertTypeDao.getById(typeId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

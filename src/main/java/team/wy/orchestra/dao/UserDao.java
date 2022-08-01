@@ -2,7 +2,6 @@ package team.wy.orchestra.dao;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.junit.Test;
 import team.wy.orchestra.bean.User;
 import team.wy.orchestra.util.DBHelper;
 

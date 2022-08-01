@@ -60,7 +60,7 @@ public class DBHelper {
             st.close();
         }
         if(conn != null) {
-            DBHelper.close(conn);
+            conn.close();
         }
     }
 
@@ -76,7 +76,7 @@ public class DBHelper {
         }
 
         if(conn != null) {
-            DBHelper.close(conn);
+            conn.close();
         }
     }
 
@@ -103,7 +103,8 @@ public class DBHelper {
         }
         conn.commit();
         tl.remove();
-        DBHelper.close(conn);
+        //关闭连接对象
+        conn.close();
     }
 
 
@@ -114,7 +115,16 @@ public class DBHelper {
         }
         conn.rollback();
         tl.remove();
-        DBHelper.close(conn);
+        conn.close();
     }
 
+    public static void main(String[] args) {
+		//测试数据库的连接情况
+        try {
+            Connection connection = DBHelper.getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
 }
