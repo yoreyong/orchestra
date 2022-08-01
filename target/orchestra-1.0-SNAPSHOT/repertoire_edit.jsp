@@ -107,6 +107,15 @@
                         return;
                     }
 
+                    if(concert.concertType.name==="Private Party" && musicalWork[0].type.name!=="German Folk"){
+                        alert("You can only select a german folk musical work for a private party!");
+                        return;
+                    }
+                    if(concert.concertType.name==="Church Concert" && musicalWork[0].type.name!=="Classical"){
+                        alert("You can only select a classical musical work for a church concert!");
+                        return;
+                    }
+
                     // 判断这本书名是都存在
                     if(musicalWorkNameList.indexOf(name)>=0){
                         alert("This musical work already exists!");
@@ -127,18 +136,43 @@
                     // console.log(musicalWork[0].type.name);
                     var tdAuthor = $("<td>"+musicalWork[0].author+"</td>");
                     // console.log(musicalWork[0].author);
+                    var tdDesc = $("<td>"+musicalWork[0].desc+"</td>");
 
                     // 行加列
                     tr.append(tdCheck);
                     tr.append(tdName);
                     tr.append(tdType);
                     tr.append(tdAuthor);
+                    tr.append(tdDesc);
 
                     // 表加行
                     $("#tdMusicalWork").append(tr);
                     $("#musicalWorkContent").val("");
                     $("#btnSubmit").removeAttr("disabled");
                 });
+            });
+
+            // 全选/全不选功能
+            $("#ckAll").click(function(){
+                $(".ck").prop("checked",$(this).prop("checked"));
+            });
+
+            // submit按钮对应的动作
+            $("#btnSubmit").click(function(){
+                var ids = new Array();
+                var count = 0;
+                $(".ck").each(function () {
+                    if($(this).prop("checked")){
+                        ids.push($(this).val());
+                        count++;
+                    }
+                });
+                if(count===0){
+                    alert("Please select a musical work!");
+                    return;
+                }
+                location.href="repertoire.let?type=add&mid="+concert.id+"&ids="+ids.join("_");
+                console.log(ids.join("_"));
             });
         });
 
@@ -256,8 +290,9 @@
                                                     <tr>
                                                         <th><input type="checkbox" id="ckAll" checked/>All/None</th>
                                                         <th>Name</th>
-                                                        <th>Typr</th>
+                                                        <th>Type</th>
                                                         <th>Author</th>
+                                                        <th>Description</th>
                                                     </tr>
                                                    
                                                 </table>
