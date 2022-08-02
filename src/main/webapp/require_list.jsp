@@ -69,7 +69,7 @@
                                             <c:forEach items="${requires}" var="r">
                                                 <tr align="center" class="d">
                                                     <td>${r.id}</td>
-                                                    <td><a href="instrument.let?type=details&id=${r.instrument.id}">${r.instrument.id}</a></td>
+                                                    <td>${r.instrument.id}</td>
                                                     <td>${r.instrument.name}</td>
                                                     <td>${r.instrument.type}</td>
                                                     <td>${r.instrument.status}</td>
