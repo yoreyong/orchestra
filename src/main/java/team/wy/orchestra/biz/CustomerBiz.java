@@ -15,7 +15,7 @@ public class CustomerBiz {
      * @return Customer
      */
 
-    public Customer getCustomerByid(int id) {
+    public Customer getCustomerByid(long id) {
         try {
             return CustomerDao.getCustomerByid(id);
         } catch (SQLException e) {
