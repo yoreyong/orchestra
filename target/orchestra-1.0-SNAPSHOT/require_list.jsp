@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>List</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musical work</b> > <b>Instrument</b></h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -47,6 +47,7 @@
                                 </table>
                             </td>
                         </tr>
+
                         <!-- 产品列表开始 -->
                         <tr>
                             <td width="2%">&nbsp;</td>
@@ -55,52 +56,39 @@
                                     <tr>
                                         <td colspan="2">
 
-                                                <table width="100%"  class="cont tr_color">
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Name</th>
-                                                        <th>Author</th>
-                                                        <th>Type</th>
-                                                        <th>Instrument</th>
-                                                        <th>Operation</th>
-                                                    </tr>
+                                        <table width="100%"  class="cont tr_color">
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Instrument Id</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Status</th>
+                                                <th>Delete</th>
+                                            </tr>
 
-                                                    <c:forEach items="${musicalWorks}" var="m">
-                                                        <tr align="center" class="d">
-                                                            <td><a href="musicalwork.let?type=details&id=${m.id}">${m.id}</a></td>
-                                                            <td>${m.name}</td>
-                                                            <td>${m.author}</td>
-                                                            <td>${m.type.name}</td>
-                                                            <td>
-                                                                <a onclick="" href="require.let?type=query&id=${m.id}"><u>View</u></a>
-                                                            </td>
-                                                            <td>
-                                                                <a onclick="return confirm('Confirm modification');" href="musicalwork.let?type=modifypre&id=${m.id}"><u>Modify</u></a>&nbsp;&nbsp;
-                                                                <a onclick="return confirm('Confirm deletion');" href="musicalwork.let?type=remove&id=${m.id}"><u>Delete</u></a>
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
+                                            <c:forEach items="${requires}" var="r">
+                                                <tr align="center" class="d">
+                                                    <td>${r.id}</td>
+                                                    <td><a href="instrument.let?type=details&id=${r.instrument.id}">${r.instrument.id}</a></td>
+                                                    <td>${r.instrument.name}</td>
+                                                    <td>${r.instrument.type}</td>
+                                                    <td>${r.instrument.status}</td>
+                                                    <td>
+                                                        <a onclick="return confirm('Confirm deletion');" href="require.let?type=remove&rid=${r.id}"><u>Delete</u></a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
 
-                                                   <tr><td colspan="12" align="center">
-                                                    <div class="pager">
-                                                        <ul class="clearfix">
-                                                            <li><a href="musicalwork.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
-                                                            <c:forEach var="i" begin="1" end="${pageCount}" step="1">
-                                                                <c:if test="${i==param.pageIndex}">
-                                                                    <li class="current"><a href="musicalwork.let?type=query&pageIndex=${i}">${i}</a></li>
-                                                                </c:if>
-                                                                <c:if test="${i!=param.pageIndex}">
-                                                                    <li><a href="musicalwork.let?type=query&pageIndex=${i}">${i}</a></li>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <li><a href="musicalwork.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
-                                                        </ul>
-                                                    </div>
-                                                   </td></tr>
-                                                </table>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="3"><input class="btn" type="button" value="Back" onclick="window.location='musicalwork.let?type=query&pageIndex=1';"/></td>
+                                            </tr>
+
+                                        </table>
 
                                         </td>
                                     </tr>
+
                                 </table>
                             </td>
                             <td width="2%">&nbsp;</td>

@@ -52,11 +52,11 @@
                                     </tr>
                                     <tr><td height="186" valign="top"  style="font-size: 20px; font-family:'隶书'; font-weight: bolder;">
                                     </td><td height="102" valign="top">
-                                        <img src="Images/echars.png" width="700px" height="500px"/>
+                                        <img src="Images/main_bg2.jpg" width="700px" height="500px"/>
                                     </td>
-                                    <td>&nbsp;&nbsp;</td>
+                                    <!-- <td>&nbsp;&nbsp;</td> -->
                                     <td height="102" valign="top">
-                                        <img src="Images/echars2.png"  width="700px" height="500px"/>
+                                        <img src="Images/main_bg3.jpg"  width="700px" height="500px"/>
                                     </td></tr>
                                     <tr><td height="5" colspan="2">&nbsp;</td></tr>
                                 </table>
