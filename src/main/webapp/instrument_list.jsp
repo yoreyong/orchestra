@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Musician</b> > <b>Information</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Instrument</b> > <b>List</b></h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -57,39 +57,22 @@
 
                                                 <table width="100%"  class="cont tr_color">
                                                     <tr>
-                                                        <th>SSN</th>
-                                                        <th>Picture</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Gender</th>
-                                                        <th>Phone Number</th>
-                                                        <th>State</th>
-                                                        <th>City</th>
-                                                        <th>ZipCode</th>
-                                                        <th>Address</th>
-                                                        <th>Instrument</th>
-                                                        <th>Opreation</th>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Type</th>
+                                                        <th>Status</th>
+                                                        <th>Operation</th>
                                                     </tr>
 
-                                                    <c:forEach items="${musicians}" var="m">
+                                                    <c:forEach items="${instruments}" var="m">
                                                         <tr align="center" class="d">
-                                                            <td><a href="musician.let?type=details&SSN=${m.SSN}">${m.SSN}</a></td>
-<%--                                                            <td>${m.SSN}</td>--%>
-                                                            <td><img src="${m.pic}" class="cover"/></td>
-                                                            <td>${m.fname}</td>
-                                                            <td>${m.lname}</td>
-                                                            <td>${m.gender}</td>
-                                                            <td>${m.phoneNum}</td>
-                                                            <td>${m.state}</td>
-                                                            <td>${m.city}</td>
-                                                            <td>${m.zip}</td>
-                                                            <td>${m.address}</td>
+                                                            <td>${m.id}</td>
+                                                            <td>${m.name}</td>
+                                                            <td>${m.type}</td>
+                                                            <td>${m.status}</td>
                                                             <td>
-                                                                <a onclick="" href="play.let?type=query&SSN=${m.SSN}"><u>View</u></a>&nbsp;&nbsp;
-                                                            </td>
-                                                            <td>
-                                                                <a onclick="return confirm('Confirm modification');" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>Modify</u></a>&nbsp;&nbsp;
-                                                                <a onclick="return confirm('Confirm deletion');" href="musician.let?type=remove&SSN=${m.SSN}"><u>Delete</u></a>
+                                                                <a onclick="return confirm('Confirm modification');" href="instrument.let?type=modifypre&id=${m.id}"><u>Modify</u></a>&nbsp;&nbsp;
+                                                                <a onclick="return confirm('Confirm deletion');" href="instrument.let?type=remove&id=${m.id}"><u>Delete</u></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -97,16 +80,16 @@
                                                    <tr><td colspan="12" align="center">
                                                     <div class="pager">
                                                         <ul class="clearfix">
-                                                            <li><a href="musician.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
+                                                            <li><a href="instrument.let?type=query&pageIndex=${param.pageIndex-1}">Prev</a></li>
                                                             <c:forEach var="i" begin="1" end="${pageCount}" step="1">
                                                                 <c:if test="${i==param.pageIndex}">
-                                                                    <li class="current"><a href="musician.let?type=query&pageIndex=${i}">${i}</a></li>
+                                                                    <li class="current"><a href="instrument.let?type=query&pageIndex=${i}">${i}</a></li>
                                                                 </c:if>
                                                                 <c:if test="${i!=param.pageIndex}">
-                                                                    <li><a href="musician.let?type=query&pageIndex=${i}">${i}</a></li>
+                                                                    <li><a href="instrument.let?type=query&pageIndex=${i}">${i}</a></li>
                                                                 </c:if>
                                                             </c:forEach>
-                                                            <li><a href="musician.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
+                                                            <li><a href="instrument.let?type=query&pageIndex=${param.pageIndex+1}">Next</a></li>
                                                         </ul>
                                                     </div>
                                                    </td></tr>

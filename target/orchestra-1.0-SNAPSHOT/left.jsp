@@ -34,7 +34,7 @@
             <td width="182" valign="top">
                 <div id="container">
 
-                    <h1 class="type"><a href="javascript:void(0)">会员管理</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">Customer</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
@@ -42,9 +42,9 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./mem_add.jsp" target="main">会员开卡</a></li>
-                            <li><a href="./mem_list.jsp" target="main">会员管理</a></li>
-                            <li><a href="./mem_recharge.jsp" target="main">会员充值</a></li>
+                            <li><a href="./mem_add.jsp" target="main">New customer</a></li>
+                            <li><a href="./mem_list.jsp" target="main">Edit</a></li>
+                            <li><a href="./mem_recharge.jsp" target="main">Book</a></li>
                         </ul>
                     </div>
 
@@ -99,7 +99,7 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./instrument.let?type=addpre" target="main">Add</a></li>
+                            <li><a href="./instrument_add.jsp" target="main">Add</a></li>
                             <li><a href="./instrument.let?type=query&pageIndex=1" target="main">List</a></li>
                         </ul>
                     </div>

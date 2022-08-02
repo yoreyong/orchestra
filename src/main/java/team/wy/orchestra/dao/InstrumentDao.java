@@ -4,6 +4,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.bean.Instrument;
 import team.wy.orchestra.util.DBHelper;
 
@@ -50,6 +51,15 @@ public class InstrumentDao {
         String sql = "select * from instrument";
         List<Instrument> instruments = runner.query(conn, sql,
                 new BeanListHandler<Instrument>(Instrument.class));
+        DBHelper.close(conn);
+        return instruments;
+    }
+
+    public List<Instrument> getByPage(int pageIndex, int pageSize) throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from instrument limit ?, ?";
+        int offset = (pageIndex - 1) * pageSize;
+        List<Instrument> instruments = runner.query(conn, sql, new BeanListHandler<Instrument>(Instrument.class), offset, pageSize);
         DBHelper.close(conn);
         return instruments;
     }

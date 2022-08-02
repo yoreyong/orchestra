@@ -1,5 +1,7 @@
 package team.wy.orchestra.biz;
 
+import org.junit.Test;
+import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.bean.Instrument;
 import team.wy.orchestra.dao.InstrumentDao;
 
@@ -24,6 +26,12 @@ public class InstrumentBiz {
             e.printStackTrace();
         }
         return count;
+    }
+
+    @Test
+    public void addTest() {
+        int count = add("pinao", "keyboard", true);
+        System.out.println(count);
     }
 
     public int remove(long id) {
@@ -65,6 +73,28 @@ public class InstrumentBiz {
         }
         return rowCount;
     }
+
+    public List<Instrument> getByPage(int pageIndex, int pageSize) {
+        List<Instrument> instruments = null;
+        try {
+            instruments = instrumentDao.getByPage(pageIndex, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return instruments;
+    }
+
+    public long getPageCount(int pageSize) {
+        long pageCount = 0;
+        try {
+            long rowCount = instrumentDao.getCount();
+            pageCount = (rowCount - 1) / pageSize + 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pageCount;
+    }
+
 
     public Instrument getById(long id) {
         Instrument instrument = null;

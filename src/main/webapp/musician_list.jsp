@@ -85,7 +85,7 @@
                                                             <td>${m.zip}</td>
                                                             <td>${m.address}</td>
                                                             <td>
-                                                                <a onclick="" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>View</u></a>&nbsp;&nbsp;
+                                                                <a onclick="" href="play.let?type=query&SSN=${m.SSN}"><u>View</u></a>&nbsp;&nbsp;
                                                             </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>Modify</u></a>&nbsp;&nbsp;
