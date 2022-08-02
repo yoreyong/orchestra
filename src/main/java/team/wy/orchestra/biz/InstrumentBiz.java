@@ -28,12 +28,6 @@ public class InstrumentBiz {
         return count;
     }
 
-    @Test
-    public void addTest() {
-        int count = add("pinao", "keyboard", true);
-        System.out.println(count);
-    }
-
     public int remove(long id) {
         int count = 0;
         try {
