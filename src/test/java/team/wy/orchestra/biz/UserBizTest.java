@@ -15,7 +15,7 @@ public class UserBizTest {
 
     @Test
     public void getAllTest() {
-        User user = new UserBiz().getUser("super", "123");
+        User user = new UserBiz().getUser("super", "123456");
         System.out.println(user);
     }
 

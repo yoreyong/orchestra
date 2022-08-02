@@ -1,5 +1,6 @@
 package team.wy.orchestra.action;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -88,11 +89,23 @@ public class MusicianServlet extends HttpServlet {
             case "details":
                 details(req, resp, out);
                 break;
-            // case "doajax":
-            //     doAjax(req, resp, out);
-            //     break;
+            case "doajax":
+                doAjax(req, resp, out);
+                break;
             default:
                 resp.sendError(404);
+        }
+    }
+
+    // TODO
+    private void doAjax(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
+        String fname = req.getParameter("fname");
+        String lname = req.getParameter("lname");
+        List<Musician> musicians = musicianBiz.getMusicianByName(fname, lname);
+        if (musicians == null) {
+            out.print("{}");
+        } else {
+            out.print(JSON.toJSONString(musicians));
         }
     }
 

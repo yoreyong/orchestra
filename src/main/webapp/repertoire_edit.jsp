@@ -232,7 +232,6 @@
                                                  <input type="button" id="btnQuery" value="Search" style="width: 80px;"/></td>
 
                                             </td>
-
                                         </tr>
 
                                         <tr>

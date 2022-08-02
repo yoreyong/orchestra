@@ -159,4 +159,20 @@ public class MusicianBiz {
         return pageCount;
     }
 
+    /**
+     *
+     * @param fname
+     * @param lname
+     * @return
+     */
+    public List<Musician> getMusicianByName(String fname, String lname) {
+        List<Musician> musicians = null;
+        try {
+            musicians = musicianDao.getMusiciansByName(fname, lname);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return musicians;
+    }
+
 }

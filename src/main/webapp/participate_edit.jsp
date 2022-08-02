@@ -42,52 +42,55 @@
                 $("#btnQueryMusician").removeAttr("disabled");
             });
 
-            // TODO-YY
             // 保存所有天剑过的书名
-            var instrumentNameList = new Array();
-            console.log(instrumentNameList);
+            var musicianList = new Array();
+            console.log(musicianList);
 
-            $("#btnQueryInstrument").click(function(){
-                var name = $("#instrumentContent").val();
-                var url = "instrument.let?type=doajax&name="+name;
+            $("#btnQueryMusician").click(function(){
+                var fname = $("#musicianFnameContent").val();
+                var lname = $("#musicianLnameContent").val();
+                var url = "musician.let?type=doajax&fname="+fname+"&lname="+lname;
                 $.get(url,function(data,status){
                     console.log(data);
 
-                    var instrument = JSON.parse(data);
-                    console.log(instrument);
+                    var musician = JSON.parse(data);
+                    console.log(musician);
 
-                    if(instrument.length===0){
-                        alert("No such instrument!");
-                        $("#instrumentContent").val("");
+                    if(musician.length===0){
+                        alert("No such musician!");
+                        $("#musicianContent").val("");
                         return;
                     }
 
                     // 判断这个instrument是否已经存在
-                    if(instrumentNameList.indexOf(name)>=0){
-                        alert("This instrument already exists!");
+                    if(musicianList.indexOf(fname)>=0){
+                        alert("This musician already exists!");
                         return;
                     }
 
                     // 添加instrument name到数组
-                    instrumentNameList.push(name);
+                    musicianList.push(fname);
 
                     // 创建行
                     var tr = $("<tr align=\"center\" class=\"d\">");
                     // 创建多个列
-                    var tdCheck = $("<td><input type=\"checkbox\" value=\""+instrument[0].id+"\" class=\"ck\" checked /></td>");
-                    var tdName = $("<td>"+instrument[0].name+"</td>");
-                    var tdType = $("<td>"+instrument[0].type+"</td>");
-                    var tdStatus = $("<td>"+instrument[0].status+"</td>");
+                    var tdCheck = $("<td><input type=\"checkbox\" value=\""+musician[0].sSN+"\" class=\"ck\" checked /></td>");
+                    // var tdSSN = $("<td>"+musician[0].sSN+"</td>");
+                    console.log(musician[0].sSN);
+                    var tdFname = $("<td>"+musician[0].fname+"</td>");
+                    var tdLname = $("<td>"+musician[0].lname+"</td>");
+                    var tdGender = $("<td>"+musician[0].gender+"</td>");
 
                     // 行加列
                     tr.append(tdCheck);
-                    tr.append(tdName);
-                    tr.append(tdType);
-                    tr.append(tdStatus);
+                    tr.append(tdFname);
+                    tr.append(tdLname);
+                    tr.append(tdGender);
 
                     // 表加行
-                    $("#tdMusicalWork").append(tr);
-                    $("#musicalWorkContent").val("");
+                    $("#tdMusician").append(tr);
+                    $("#musicianFnameContent").val("");
+                    $("#musicianLnameContent").val("");
                     $("#btnSubmit").removeAttr("disabled");
                 });
             });
@@ -108,12 +111,12 @@
                     }
                 });
                 if(count===0){
-                    alert("Please select a instrument!");
+                    alert("Please select a musician!");
                     return;
                 }
-                location.href="require.let?type=add&mid="+musicalWork[0].id+"&ids="+ids.join("_");
+                location.href="participate.let?type=add&cid="+concert.id+"&ids="+ids.join("_");
                 console.log(ids.join("_"));
-                console.log(musicalWork[0].id);
+                console.log(concert.id);
             });
         });
 
@@ -163,34 +166,23 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Musical Work</legend>
+                                    <legend>Concert Details</legend>
                                     <table width="100%" border="0" class="cont"  >
 
                                         <tr>
-                                            <td width="10%" class="run-right"> Musical work name</td>
-                                            <td colspan="7"><input class="text" type="text" id="musicalWorkName" name="musicalWorkName" placeholder="Input a musical work name"/>
-                                                 <input type="button" id="btnQuery" value="Search" style="width: 80px;"/></td>
+                                            <td width="10%" class="run-right"> Concert ID</td>
+                                            <td colspan="7"><input class="text" type="text" id="concertId" name="concertId" placeholder="Input a concert ID"/>
+                                                <input type="button" id="btnQuery" value="Search" style="width: 80px;"/></td>
 
                                             </td>
-
                                         </tr>
 
                                         <tr>
-                                            <td width="10%" class="run-right">ID</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_id" disabled/></td>
+                                            <td width="10%" class="run-right">Name</td>
+                                            <td width="17%"><input class="text" type="text" id="concert_name" disabled/></td>
 
-                                            <td width="10%" class="run-right">Name:</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_name" disabled/></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td width="10%" class="run-right">Type</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_type" disabled/></td>
-
-                                            <td width="10%" class="run-right">Author:</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_author" disabled/></td>
+                                            <td width="10%" class="run-right">Type:</td>
+                                            <td width="17%"><input class="text" type="text" id="concert_type" disabled/></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -212,13 +204,13 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Find a instrument</legend>
+                                    <legend>Find a musician</legend>
                                     <table width="100%" border="1" class="cont"  >
                                         <tr>
                                             <td colspan="8">
-                                               
-                                                Instrument name:&nbsp;&nbsp;<input class="text" type="text" id="instrumentContent" name="instrumentContent" placeholder="Input a instrument name"/>
-                                                <input type="button" id="btnQueryInstrument" value="Confirm" style="width: 80px;"/>
+                                                Musician first name:&nbsp;&nbsp;<input class="text" type="text" id="musicianFnameContent" name="musicianFnameContent" placeholder="First name"/>&nbsp;&nbsp;
+                                                Musician last name:&nbsp;&nbsp;<input class="text" type="text" id="musicianLnameContent" name="musicianLnameContent" placeholder="Last name"/>
+                                                <input type="button" id="btnQueryMusician" value="Confirm" style="width: 80px;"/>
                                                 <input type="button" id="btnSubmit" value="Finish" style="width: 80px;"/>
                                             </td>
                                          
@@ -237,13 +229,13 @@
                                     <tr>
                                         <td colspan="2">
                                             <form action="" method="">
-                                                <table width="100%"  class="cont tr_color" id="tdMusicalWork">
+                                                <table width="100%"  class="cont tr_color" id="tdMusician">
 
                                                     <tr>
                                                         <th><input type="checkbox" id="ckAll" checked/>All/None</th>
-                                                        <th>Name</th>
-                                                        <th>Type</th>
-                                                        <th>Status</th>
+                                                        <th>Fname</th>
+                                                        <th>Lname</th>
+                                                        <th>Gender</th>
                                                     </tr>
                                                    
                                                 </table>

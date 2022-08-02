@@ -115,7 +115,7 @@
                             <!-- 编制曲目 -->
                             <li><a href="./repertoire_edit.jsp" target="main">Plan Repertoire</a></li>
                             <!-- 配置musician -->
-                            <li><a href="./play_edit.jsp" target="main">Assign Musicians2Concert</a></li>
+                            <li><a href="./participate_edit.jsp" target="main">Assign Musicians2Concert</a></li>
                             <li><a href="./require_edit.jsp" target="main">Edit Instruments2MusicalWork</a></li>
                         </ul>
                     </div>

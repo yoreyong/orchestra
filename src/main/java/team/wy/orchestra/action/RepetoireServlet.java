@@ -1,8 +1,6 @@
 package team.wy.orchestra.action;
 
-import team.wy.orchestra.bean.Concert;
 import team.wy.orchestra.bean.Repertoire;
-import team.wy.orchestra.biz.ConcertBiz;
 import team.wy.orchestra.biz.RepertoireBiz;
 
 import javax.servlet.ServletException;
@@ -25,7 +23,6 @@ import java.util.List;
 public class RepetoireServlet extends HttpServlet {
 
     RepertoireBiz repertoireBiz = new RepertoireBiz();
-    ConcertBiz concertBiz = new ConcertBiz();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

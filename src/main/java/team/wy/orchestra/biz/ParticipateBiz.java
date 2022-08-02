@@ -4,6 +4,7 @@ import team.wy.orchestra.bean.Participate;
 import team.wy.orchestra.dao.ConcertDao;
 import team.wy.orchestra.dao.MusicianDao;
 import team.wy.orchestra.dao.ParticipateDao;
+import team.wy.orchestra.util.DBHelper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -28,6 +29,28 @@ public class ParticipateBiz {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public int add(List<String> SSNs, long concertId) {
+        //启动事务
+        try {
+            DBHelper.beginTransaction();
+
+            for(String SSN : SSNs) {
+                participateDao.add(SSN, concertId);
+            }
+
+            DBHelper.commitTransaction(); // 事务提交：成功
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                DBHelper.rollbackTransaction(); // 事务回滚：有异常
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        }
+        return 1;
     }
 
     public int remove(long id) {

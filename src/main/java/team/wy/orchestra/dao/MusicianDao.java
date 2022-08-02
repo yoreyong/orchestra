@@ -109,6 +109,20 @@ public class MusicianDao {
     }
 
     /**
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
+    public List<Musician> getMusiciansByName(String fname, String lname) throws SQLException {
+        Connection conn = DBHelper.getConnection();
+        String sql = "select * from musician where fname=? and lname=?";
+        List<Musician> musicians = runner.query(conn, sql, new BeanListHandler<Musician>(Musician.class), fname, lname);
+        DBHelper.close(conn);
+        return musicians;
+    }
+
+    /**
      * Get number of musicians
      * @return
      * @throws SQLException

@@ -1,5 +1,8 @@
 package team.wy.orchestra.action;
 
+import team.wy.orchestra.bean.Participate;
+import team.wy.orchestra.biz.ParticipateBiz;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,8 @@ import java.util.List;
  **/
 @WebServlet("/participate.let")
 public class ParticipateServlet extends HttpServlet {
+    ParticipateBiz participateBiz = new ParticipateBiz();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,14 +65,29 @@ public class ParticipateServlet extends HttpServlet {
         String ids = req.getParameter("ids");
         String[] strs = ids.split("_");
         List<String> musicianSSNs = new ArrayList<String>(Arrays.asList(strs));
-        //TODO - 添加musician到concert中，需要在Biz中增加add
+
+        int count = participateBiz.add(musicianSSNs, concertId);
+        if(count > 0) {
+            out.println("<script>alert('Success!');location.href='participate.let?type=query&pageIndex=1&id="+concertId+"';</script>");
+        } else {
+            out.println("<script>alert('Failed!');location.href='main.jsp';</script>");
+        }
     }
 
     private void participateRemove(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-
+        long participateId = Long.parseLong(req.getParameter("pid"));
+        int count = participateBiz.remove(participateId);
+        if(count > 0) {
+            out.println("<script>alert('Success to remove participate!');location.href='concert.let?type=query&pageIndex=1'</script>");
+        } else {
+            out.println("<script>alert('Failed to remove participate!');location.href='concert.let?type=query&pageIndex=1'</script>");
+        }
     }
 
-    private void participateQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) {
-
+    private void participateQuery(HttpServletRequest req, HttpServletResponse resp, PrintWriter out) throws ServletException, IOException {
+        long concertId = Long.parseLong(req.getParameter("id"));
+        List<Participate> participates = participateBiz.getByConId(concertId);
+        req.setAttribute("participates", participates);
+        req.getRequestDispatcher("participate_list.jsp").forward(req, resp);
     }
 }
