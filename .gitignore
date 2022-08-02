@@ -31,6 +31,7 @@ hs_err_pid*
 *.iml
 out
 gen
+target
 
 /src/main/resources
 /src/main/java/team/wy/orchestra/action/MusicianServlet.java
