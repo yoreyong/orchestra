@@ -115,8 +115,11 @@
                             <!-- 编制曲目 -->
                             <li><a href="./repertoire_edit.jsp" target="main">Plan Repertoire</a></li>
                             <!-- 配置musician -->
-                            <li><a href="./participate_edit.jsp" target="main">Assign Musicians2Concert</a></li>
-                            <li><a href="./require_edit.jsp" target="main">Edit Instruments2MusicalWork</a></li>
+                            <li><a href="./participate_edit.jsp" target="main">Musicians => Concert</a></li>
+                            <!-- 为musical work配置instruments -->
+                            <li><a href="./require_edit.jsp" target="main">Instruments => MusicalWork</a></li>
+                            <!-- 为musical work配置instruments -->
+                            <li><a href="./play_edit.jsp" target="main">Instruments => Musician</a></li>
                         </ul>
                     </div>
 

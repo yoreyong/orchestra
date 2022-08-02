@@ -4,6 +4,7 @@ import team.wy.orchestra.bean.PlaysInstr;
 import team.wy.orchestra.dao.InstrumentDao;
 import team.wy.orchestra.dao.MusicianDao;
 import team.wy.orchestra.dao.PlaysInstrDao;
+import team.wy.orchestra.util.DBHelper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -28,6 +29,33 @@ public class PlaysInstrBiz {
             e.printStackTrace();
         }
         return count;
+    }
+
+    /**
+     *
+     * @param SSN
+     * @param settingNums
+     * @return
+     */
+    public int add(String SSN, List<Long> settingNums) {
+        try {
+            DBHelper.beginTransaction();
+
+            for(Long settingNum : settingNums) {
+                playsInstrDao.add(SSN, settingNum);
+            }
+
+            DBHelper.commitTransaction(); // 事务提交：成功
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                DBHelper.rollbackTransaction(); // 事务回滚：有异常
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        }
+        return 1;
     }
 
     public int remove(long id) {

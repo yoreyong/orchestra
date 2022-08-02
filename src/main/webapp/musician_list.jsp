@@ -86,7 +86,6 @@
                                                             <td>${m.address}</td>
                                                             <td>
                                                                 <a onclick="" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>View</u></a>&nbsp;&nbsp;
-                                                                <a onclick="return confirm('Confirm edit');" href="musician.let?type=remove&SSN=${m.SSN}"><u>Edit</u></a>
                                                             </td>
                                                             <td>
                                                                 <a onclick="return confirm('Confirm modification');" href="musician.let?type=modifypre&SSN=${m.SSN}"><u>Modify</u></a>&nbsp;&nbsp;

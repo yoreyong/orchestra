@@ -8,77 +8,36 @@
     <link rel="stylesheet" type="text/css" href="./Style/skin.css" />
     <script src="Js/jquery-3.3.1.min.js"></script>
     <script>
-        // 获取系统当前时间
-        // function getCurrentDate() {
-        //     var dateObj = new Date();
-        //     var year = dateObj.getFullYear();
-        //     var month = dateObj.getMonth()+1;
-        //     var date = dateObj.getDate();
-        //     var dateStr = year+"-"+(month>=10?month:"0"+month)+"-"+(date>=10?date:"0"+date);
-        //     return dateStr;
-        // }
-
-        /**
-         * 获取归还时间
-         * @param count - 借阅时间
-         * 通过毫秒数来计算
-         */
-        // function getBackDate(count) {
-        //     // 获取系统当前时间
-        //     var dateObj = new Date();
-        //     // 拴成毫秒数
-        //     var mills = dateObj.getMilliseconds();
-        //     //
-        //     mills += count*24*60*60*1000;
-        //     // 转换成日期
-        //     dateObj.setMilliseconds(mills);
-        //     // 时间转成字符串
-        //     var year = dateObj.getFullYear();
-        //     var month = dateObj.getMonth()+1;
-        //     var date = dateObj.getDate();
-        //     var dateStr = year+"-"+(month>=10?month:"0"+month)+"-"+(date>=10?date:"0"+date);
-        //     return dateStr;
-        // }
-
-        // console.log(getCurrentDate());
-        // console.log(getBackDate(30));
-
-        // function date2string(str) {
-        //     var dateObj = new Date();
-        //     dateObj.setMilliseconds(str);
-        //     var year = dateObj.getFullYear();
-        //     var month = dateObj.getMonth()+1;
-        //     var date = dateObj.getDate();
-        //     var dateStr = year+"-"+(month>=10?month:"0"+month)+"-"+(date>=10?date:"0"+date);
-        //     return dateStr;
-        // }
-
 
         $(function(){
             $("#btnQueryInstrument").prop("disabled","disabled");
             $("#btnSubmit").prop("disabled","disabled");
-            var musicalWork = null;
+            var musician = null;
             $("#btnQuery").click(function(){
                 // 1.获取用户输入的身份证号
-                var content = $("#musicalWorkName").val();
+                var fname = $("#musicianFname").val();
+                var lname = $("#musicianLname").val();
                 //判断为null ,""
-                if(!content){
-                    alert("Input musical work name");
+                if(!fname){
+                    alert("Input musician first name");
+                    return;
+                }
+                if(!lname){
+                    alert("Input musician last name");
                     return;
                 }
                 // 2.调用js-ajax()/post()/get
-                var url="musicalwork.let?type=doajax&name="+content;
+                var url="musician.let?type=doajax&fname="+fname+"&lname="+lname;
                 $.get(url,function(data,status) {
                     console.log(data);
                     // 将json字符串 --> json对象
-                    musicalWork = JSON.parse(data);
-                    console.log(musicalWork);
+                    musician = JSON.parse(data);
+                    console.log(musician);
 
                     // 给组件赋值
-                    $("#musicalWork_id").val(musicalWork[0].id);
-                    $("#musicalWork_name").val(musicalWork[0].name);
-                    $("#musicalWork_type").val(musicalWork[0].type.name);
-                    $("#musicalWork_author").val(musicalWork[0].author);
+                    $("#musician_SSN").val(musician[0].sSN);
+                    $("#musician_gender").val(musician[0].gender);
+                    $("#musician_phoneNum").val(musician[0].phoneNum);
                 });
 
                 // 关闭查询用户功能
@@ -130,7 +89,7 @@
                     tr.append(tdStatus);
 
                     // 表加行
-                    $("#tdMusicalWork").append(tr);
+                    $("#tdInstrument").append(tr);
                     $("#instrumentContent").val("");
                     $("#btnSubmit").removeAttr("disabled");
                 });
@@ -155,9 +114,9 @@
                     alert("Please select a instrument!");
                     return;
                 }
-                location.href="require.let?type=add&mid="+musicalWork[0].id+"&ids="+ids.join("_");
+                location.href="play.let?type=add&SSN="+musician[0].sSN+"&ids="+ids.join("_");
                 console.log(ids.join("_"));
-                console.log(musicalWork[0].id);
+                console.log(musician[0].sSN);
             });
         });
 
@@ -207,37 +166,32 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Musical Work</legend>
+                                    <legend>Musician</legend>
                                     <table width="100%" border="0" class="cont"  >
 
                                         <tr>
-                                            <td width="10%" class="run-right"> Musical work name</td>
-                                            <td colspan="7"><input class="text" type="text" id="musicalWorkName" name="musicalWorkName" placeholder="Input a musical work name"/>
+                                            <td width="10%" class="run-right"> Musician name</td>
+                                            <td colspan="7">
+                                                <input class="text" type="text" id="musicianFname" name="musicianFname" placeholder="Input first name"/>
+                                                <input class="text" type="text" id="musicianLname" name="musicianLname" placeholder="Input last name"/>
                                                  <input type="button" id="btnQuery" value="Search" style="width: 80px;"/></td>
-
                                             </td>
 
                                         </tr>
 
                                         <tr>
-                                            <td width="10%" class="run-right">ID</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_id" disabled/></td>
+                                            <td width="10%" class="run-right">SSN</td>
+                                            <td width="17%"><input class="text" type="text" id="musician_SSN" disabled/></td>
 
-                                            <td width="10%" class="run-right">Name:</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_name" disabled/></td>
+                                            <td width="10%" class="run-right">Gender:</td>
+                                            <td width="17%"><input class="text" type="text" id="musician_gender" disabled/></td>
+
+                                            <td width="10%" class="run-right">Phone:</td>
+                                            <td width="17%"><input class="text" type="text" id="musician_phoneNum" disabled/></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
 
-                                        <tr>
-                                            <td width="10%" class="run-right">Type</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_type" disabled/></td>
-
-                                            <td width="10%" class="run-right">Author:</td>
-                                            <td width="17%"><input class="text" type="text" id="musicalWork_author" disabled/></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
 
                                     </table>
                                 </fieldset>
@@ -281,7 +235,7 @@
                                     <tr>
                                         <td colspan="2">
                                             <form action="" method="">
-                                                <table width="100%"  class="cont tr_color" id="tdMusicalWork">
+                                                <table width="100%"  class="cont tr_color" id="tdInstrument">
 
                                                     <tr>
                                                         <th><input type="checkbox" id="ckAll" checked/>All/None</th>

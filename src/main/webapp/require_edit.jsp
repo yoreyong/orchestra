@@ -131,7 +131,7 @@
 
                     // 表加行
                     $("#tdMusicalWork").append(tr);
-                    $("#musicalWorkContent").val("");
+                    $("#instrumentContent").val("");
                     $("#btnSubmit").removeAttr("disabled");
                 });
             });

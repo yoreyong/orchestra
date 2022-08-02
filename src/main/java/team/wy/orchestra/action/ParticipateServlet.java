@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @className: ParticipateServlet
- * @description: TODO 类描述
+ * @description:
  * @author: YORE
  * @date: 2022/8/1
  **/
