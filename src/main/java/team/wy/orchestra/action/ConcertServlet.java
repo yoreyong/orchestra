@@ -78,7 +78,18 @@ public class ConcertServlet extends HttpServlet {
                 }
                 break;
             case "remove":
-
+                long concertId_0 = Long.parseLong(req.getParameter("id"));
+                try {
+                    int remove_count = concertBiz.remove(concertId_0);
+                    if(remove_count > 0) {
+                        out.println("<script>alert('Success to remove a concert!');location.href='concert.let?type=query&pageIndex=1'</script>");
+                    } else {
+                        out.println("<script>alert('Failed to remove a concert!');location.href='concert.let?type=query&pageIndex=1'</script>");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    out.println("<script>alert('" + e.getMessage() + "');location.href='concert.let?type=query&pageIndex=1'</script>");
+                }
                 break;
             case "modifypre":
                 long concertId = Long.parseLong(req.getParameter("id"));

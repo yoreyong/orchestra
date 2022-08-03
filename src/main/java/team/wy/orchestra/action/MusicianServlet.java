@@ -230,10 +230,10 @@ public class MusicianServlet extends HttpServlet {
 
         int count = musicianBiz.modify(musician);
         if(count>0){
-            out.println("<script>alert('Success to add musician!');location.href='musician.let?type=query&pageIndex=1';</script>");
+            out.println("<script>alert('Success to modify musician!');location.href='musician.let?type=query&pageIndex=1';</script>");
             // out.println("<script>alert('Success to add musician!');location.href='musician.let?type=query&pageIndex=" + pageIndex + "';</script>");
         }else{
-            out.println("<script>alert('Failed to add musician');location.href='musician.let?type=query&pageIndex=1';</script>");
+            out.println("<script>alert('Failed to modify musician');location.href='musician.let?type=query&pageIndex=1';</script>");
             // out.println("<script>alert('Failed to add musician');location.href='musician.let?type=query&pageIndex=" + pageIndex + "';</script>");
         }
     }

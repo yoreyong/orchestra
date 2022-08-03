@@ -148,7 +148,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;">General > Plan Repertoire </h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;">Customer > Book </h3></td>
                                     </tr>
                                 </table>
                             </td>
@@ -166,11 +166,11 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Musician</legend>
+                                    <legend>Customer </legend>
                                     <table width="100%" border="0" class="cont"  >
 
                                         <tr>
-                                            <td width="10%" class="run-right"> Musician name</td>
+                                            <td width="10%" class="run-right"> Customer name</td>
                                             <td colspan="7">
                                                 <input class="text" type="text" id="musicianFname" name="musicianFname" placeholder="Input first name"/>
                                                 <input class="text" type="text" id="musicianLname" name="musicianLname" placeholder="Input last name"/>
@@ -210,12 +210,12 @@
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
                                 <fieldset>
-                                    <legend>Find a instrument</legend>
+                                    <legend>Order</legend>
                                     <table width="100%" border="1" class="cont"  >
                                         <tr>
                                             <td colspan="8">
                                                
-                                                Instrument name:&nbsp;&nbsp;<input class="text" type="text" id="instrumentContent" name="instrumentContent" placeholder="Input a instrument name"/>
+                                                Concert name:&nbsp;&nbsp;<input class="text" type="text" id="instrumentContent" name="instrumentContent" placeholder="Input a concert name"/>
                                                 <input type="button" id="btnQueryInstrument" value="Confirm" style="width: 80px;"/>
                                                 <input type="button" id="btnSubmit" value="Finish" style="width: 80px;"/>
                                             </td>

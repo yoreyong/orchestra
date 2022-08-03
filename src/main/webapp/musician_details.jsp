@@ -136,6 +136,12 @@
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td colspan="3"><input class="btn" type="button" value="Back" onclick="window.location='musician.let?type=query&pageIndex=1';"/></td>
+                                                    </tr>
+
                                                 </table>
                                             </form>
                                         </td>
@@ -149,7 +155,8 @@
 											</table>
 										</td>
 									</tr>
-									
+
+                                    <!--
 									<tr>
 							
                                         <td><b>Salary</b>：
@@ -191,7 +198,7 @@
 										</td>
 										<td></td>
 									</tr>
-									
+									-->
                                 </table>
                             </td>
                             <td width="2%">&nbsp;</td>

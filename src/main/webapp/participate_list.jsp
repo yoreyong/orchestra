@@ -34,7 +34,7 @@
                                 <table>
                                     <tr>
                                         <td width="100" align="center"><img src="./Images/mime.gif" /></td>
-                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Concert</b> > <b>Repertoire</b></h3></td>
+                                        <td valign="bottom"><h3 style="letter-spacing:1px;"><b>Concert</b> > <b>Participate</b></h3></td>
                                     </tr>
                                 </table>
                             </td>

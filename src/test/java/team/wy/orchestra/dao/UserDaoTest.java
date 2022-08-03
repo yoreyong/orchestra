@@ -17,7 +17,7 @@ public class UserDaoTest {
     public void getUserTest() {
         User user = null;
         try {
-            user = new UserDao().getUser("super", "123");
+            user = new UserDao().getUser("super", "123456");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -48,7 +48,7 @@
                             </td>
                         </tr>
 
-                        <!-- Concert Type 根据concert子类型进行查询复选框 -->
+                        <!-- Concert Type 根据concert子类型进行查询复选框
                         <tr>
                             <td width="2%">&nbsp;</td>
                             <td width="96%">
@@ -58,10 +58,6 @@
                                         <tr>
                                             <td colspan="8">
                                                 Concert type:&nbsp;&nbsp;
-
-
-
-
                                                 <input class="text" type="text" id="bookContent" name="bookContent" placeholder="输入条形码/书名"/>
                                                 <input type="button" id="btnQueryConcert" value="Confirm" style="width: 80px;"/>
                                             </td>
@@ -71,10 +67,8 @@
                                     </table>
                                 </fieldset>
                             </td>
-
                         </tr>
-
-
+                        -->
 
 
                         <!-- 产品列表开始 -->
@@ -87,12 +81,12 @@
 
                                                 <table width="100%"  class="cont tr_color">
                                                     <tr>
-                                                        <th>Id</th>
-                                                        <th>Name</th>
+                                                        <th>Concert ID</th>
+                                                        <th>Concert Name</th>
+                                                        <th>Type</th>
                                                         <th>Place</th>
                                                         <th>Date</th>
                                                         <th>Time</th>
-                                                        <th>Type</th>
                                                         <th>Price</th>
                                                         <th>Repertoire</th>
                                                         <th>Musicians</th>
@@ -103,10 +97,10 @@
                                                         <tr align="center" class="d">
                                                             <td><a href="concert.let?type=details&id=${c.id}">${c.id}</a></td>
                                                             <td>${c.concert_name}</td>
+                                                            <td>${c.concertType.name}</td>
                                                             <td>${c.place}</td>
                                                             <td>${c.concert_date}</td>
                                                             <td>${c.start_time}</td>
-                                                            <td>${c.concertType.name}</td>
                                                             <td>${c.price}</td>
                                                             <td>
                                                                 <a onclick="" href="repertoire.let?type=query&id=${c.id}"><u>View</u></a>&nbsp;&nbsp;

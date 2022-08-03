@@ -1,7 +1,11 @@
 package team.wy.orchestra.biz;
 
 import team.wy.orchestra.bean.Musician;
+import team.wy.orchestra.bean.Participate;
+import team.wy.orchestra.bean.PlaysInstr;
 import team.wy.orchestra.dao.MusicianDao;
+import team.wy.orchestra.dao.ParticipateDao;
+import team.wy.orchestra.dao.PlaysInstrDao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -82,11 +86,27 @@ public class MusicianBiz {
      * @param SSN - SSN number
      * @return count - 1:success, 0:failed
      */
-    public int remove(String SSN) {
+    public int remove(String SSN) throws Exception {
+        ParticipateDao participateDao = new ParticipateDao();
+        PlaysInstrDao playsInstrDao = new PlaysInstrDao();
+
+        try {
+            List<Participate> participates = participateDao.getBySSN(SSN);
+            if(participates.size() > 0) {
+                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+            }
+
+            List<PlaysInstr> playsInstrs = playsInstrDao.getBySSN(SSN);
+            if(playsInstrs.size() > 0) {
+                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         int count = 0;
         try {
-            // TODO - 增加FK检测功能，若存在外键，则不能阐述
-            // 最好能返回页面提示 throw new exception
             count = musicianDao.remove(SSN);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -33,7 +33,7 @@
         <tr>
             <td width="182" valign="top">
                 <div id="container">
-
+                    <!--
                     <h1 class="type"><a href="javascript:void(0)">Customer</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -42,11 +42,13 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./mem_add.jsp" target="main">New customer</a></li>
-                            <li><a href="./mem_list.jsp" target="main">Edit</a></li>
-                            <li><a href="./mem_recharge.jsp" target="main">Book</a></li>
+                            <li><a href="./customer_add.jsp" target="main">New customer</a></li>
+                            <li><a href="./customer_list.jsp" target="main">List</a></li>
+                            <li><a href="./book_edit.jsp" target="main">Book</a></li>
                         </ul>
                     </div>
+
+                    -->
 
                     <!-- Concert -->
                     <h1 class="type"><a href="javascript:void(0)">Concert</a></h1>

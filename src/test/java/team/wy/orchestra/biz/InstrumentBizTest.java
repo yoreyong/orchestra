@@ -23,7 +23,12 @@ public class InstrumentBizTest {
 
     @Test
     public void removeTest() {
-        int count = instrumentBiz.remove(7);
+        int count = 0;
+        try {
+            count = instrumentBiz.remove(7);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(count);
     }
 

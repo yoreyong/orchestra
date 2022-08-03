@@ -53,7 +53,7 @@ public class PlaysInstrDao {
         return playsInstrs;
     }
 
-    public PlaysInstr getById(int id) throws SQLException {
+    public PlaysInstr getById(long id) throws SQLException {
         Connection conn = DBHelper.getConnection();
         String sql = "select * from plays where id = ?";
         PlaysInstr playsInstr = runner.query(conn, sql, new BeanHandler<PlaysInstr>(PlaysInstr.class), id);

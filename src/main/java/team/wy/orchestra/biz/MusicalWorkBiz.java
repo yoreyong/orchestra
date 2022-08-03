@@ -2,8 +2,12 @@ package team.wy.orchestra.biz;
 
 import team.wy.orchestra.bean.MusicalWork;
 import team.wy.orchestra.bean.MusicalWorkType;
+import team.wy.orchestra.bean.Repertoire;
+import team.wy.orchestra.bean.RequireInstrument;
 import team.wy.orchestra.dao.MusicalWorkDao;
 import team.wy.orchestra.dao.MusicalWorkTypeDao;
+import team.wy.orchestra.dao.RepertoireDao;
+import team.wy.orchestra.dao.RequireInstrumentDao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -30,7 +34,26 @@ public class MusicalWorkBiz {
         return count;
     }
 
-    public int remove(long id) {
+    public int remove(long id) throws Exception {
+        RequireInstrumentDao requireInstrumentDao = new RequireInstrumentDao();
+        RepertoireDao repertoireDao = new RepertoireDao();
+
+        try {
+            List<RequireInstrument> requires = requireInstrumentDao.getByMusicalWork(id);
+            if(requires.size() > 0) {
+                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+            }
+
+            List<Repertoire> repertoires = repertoireDao.getByMusicalWorkId(id);
+            if(repertoires.size() > 0) {
+                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         int count = 0;
         try {
             count = musicalWorkDao.remove(id);
