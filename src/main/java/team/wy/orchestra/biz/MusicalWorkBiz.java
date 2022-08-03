@@ -41,12 +41,12 @@ public class MusicalWorkBiz {
         try {
             List<RequireInstrument> requires = requireInstrumentDao.getByMusicalWork(id);
             if(requires.size() > 0) {
-                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+                throw new Exception("Cannot delete the musical work, a foreign key constraint fails");
             }
 
             List<Repertoire> repertoires = repertoireDao.getByMusicalWorkId(id);
             if(repertoires.size() > 0) {
-                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+                throw new Exception("Cannot delete the musical work, a foreign key constraint fails");
             }
 
         } catch (SQLException e) {

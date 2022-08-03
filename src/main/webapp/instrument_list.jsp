@@ -57,7 +57,7 @@
 
                                                 <table width="100%"  class="cont tr_color">
                                                     <tr>
-                                                        <th>Id</th>
+                                                        <th>Instrument ID</th>
                                                         <th>Name</th>
                                                         <th>Type</th>
                                                         <th>Status</th>

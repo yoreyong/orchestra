@@ -93,12 +93,12 @@ public class MusicianBiz {
         try {
             List<Participate> participates = participateDao.getBySSN(SSN);
             if(participates.size() > 0) {
-                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+                throw new Exception("Cannot delete the musician, a foreign key constraint fails");
             }
 
             List<PlaysInstr> playsInstrs = playsInstrDao.getBySSN(SSN);
             if(playsInstrs.size() > 0) {
-                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+                throw new Exception("Cannot delete the musician, a foreign key constraint fails");
             }
         } catch (SQLException e) {
             e.printStackTrace();

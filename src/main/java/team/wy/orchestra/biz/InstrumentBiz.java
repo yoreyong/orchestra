@@ -39,12 +39,12 @@ public class InstrumentBiz {
         try {
             List<PlaysInstr> playsInstrs = playsInstrDao.getByInstrNum(id);
             if(playsInstrs.size() > 0) {
-                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+                throw new Exception("Cannot delete the instrument, a foreign key constraint fails");
             }
 
             List<RequireInstrument> requireInstruments = requireInstrumentDao.getByInstrument(id);
             if(playsInstrs.size() > 0) {
-                throw new Exception("Cannot delete the concert, a foreign key constraint fails");
+                throw new Exception("Cannot delete the instrument, a foreign key constraint fails");
             }
         } catch (SQLException e) {
             e.printStackTrace();

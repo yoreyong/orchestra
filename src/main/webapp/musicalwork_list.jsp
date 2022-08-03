@@ -57,7 +57,7 @@
 
                                                 <table width="100%"  class="cont tr_color">
                                                     <tr>
-                                                        <th>Id</th>
+                                                        <th>Musical Work ID</th>
                                                         <th>Name</th>
                                                         <th>Author</th>
                                                         <th>Type</th>
